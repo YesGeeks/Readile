@@ -6,7 +6,7 @@
 <img src="https://user-images.githubusercontent.com/46399191/165711330-14a2b271-e3ef-4e01-91fc-b18d75a62a6e.png" width="150" alt="Readile">
 
 # Readile 
-The way to track your readings
+> The way to track your readings
 
 ## Getting Started
 
