@@ -4,7 +4,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/CSCI-2108-Final-Projects/Readile?color=orange&style=flat-square)
 # Readile
 The way to track your readings
-<hr>
 
 ## Getting Started
 
@@ -31,4 +30,4 @@ The following guides illustrate how to use some features concretely:
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 * [Using WebSocket to build an interactive web application](https://spring.io/guides/gs/messaging-stomp-websocket/)
 
-© 2022 Readile
+<i>© 2022 Readile</i>
