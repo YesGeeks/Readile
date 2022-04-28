@@ -1,4 +1,10 @@
-# Getting Started
+https://img.shields.io/github/issues/CSCI-2108-Final-Projects/Readile?style=for-the-badge
+https://img.shields.io/github/forks/CSCI-2108-Final-Projects/Readile?style=for-the-badge
+# Readile
+The way to track your readings
+<hr>
+
+## Getting Started
 
 ### Reference Documentation
 
@@ -23,8 +29,4 @@ The following guides illustrate how to use some features concretely:
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 * [Using WebSocket to build an interactive web application](https://spring.io/guides/gs/messaging-stomp-websocket/)
 
-<<<<<<< HEAD
 © 2022 Readile
-=======
-© Readile 2022
->>>>>>> 2df3e71 (Readile base structure!)
