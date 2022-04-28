@@ -1,5 +1,7 @@
-https://img.shields.io/github/issues/CSCI-2108-Final-Projects/Readile?style=for-the-badge
-https://img.shields.io/github/forks/CSCI-2108-Final-Projects/Readile?style=for-the-badge
+[![GitHub issues](https://img.shields.io/github/issues/CSCI-2108-Final-Projects/Readile?style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile/issues)
+[![GitHub forks](https://img.shields.io/github/forks/CSCI-2108-Final-Projects/Readile?style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile/network)
+[![GitHub license](https://img.shields.io/github/license/CSCI-2108-Final-Projects/Readile?color=g&style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile)
+![GitHub last commit](https://img.shields.io/github/last-commit/CSCI-2108-Final-Projects/Readile?color=orange&style=flat-square)
 # Readile
 The way to track your readings
 <hr>
