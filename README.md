@@ -2,7 +2,10 @@
 [![GitHub forks](https://img.shields.io/github/forks/CSCI-2108-Final-Projects/Readile?style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile/network)
 [![GitHub license](https://img.shields.io/github/license/CSCI-2108-Final-Projects/Readile?color=g&style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CSCI-2108-Final-Projects/Readile?color=orange&style=flat-square)
-# Readile
+
+<img src="https://user-images.githubusercontent.com/46399191/165711330-14a2b271-e3ef-4e01-91fc-b18d75a62a6e.png" width="150" alt="Readile">
+
+# Readile 
 The way to track your readings
 
 ## Getting Started
