@@ -1,0 +1,13 @@
+@font-face {
+    src: url("../fonts/Montserrat-VariableFont_wght.ttf");
+}
+
+.root {
+    -fx-background-color: #F8F8F8;
+    -fx-font-family: 'Montserrat', cursive;
+}
+
+.hyperlink:default {
+    -fx-underline: line;
+}
+
