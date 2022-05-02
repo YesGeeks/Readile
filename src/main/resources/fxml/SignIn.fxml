@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SignIn">
+   <stylesheets>
+      <URL value="@../styles/global.css" />
+      <URL value="@../styles/sign-in.css" />
+   </stylesheets>
+   <children>
+      <BorderPane prefHeight="768.0" prefWidth="1024.0">
+         <left>
+            <Pane id="aside" prefHeight="768.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="81.0" layoutY="88.0" prefHeight="260.0" prefWidth="218.0">
+                     <children>
+                        <ImageView fitHeight="218.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Readile.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="title" prefHeight="63.0" prefWidth="218.0" text="Readile" />
+                     </children>
+                  </VBox>
+                  <Label id="subtitle" layoutY="618.0" prefHeight="21.0" prefWidth="380.0" text="The Way to Track Your Readings" />
+               </children>
+            </Pane>
+         </left>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox id="main" layoutX="97.0" layoutY="106.0" prefHeight="615.0" prefWidth="450.0">
+                     <children>
+                        <Label id="sign-in-lbl" prefHeight="66.0" prefWidth="450.0" text="Sign In" />
+                        <JFXTextField id="email-field" promptText="Email" />
+                        <JFXPasswordField id="password-field" promptText="Password" />
+                        <HBox id="sign-in-container" prefHeight="57.0" prefWidth="450.0">
+                           <children>
+                              <Hyperlink id="forgot-password-link" prefHeight="55.0" prefWidth="258.0" text="Forgot Password ?" />
+                              <JFXButton id="sign-in-btn" prefHeight="55.0" prefWidth="193.0" text="Sign In" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="5.0" prefWidth="450.0">
+                           <children>
+                              <Separator prefHeight="16.0" prefWidth="207.0" />
+                              <Label id="or-lbl" fx:id="orLabel" alignment="CENTER" prefHeight="21.0" prefWidth="58.0" text="OR" />
+                              <Separator layoutX="92.0" layoutY="10.0" prefHeight="16.0" prefWidth="214.0" />
+                           </children>
+                        </HBox>
+                        <JFXButton id="google-sign-in-btn" alignment="TOP_LEFT" prefHeight="49.0" prefWidth="450.0" text="  Sign in with Google">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/google.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <HBox alignment="CENTER" prefHeight="14.0" prefWidth="450.0">
+                           <children>
+                              <Label id="no-account-label" fx:id="noAccountLabel" prefHeight="20.0" prefWidth="208.0" text="Don't Have an Account ?  " />
+                              <Hyperlink id="sign-up-link" fx:id="signUpLink" text="Sign Up Now" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
