@@ -1,0 +1,54 @@
+#aside {
+    -fx-background-color: main-color;
+    -fx-border-radius: 0pt 12pt 12pt 0pt;
+    -fx-background-radius: 0pt 12pt 12pt 0pt;
+    -fx-alignment: center;
+}
+
+#title, #subtitle {
+    -fx-alignment: center;
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+}
+
+#title {
+    -fx-font-size: 24pt;
+}
+
+#subtitle {
+    -fx-font-size: 12pt;
+}
+
+#main {
+    -fx-spacing: 52pt;
+    -fx-alignment: center;
+
+}
+
+#sign-up-container {
+    -fx-spacing: 34pt;
+}
+
+#sign-up-lbl {
+    -fx-font-weight: bolder;
+    -fx-font-size: 24pt;
+}
+
+#username-field, #email-field, #password-field {
+    -fx-font-size: 14pt;
+    -jfx-unfocus-color: #E5E5E5;
+    -jfx-focus-color: light-orange-1;
+    -fx-prompt-text-fill: light-orange-1;
+    -fx-text-fill: #000;
+    -jfx-label-float: true;
+}
+
+#sign-up-btn {
+    -fx-background-color: secondary-color;
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 14pt;
+    -fx-border-radius: 8pt;
+    -fx-background-radius: 8pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
