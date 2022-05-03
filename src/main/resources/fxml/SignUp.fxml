@@ -41,7 +41,7 @@
                            <children>
                               <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/back.png" />
+                                    <Image url="@../icons/back.png" />
                                  </image>
                               </ImageView>
                                       <Label id="sign-up-lbl" prefHeight="66.0" prefWidth="450.0" text="Sign Up" />
