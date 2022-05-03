@@ -5,6 +5,11 @@
 .root {
     -fx-background-color: #F8F8F8;
     -fx-font-family: 'Montserrat', cursive;
+    main-color: #FFAB40;
+    secondary-color: #455A64;
+    light-orange-1: #F6C98C;
+    gray-1: #EEE;
+
 }
 
 .hyperlink:default {
