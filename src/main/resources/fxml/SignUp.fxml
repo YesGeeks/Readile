@@ -48,7 +48,7 @@
                                       <JFXTextField id="username-field" promptText="Username" />
                            </children>
                         </VBox>
-                                <JFXPasswordField id="email-field" promptText="Email" />
+                        <JFXTextField id="email-field" promptText="Email" />
                         <JFXPasswordField id="password-field" layoutX="10.0" layoutY="200.0" promptText="Password" />
                                   <JFXButton id="sign-up-btn" prefHeight="55.0" prefWidth="390.0" text="Get Started" />
                             </children>
