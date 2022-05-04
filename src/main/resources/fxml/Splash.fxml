@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../styles/splash.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Splash">
+<AnchorPane prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Splash">
    <children>
-      <BorderPane prefHeight="768.0" prefWidth="1024.0">
+      <BorderPane prefHeight="706.0" prefWidth="1024.0">
          <left>
-            <Pane prefHeight="768.0" prefWidth="402.0" BorderPane.alignment="CENTER">
+            <Pane maxHeight="680.0" prefHeight="680.0" prefWidth="402.0" BorderPane.alignment="BOTTOM_LEFT">
                <children>
-                  <VBox layoutX="70.0" layoutY="138.0" prefHeight="328.0" prefWidth="273.0">
+                  <VBox layoutX="72.0" layoutY="109.0" prefHeight="307.0" prefWidth="254.0">
                      <children>
-                        <ImageView fitHeight="281.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="258.0" fitWidth="259.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/logo.png" />
                            </image>
@@ -24,8 +27,8 @@
                         <Label id="title" prefHeight="53.0" prefWidth="278.0" text="Readile" />
                      </children>
                   </VBox>
-                  <Label id="subtitle" layoutX="-25.0" layoutY="504.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
-                  <ImageView fitHeight="278.0" fitWidth="405.0" layoutX="-1.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+                  <Label id="subtitle" layoutX="-31.0" layoutY="459.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
+                  <ImageView fitHeight="249.0" fitWidth="371.0" layoutX="16.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/loading.gif" />
                      </image>
@@ -34,9 +37,9 @@
             </Pane>
          </left>
          <center>
-            <Pane prefHeight="768.0" prefWidth="664.0" BorderPane.alignment="CENTER">
+            <Pane maxHeight="680.0" prefHeight="668.0" prefWidth="622.0" BorderPane.alignment="BOTTOM_LEFT">
                <children>
-                  <ImageView fitHeight="566.0" fitWidth="630.0" layoutX="1.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="526.0" fitWidth="579.0" layoutX="45.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/splash-background.png" />
                      </image>
@@ -44,6 +47,34 @@
                </children>
             </Pane>
          </center>
+         <top>
+            <HBox id="toolbar" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton id="minimize-btn" layoutX="1006.0" layoutY="9.0" prefHeight="22.0" prefWidth="24.0" text="">
+                     <graphic>
+                        <ImageView id="minimize-btn" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton id="close-btn" layoutX="1006.0" layoutY="7.0" prefHeight="22.0" prefWidth="24.0" text="">
+                     <graphic>
+                        <ImageView id="close-btn" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
+   <stylesheets>
+      <URL value="@../styles/global.css" />
+      <URL value="@../styles/splash.css" />
+   </stylesheets>
 </AnchorPane>
