@@ -15,18 +15,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SignIn">
+<AnchorPane maxHeight="700.0" prefHeight="700.0" prefWidth="1005.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SignIn">
    <stylesheets>
       <URL value="@../styles/global.css" />
       <URL value="@../styles/sign-in.css" />
    </stylesheets>
    <children>
-      <BorderPane prefHeight="768.0" prefWidth="1024.0">
+      <BorderPane prefHeight="706.0" prefWidth="1024.0">
          <left>
-            <Pane id="aside" prefHeight="768.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+            <Pane id="aside" maxHeight="-Infinity" prefHeight="680.0" prefWidth="380.0" BorderPane.alignment="BOTTOM_CENTER">
                <children>
-                  <VBox layoutX="81.0" layoutY="88.0" prefHeight="260.0" prefWidth="218.0">
+                  <VBox layoutX="81.0" layoutY="52.0" prefHeight="260.0" prefWidth="218.0">
                      <children>
                         <ImageView fitHeight="218.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -36,14 +35,14 @@
                         <Label id="title" prefHeight="63.0" prefWidth="218.0" text="Readile" />
                      </children>
                   </VBox>
-                  <Label id="subtitle" layoutY="618.0" prefHeight="21.0" prefWidth="380.0" text="The Way to Track Your Readings" />
+                  <Label id="subtitle" layoutY="548.0" prefHeight="21.0" prefWidth="380.0" text="The Way to Track Your Readings" />
                </children>
             </Pane>
          </left>
          <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane maxHeight="-Infinity" prefHeight="680.0" prefWidth="200.0" BorderPane.alignment="BOTTOM_LEFT">
                <children>
-                  <VBox id="main" layoutX="97.0" layoutY="106.0" prefHeight="615.0" prefWidth="450.0">
+                  <VBox id="main" layoutX="97.0" layoutY="50.0" prefHeight="604.0" prefWidth="450.0">
                      <children>
                         <Label id="sign-in-lbl" prefHeight="66.0" prefWidth="450.0" text="Sign In" />
                         <JFXTextField id="email-field" promptText="Email" />
@@ -81,6 +80,30 @@
                </children>
             </Pane>
          </center>
+         <top>
+            <HBox id="toolbar" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton id="minimize-btn" layoutX="1006.0" layoutY="9.0" prefHeight="22.0" prefWidth="24.0" text="">
+                     <graphic>
+                        <ImageView id="minimize-btn" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton id="close-btn" layoutX="1006.0" layoutY="7.0" prefHeight="22.0" prefWidth="24.0" text="">
+                     <graphic>
+                        <ImageView id="close-btn" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

@@ -16,3 +16,20 @@
     -fx-underline: line;
 }
 
+#toolbar {
+    -fx-background-color: linear-gradient(#EEE, #E0E0E0);
+    -fx-alignment: center-right;
+}
+
+#close-btn, #minimize-btn {
+    -fx-border-radius: 0pt;
+    -fx-background-radius: 0pt;
+}
+
+#close-btn:hover {
+    -fx-background-color: #D83C3E;
+}
+
+#minimize-btn:hover {
+    -fx-background-color: rgb(69, 90, 100, 0.2);
+}
