@@ -90,9 +90,9 @@
                            </image>
                         </ImageView>
                         <ScrollPane fx:id="bookCards" hbarPolicy="NEVER" hvalue="0.5" prefHeight="450.0" prefWidth="716.0" StackPane.alignment="CENTER">
-                          <content>
-                                <FlowPane id="cards-view" fx:id="booksCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="447.0" prefWidth="737.0" vgap="15.0" />
-                          </content>
+                           <content>
+                              <FlowPane id="cards-view" fx:id="booksCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="447.0" prefWidth="737.0" vgap="15.0" />
+                           </content>
                         </ScrollPane>
                      </children>
                   </StackPane>
