@@ -1,0 +1,32 @@
+#main {
+    -fx-background-color: white;
+    -fx-border-radius: 15pt;
+    -fx-background-radius: 15pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
+
+#bottom-pane {
+    -fx-background-color: gray-1;
+    -fx-border-radius: 0 0 15pt 15pt;
+    -fx-background-radius: 0 0 15pt 15pt;
+}
+
+#add {
+    -fx-background-color: main-color;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 8pt;
+    -fx-border-radius: 30pt;
+    -fx-background-radius: 30pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
+
+#book-name {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Montserrat ExtraBold";
+}
+
+#author {
+    -fx-text-fill: main-color;
+    -fx-font-size: 8pt;
+}

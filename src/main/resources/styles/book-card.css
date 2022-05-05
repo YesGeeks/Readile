@@ -1,0 +1,40 @@
+#base {
+    -fx-background-color: white;
+    -fx-border-radius: 15pt;
+    -fx-background-radius: 15pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
+
+#book-img {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-color: gray-1;
+    -fx-background-size: 215;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+#status {
+    -fx-background-color: light-orange-2;
+    -fx-padding: 5;
+    -fx-text-fill: dark-orange-1;
+    -fx-font-family: "Montserrat Bold";
+    -fx-border-radius: 20pt;
+    -fx-background-radius: 20pt;
+    -fx-border-width: 1;
+    -fx-border-color: dark-orange-1;
+    -fx-font-size: 7pt;
+}
+
+#book-name {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Montserrat SemiBold";
+}
+
+.jfx-spinner:determinate .arc {
+    -fx-stroke: main-color;
+}
+
+.jfx-spinner:determinate .percentage {
+    -fx-text-fill: gray;
+}
