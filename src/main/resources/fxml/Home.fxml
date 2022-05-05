@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.HomeScreenController">
+   <children>
+      <AnchorPane prefHeight="680" prefWidth="1024.0">
+         <stylesheets>
+            <URL value="@../styles/global.css" />
+            <URL value="@../styles/home.css" />
+         </stylesheets>
+         <BorderPane prefHeight="680.0" prefWidth="1024.0">
+            <center>
+               <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <Separator layoutX="82.0" layoutY="331.0" prefHeight="16.0" prefWidth="450.0" rotate="90.0" />
+                  <JFXButton layoutX="697.0" layoutY="26.0" onAction="#searchForBook" ripplerFill="WHITE" text=" ">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/search.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXTextField id="search-field" fx:id="search" layoutX="301.0" layoutY="21.0" prefHeight="37.0" prefWidth="396.0" promptText="Search for a book" />
+                  <Pane layoutY="120.0" prefHeight="450.0" prefWidth="309.0">
+                     <children>
+                        <StackPane fx:id="charts" layoutX="4.0" maxHeight="210.0" maxWidth="300.0" minHeight="210.0" minWidth="300.0" prefHeight="210.0" prefWidth="300.0">
+                           <children>
+                              <ImageView fx:id="chartEmptyImage" fitHeight="161.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/empty-chart.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <JFXButton id="add-book-btn" layoutX="47.0" layoutY="249.0" onAction="#addNewBook" prefHeight="47.0" prefWidth="215.0" text="Add new book">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton id="browse-categories-btn" layoutX="47.0" layoutY="326.0" onAction="#browseCategories" prefHeight="76.0" prefWidth="215.0" ripplerFill="BLACK" text="                                              Browse Categories" wrapText="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <ImageView fitHeight="26.0" fitWidth="49.0" layoutX="144.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/category.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <StackPane layoutX="317.0" layoutY="120.0" prefHeight="450.0" prefWidth="705.0">
+                     <children>
+                        <ImageView fx:id="noBooksImage" fitHeight="362.0" fitWidth="596.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/no-books.png" />
+                           </image>
+                        </ImageView>
+                        <ScrollPane fx:id="bookCards" hbarPolicy="NEVER" hvalue="0.5" prefHeight="450.0" prefWidth="716.0" StackPane.alignment="CENTER">
+                          <content>
+                                <FlowPane id="cards-view" fx:id="booksCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="447.0" prefWidth="737.0" vgap="15.0" />
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </StackPane>
+                  <Pane layoutX="233.0" layoutY="70.0" prefHeight="44.0" prefWidth="532.0">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/filter.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="filter" layoutX="41.0" layoutY="13.0" text="Filter by: " />
+                        <JFXComboBox id="filter-rating" fx:id="ratingComboBox" labelFloat="true" layoutX="334.0" layoutY="9.0" prefHeight="30.0" prefWidth="190.0" promptText="Rating">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXComboBox>
+                        <JFXComboBox id="filter-status" fx:id="statusComboBox" labelFloat="true" layoutX="122.0" layoutY="9.0" prefHeight="30.0" prefWidth="190.0" promptText="Status">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXComboBox>
+                     </children>
+                  </Pane>
+               </Pane>
+            </center>
+            <top>
+               <Pane id="navbar" prefHeight="100.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                  <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../images/white-logo.png" />
+                  </ImageView>
+                  <Label id="title" layoutX="73.0" layoutY="21.0" prefHeight="60.0" prefWidth="317.0" text="My Readings" />
+                  <Pane id="avatar" fx:id="avatar" layoutX="899.0" layoutY="14.0" onMouseClicked="#showPopupMenu" prefHeight="70.0" prefWidth="70.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+               </Pane>
+            </top>
+         </BorderPane>
+      </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@../styles/home.css" />
+      <URL value="@../styles/global.css" />
+   </stylesheets>
+</StackPane>
