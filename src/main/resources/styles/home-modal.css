@@ -1,0 +1,60 @@
+#search-field {
+    -fx-font-size: 12pt;
+    -jfx-unfocus-color: #E5E5E5;
+    -jfx-focus-color: light-orange-1;
+    -fx-prompt-text-fill: light-orange-1;
+    -fx-text-fill: black;
+    -jfx-label-float: true;
+}
+
+#main {
+    -fx-background-color: #F8F8F8;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+#cards-view {
+    -fx-background-color: #F8F8F8;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color :#F8F8F8;
+    -fx-border-color :#F8F8F8;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color : gray-2;
+    -fx-background-insets : 4.0, 0.0, 0.0;
+    -fx-background-radius : 4.0em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :gray-1;
+    -fx-background-insets : 4.0, 0.0, 0.0;
+    -fx-background-radius : 4.0em;
+}
