@@ -16,9 +16,11 @@ module com.readile.readile {
     requires spring.context;
     requires spring.beans;
     requires spring.boot.autoconfigure;
+    requires com.jfoenix;
 
     opens com.readile.readile;
 
     opens com.readile.readile.views to javafx.fxml;
+    opens com.readile.readile.controllers to javafx.fxml;
     exports com.readile.readile.views;
 }
