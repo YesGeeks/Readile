@@ -7,12 +7,12 @@
 
 #title, #subtitle {
     -fx-alignment: center;
-    -fx-text-fill: #FFF;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 #title {
-    -fx-font-size: 24pt;
+    -fx-font-size: 30pt;
 }
 
 #subtitle {
@@ -22,30 +22,29 @@
 #main {
     -fx-spacing: 52pt;
     -fx-alignment: center;
-
 }
 
 #sign-up-container {
-    -fx-spacing: 34pt;
+    -fx-spacing: 20pt;
 }
 
 #sign-up-lbl {
-    -fx-font-weight: bolder;
+    -fx-font-family: "Montserrat ExtraBold";
     -fx-font-size: 24pt;
 }
 
 #username-field, #email-field, #password-field {
     -fx-font-size: 14pt;
-    -jfx-unfocus-color: #E5E5E5;
+    -jfx-unfocus-color: gray-2;
     -jfx-focus-color: light-orange-1;
     -fx-prompt-text-fill: light-orange-1;
-    -fx-text-fill: #000;
+    -fx-text-fill: black;
     -jfx-label-float: true;
 }
 
 #sign-up-btn {
     -fx-background-color: secondary-color;
-    -fx-text-fill: #FFF;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14pt;
     -fx-border-radius: 8pt;
