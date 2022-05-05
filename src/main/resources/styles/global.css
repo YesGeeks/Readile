@@ -1,15 +1,44 @@
 @font-face {
-    src: url("../fonts/Montserrat-VariableFont_wght.ttf");
+    src: url("../fonts/static/Montserrat-Black.ttf");
+}
+
+@font-face {
+    src: url("../fonts/static/Montserrat-ExtraBold.ttf");
+}
+
+@font-face {
+    src: url("../fonts/static/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    src: url("../fonts/static/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    src: url("../fonts/static/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    src: url("../fonts/static/Montserrat-Regular.ttf");
 }
 
 .root {
     -fx-background-color: #F8F8F8;
-    -fx-font-family: 'Montserrat', cursive;
+    -fx-font-family: 'Montserrat', sans-serif;
+
+    /* Color Palette */
     main-color: #FFAB40;
     secondary-color: #455A64;
-    light-orange-1: #F6C98C;
-    gray-1: #EEE;
 
+    light-orange-1: #F6C98C;
+    light-orange-2: #F8D393;
+    light-orange-3 :#F9E8D3;
+
+    dark-orange-1: #BB823A;
+
+    gray-1: #EEEEEE;
+    gray-2: #E0E0E0;
+    gray-3: #BDBDBD;
 }
 
 .hyperlink:default {
@@ -33,3 +62,4 @@
 #minimize-btn:hover {
     -fx-background-color: rgb(69, 90, 100, 0.2);
 }
+
