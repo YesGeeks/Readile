@@ -1,0 +1,28 @@
+.default-color0.chart-pie {
+    -fx-pie-color: #ffab40;
+}
+
+.default-color1.chart-pie {
+    -fx-pie-color: #ffd180;
+}
+
+.default-color2.chart-pie {
+    -fx-pie-color: #455a64;
+}
+
+.chart-pie-label {
+    -fx-font-size: 8;
+}
+
+.chart{
+    -fx-label-line-length: 10;
+}
+
+.chart {
+    -fx-pref-width: 350;
+    -fx-pref-height: 260;
+    -fx-min-width: 350;
+    -fx-min-height: 260;
+    -fx-max-width: 350;
+    -fx-max-height: 260;
+}
