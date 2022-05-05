@@ -1,16 +1,15 @@
 .root {
-    -fx-background-color: white;
+    -fx-background-color: #EEE;
 }
 
 #title, #subtitle {
     -fx-alignment: center;
-    -fx-text-fill: black;
+    -fx-text-fill: #000;
     -fx-font-weight: bold;
 }
 
 #title {
-    -fx-font-size: 35pt;
-    -fx-font-family: "Montserrat ExtraBold";
+    -fx-font-size: 30pt;
 }
 
 #subtitle {

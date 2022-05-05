@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,32 +8,42 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1">
-   <stylesheets>
-      <URL value="@../styles/global.css" />
-      <URL value="@../styles/splash.css" />
-   </stylesheets>
-   <BorderPane prefHeight="680.0" prefWidth="1024.0">
-      <left>
-         <Pane prefHeight="680.0" prefWidth="402.0" BorderPane.alignment="CENTER">
-            <VBox alignment="CENTER" layoutX="70.0" layoutY="80.0" prefHeight="328.0" prefWidth="273.0">
-               <ImageView fitHeight="281.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/colorful-logo.png" />
-               </ImageView>
-               <Label id="title" prefHeight="53.0" prefWidth="278.0" style="-fx-font-family: 'Montserrat Black" text="Readile" />
-            </VBox>
-            <Label id="subtitle" layoutX="-25.0" layoutY="459.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
-            <ImageView fitHeight="278.0" fitWidth="405.0" layoutX="-1.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../icons/loading.gif" />
-            </ImageView>
-         </Pane>
-      </left>
-      <center>
-         <Pane prefHeight="680.0" prefWidth="664.0" BorderPane.alignment="CENTER">
-            <ImageView fitHeight="566.0" fitWidth="630.0" layoutX="1.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../images/splash-background.png" />
-            </ImageView>
-         </Pane>
-      </center>
-   </BorderPane>
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../styles/splash.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Splash">
+   <children>
+      <BorderPane prefHeight="768.0" prefWidth="1024.0">
+         <left>
+            <Pane prefHeight="768.0" prefWidth="402.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="70.0" layoutY="138.0" prefHeight="328.0" prefWidth="273.0">
+                     <children>
+                        <ImageView fitHeight="281.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="title" prefHeight="53.0" prefWidth="278.0" text="Readile" />
+                     </children>
+                  </VBox>
+                  <Label id="subtitle" layoutX="-25.0" layoutY="504.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
+                  <ImageView fitHeight="278.0" fitWidth="405.0" layoutX="-1.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/loading.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </left>
+         <center>
+            <Pane prefHeight="768.0" prefWidth="664.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="566.0" fitWidth="630.0" layoutX="1.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/splash-background.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>
