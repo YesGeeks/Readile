@@ -39,6 +39,9 @@
     gray-1: #EEEEEE;
     gray-2: #E0E0E0;
     gray-3: #BDBDBD;
+
+    error: #D83C3E;
+    light-navy: #CACED0;
 }
 
 .hyperlink:default {
