@@ -24,7 +24,7 @@
                <ImageView fitHeight="281.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/colorful-logo.png" />
                </ImageView>
-               <Label id="title" prefHeight="53.0" prefWidth="278.0" style="-fx-font-family: 'Montserrat Black" text="Readile" />
+               <Label id="title" prefHeight="53.0" prefWidth="278.0" text="Readile" />
             </VBox>
             <Label id="subtitle" layoutX="-25.0" layoutY="459.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
             <ImageView fitHeight="278.0" fitWidth="405.0" layoutX="-1.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
