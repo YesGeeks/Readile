@@ -16,16 +16,16 @@ CREATE TABLE IF NOT EXISTS Author (
 );
 
 CREATE TABLE IF NOT EXISTS Author_Book (
-    authorId INT,
+    author_id INT,
     book_id INT,
-    PRIMARY KEY (authorId, book_id),
-    FOREIGN KEY (authorId) REFERENCES Author(id),
+    PRIMARY KEY (author_id, book_id),
+    FOREIGN KEY (author_id) REFERENCES Author(id),
     FOREIGN KEY (book_id) REFERENCES Book(id)
 );
 
 CREATE TABLE IF NOT EXISTS Category (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(32) UNIQUE NOT NULL
+    name VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Book_Category (
@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS User_Book (
     user_id INT,
     book_id INT,
     current_page INT NOT NULL,
-    startDate DATE DEFAULT NULL,
-    endDate DATE DEFAULT NULL,
+    start_date DATE DEFAULT NULL,
+    end_date DATE DEFAULT NULL,
     rating ENUM ('ONE_STAR', 'TWO_STARS', 'THREE_STARS', 'FOUR_STARS', 'FIVE_STARS') DEFAULT 'ONE_STAR',
     status ENUM ('TO_READ', 'CURRENTLY_READING', 'READ') DEFAULT 'TO_READ',
     PRIMARY KEY (user_id, book_id),
@@ -57,10 +57,9 @@ CREATE TABLE IF NOT EXISTS User_Book (
 );
 
 CREATE TABLE IF NOT EXISTS Highlight (
-    id INT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     book_id INT,
     highlight VARCHAR(512) NOT NULL,
-    PRIMARY KEY (id, book_id),
     FOREIGN KEY (book_id) REFERENCES Book(id)
 );
 
