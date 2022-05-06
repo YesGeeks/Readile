@@ -47,3 +47,37 @@
 .hyperlink:default {
     -fx-underline: line;
 }
+
+#tool-bar {
+    -fx-background-color: linear-gradient(gray-1, gray-2);
+}
+
+#close, #min {
+    -fx-pref-height: 26pt;
+    -fx-pref-width: 30pt;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+#close {
+    -fx-background-image: url("../icons/close.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 8pt;
+}
+
+#min {
+    -fx-background-image: url("../icons/minimize.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 8pt;
+}
+
+#close:hover {
+    -fx-background-color: error;
+    -fx-background-image: url("../icons/close-hover.png");
+}
+
+#min:hover {
+    -fx-background-color: light-navy;
+}

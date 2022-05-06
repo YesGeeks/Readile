@@ -14,21 +14,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.HomeScreenController">
    <children>
-      <AnchorPane prefHeight="680" prefWidth="1024.0">
+      <AnchorPane prefHeight="706.0" prefWidth="1024.0">
          <stylesheets>
             <URL value="@../styles/global.css" />
             <URL value="@../styles/home.css" />
          </stylesheets>
-         <BorderPane prefHeight="680.0" prefWidth="1024.0">
+         <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
             <center>
                <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                  <Separator layoutX="82.0" layoutY="331.0" prefHeight="16.0" prefWidth="450.0" rotate="90.0" />
+                  <Separator layoutX="82.0" layoutY="347.0" prefHeight="16.0" prefWidth="450.0" rotate="90.0" />
                   <JFXButton layoutX="697.0" layoutY="26.0" onAction="#searchForBook" ripplerFill="WHITE" text=" ">
                      <font>
                         <Font size="1.0" />
@@ -132,6 +133,20 @@
                </Pane>
             </top>
          </BorderPane>
+         <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
+            <children>
+               <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </JFXButton>
+               <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </JFXButton>
+            </children>
+         </HBox>
       </AnchorPane>
    </children>
    <stylesheets>
