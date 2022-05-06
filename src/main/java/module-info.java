@@ -15,12 +15,15 @@ module com.readile.readile {
     requires spring.core;
     requires spring.context;
     requires spring.beans;
-    requires spring.boot.autoconfigure;
     requires com.jfoenix;
+    requires spring.boot.autoconfigure;
 
     opens com.readile.readile;
 
     opens com.readile.readile.views to javafx.fxml;
     opens com.readile.readile.controllers to javafx.fxml;
+    opens com.readile.readile.models.userbook to org.hibernate.orm.core;
+    opens com.readile.readile.models.book to org.hibernate.orm.core;
+    opens com.readile.readile.models.user to org.hibernate.orm.core;
     exports com.readile.readile.views;
 }

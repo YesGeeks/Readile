@@ -3,22 +3,46 @@ package com.readile.readile.models.userbook;
 import com.readile.readile.models.book.Book;
 import com.readile.readile.models.user.User;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
+@Table(name = "User_Book")
 public class UserBook {
+    @EmbeddedId
+    private UserBookId id = new UserBookId();
+
+    @ManyToOne
+    @MapsId("bookId")
+    @JoinColumn(name = "book_id")
     private Book book;
+
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(nullable = false)
     private Integer currentPage;
+
+    @Temporal(TemporalType.DATE)
     private Date startDate;
+
+    @Temporal(TemporalType.DATE)
     private Date endDate;
+
+    @Enumerated(EnumType.STRING)
     private Rating rating;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     public UserBook() {
     }
 
-    public UserBook(Book book, User user, Integer currentPage, Date startDate, Date endDate, Rating rating, Status status) {
+    public UserBook(UserBookId id, Book book, User user, Integer currentPage, Date startDate, Date endDate, Rating rating, Status status) {
+        this.id = id;
         this.book = book;
         this.user = user;
         this.currentPage = currentPage;
@@ -26,6 +50,14 @@ public class UserBook {
         this.endDate = endDate;
         this.rating = rating;
         this.status = status;
+    }
+
+    public UserBookId getId() {
+        return id;
+    }
+
+    public void setId(UserBookId id) {
+        this.id = id;
     }
 
     public Book getBook() {
@@ -95,5 +127,19 @@ public class UserBook {
     @Override
     public int hashCode() {
         return Objects.hash(book, user, currentPage, startDate, endDate, rating, status);
+    }
+
+    @Override
+    public String toString() {
+        return "UserBook{" +
+                "id=" + id +
+                ", book=" + book +
+                ", user=" + user +
+                ", currentPage=" + currentPage +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", rating=" + rating +
+                ", status=" + status +
+                '}';
     }
 }
