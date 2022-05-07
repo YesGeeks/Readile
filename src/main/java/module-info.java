@@ -18,6 +18,10 @@ module com.readile.readile {
     requires com.jfoenix;
     requires spring.boot.autoconfigure;
     requires org.slf4j;
+    requires spring.webflux;
+    requires org.json;
+    requires spring.web;
+    requires reactor.core;
 
     opens com.readile.readile;
 
