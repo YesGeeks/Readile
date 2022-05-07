@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ResultBook {
 
-    private Integer id;
     private String name;
     private String coverURL;
     private Integer length;
@@ -19,14 +18,6 @@ public class ResultBook {
         this.coverURL = coverURL;
         this.length = length;
         this.authorNames = authorNames;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -64,8 +55,7 @@ public class ResultBook {
     @Override
     public String toString() {
         return "ResultBook{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", coverURL='" + coverURL + '\'' +
                 ", length=" + length +
                 ", authorNames=" + authorNames +
