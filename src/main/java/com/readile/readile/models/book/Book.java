@@ -28,7 +28,7 @@ public class Book {
     private Integer length;
 
     @ManyToMany(mappedBy = "books")
-    Set<Author> authors;
+    Set<Author> authors = new HashSet<>();
 
     @ManyToMany
     @JoinTable (

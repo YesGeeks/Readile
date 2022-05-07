@@ -1,6 +1,7 @@
 package com.readile.readile.models.book;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public class Category {
     private String name;
 
     @ManyToMany(mappedBy = "categories")
-    Set<Book> books;
+    Set<Book> books = new HashSet<>();
 
     public Category() {
     }
