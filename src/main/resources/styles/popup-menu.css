@@ -1,0 +1,22 @@
+#parent {
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-font-size: 12pt;
+    -fx-background-color: #F5F5F5;
+    -fx-border-radius: 10pt;
+    -fx-background-radius: 10pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.10), 4, 0, 0, 2);
+}
+
+.item:hover {
+    -fx-background-color: #E0E0E0;
+}
+
+#my-account-item:hover {
+    -fx-border-radius: 10pt 10pt 0pt 0pt ;
+    -fx-background-radius: 10pt 10pt 0pt 0pt;
+}
+
+#logout-item:hover {
+    -fx-border-radius: 0pt 0pt 10pt 10pt ;
+    -fx-background-radius: 0pt 0pt 10pt 10pt;
+}
