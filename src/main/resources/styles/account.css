@@ -1,0 +1,95 @@
+#navbar {
+    -fx-background-color: main-color;
+    -fx-border-radius: 0pt 0pt 20pt 20pt;
+    -fx-background-radius: 0pt 0pt 20pt 20pt;
+    -fx-alignment: center;
+}
+
+#title {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+#avatar {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-image: url("../icons/avatar.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 70;
+    -fx-background-repeat: no-repeat;
+}
+
+#profile-image {
+    -fx-border-radius: 90pt 90pt;
+    -fx-background-radius: 90pt 90pt;
+    -fx-background-image: url("../images/profile-image.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 180;
+    -fx-background-repeat: no-repeat;
+}
+
+#change-avatar-btn, #delete-account-btn {
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat Bold";
+    -fx-font-size: 12pt;
+    -fx-border-radius: 8pt;
+    -fx-background-radius: 8pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
+
+#change-avatar-btn {
+    -fx-background-color: secondary-color;
+}
+
+#delete-account-btn {
+    -fx-background-color: #D83C3E;
+
+}
+
+#username-container, #email-container, #password-container {
+    -fx-background-color: rgb(255, 171, 64, 0.2);
+    -fx-border-radius: 8pt;
+    -fx-background-radius: 8pt;
+}
+
+#username-lbl, #email-lbl, #password-lbl {
+    -fx-font-family: "Montserrat Bold";
+    -fx-font-size: 12pt;
+}
+
+#username, #email {
+    -fx-font-size: 12pt;
+}
+
+#edit-btn, #change-password-btn {
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+    -fx-font-family: "Montserrat Bold";
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+    -fx-border-radius: 8pt;
+    -fx-background-radius: 8pt;
+}
+
+#edit-btn {
+    -fx-background-color: main-color;
+}
+
+#change-password-btn {
+    -fx-background-color: secondary-color;
+}
+
+/* Password dialog styling*/
+
+#old-password-field, #new-password-field {
+    -fx-font-family: 'Montserrat SemiBold', sans-serif;
+    -jfx-unfocus-color: gray-2;
+    -jfx-focus-color: light-orange-1;
+    -fx-prompt-text-fill: light-orange-1;
+    -fx-text-fill: black;
+    -jfx-label-float: true;
+}
+

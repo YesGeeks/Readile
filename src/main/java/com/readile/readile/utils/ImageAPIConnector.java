@@ -36,7 +36,7 @@ public class ImageAPIConnector {
         return parseImageJSON(jsonResult);
     }
 
-    public static String parseImageJSON(String json) {
+    private static String parseImageJSON(String json) {
         JSONObject imageUrlsJsonObject = new JSONObject(json).getJSONObject("urls");
         return imageUrlsJsonObject.getString("small");
     }
