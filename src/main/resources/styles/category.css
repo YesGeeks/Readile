@@ -1,0 +1,83 @@
+#navbar {
+    -fx-background-color: main-color;
+    -fx-border-radius: 0pt 0pt 20pt 20pt;
+    -fx-background-radius: 0pt 0pt 20pt 20pt;
+    -fx-alignment: center;
+}
+
+#title {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+#avatar {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-image: url("../icons/avatar.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 70;
+    -fx-background-repeat: no-repeat;
+}
+
+#category-lbl {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat Bold";
+}
+
+#number-of-books-lbl, #number-of-books {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Montserrat SemiBold";
+}
+
+#number-of-books {
+    -fx-text-fill: main-color;
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+#cards-view {
+    -fx-background-color: #F8F8F8;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color :#F8F8F8;
+    -fx-border-color :#F8F8F8;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color : gray-2;
+    -fx-background-insets : 4.0, 0.0, 0.0;
+    -fx-background-radius : 4.0em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :gray-1;
+    -fx-background-insets : 4.0, 0.0, 0.0;
+    -fx-background-radius : 4.0em;
+}
