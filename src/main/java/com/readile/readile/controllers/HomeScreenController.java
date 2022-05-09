@@ -1,5 +1,6 @@
 package com.readile.readile.controllers;
 
+import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
@@ -19,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,7 +64,17 @@ public class HomeScreenController implements Initializable {
     }
 
     @FXML
-    public void showPopupMenu() {
+    void showPopupMenu(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Popup popup = new Popup();
+
+        popup.setAutoHide(true);
+        try {
+            Node popupContent = (Node) new FXMLLoader(getClass().getResource("/fxml/PopupMenu.fxml")).load();
+            popup.getContent().addAll(popupContent);
+            new FadeIn(popupContent).setSpeed(1.6).play();
+            popup.show(stage, stage.getX() + 726, stage.getY() + 84);
+        } catch (IOException e) {}
     }
 
     @FXML
