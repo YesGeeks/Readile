@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.AccountController">
+   <children>
+      <AnchorPane prefHeight="706.0" prefWidth="1024.0">
+         <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
+            <top>
+               <Pane id="navbar" prefHeight="100.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                  <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../images/white-logo.png" />
+                  </ImageView>
+                  <Label id="title" layoutX="73.0" layoutY="21.0" prefHeight="60.0" prefWidth="317.0" text="My Account" />
+                  <Pane id="avatar" fx:id="avatar" layoutX="899.0" layoutY="14.0" onMouseClicked="#showPopupMenu" prefHeight="70.0" prefWidth="70.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+               </Pane>
+            </top>
+            <center>
+               <GridPane prefHeight="437.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="955.0" minWidth="10.0" prefWidth="299.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="780.0" minWidth="10.0" prefWidth="725.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints maxHeight="185.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES" />
+                     <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="131.0" vgrow="SOMETIMES" />
+                     <RowConstraints maxHeight="120.0" minHeight="10.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <JFXButton id="change-avatar-btn" onAction="#changeAvatar" prefHeight="46.0" prefWidth="221.0" text="Change Avatar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <GridPane.margin>
+                           <Insets top="-28.0" />
+                        </GridPane.margin>
+                     </JFXButton>
+                     <JFXButton id="delete-account-btn" onAction="#deleteAccount" prefHeight="46.0" prefWidth="173.0" text="Delete Account" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <GridPane.margin>
+                           <Insets top="20.0" />
+                        </GridPane.margin>
+                     </JFXButton>
+                     <HBox id="username-container" alignment="CENTER_LEFT" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                        <children>
+                           <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="585.0" spacing="14.0">
+                              <children>
+                                 <Label id="username-lbl" prefHeight="20.0" prefWidth="579.0" text="Username" />
+                                 <Label id="username" fx:id="username" prefHeight="20.0" prefWidth="579.0" text="Zaki Kurdya" />
+                              </children>
+                              <padding>
+                                 <Insets left="24.0" />
+                              </padding>
+                           </VBox>
+                           <JFXButton id="edit-btn" onAction="#editUsername" prefHeight="40.0" prefWidth="82.0" text="Edit" />
+                        </children>
+                     </HBox>
+                     <HBox id="email-container" alignment="CENTER_LEFT" layoutX="309.0" layoutY="50.0" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <children>
+                           <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="585.0" spacing="14.0">
+                              <children>
+                                 <Label id="email-lbl" prefHeight="20.0" prefWidth="605.0" text="Email" />
+                                 <Label id="email" fx:id="email" prefHeight="20.0" prefWidth="571.0" text="zkordya@gmail.com" />
+                              </children>
+                              <padding>
+                                 <Insets left="24.0" />
+                              </padding>
+                           </VBox>
+                           <JFXButton id="edit-btn" onAction="#editEmail" prefHeight="40.0" prefWidth="82.0" text="Edit" />
+                        </children>
+                     </HBox>
+                     <HBox id="password-container" alignment="CENTER_LEFT" layoutX="309.0" layoutY="188.0" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <children>
+                           <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="469.0" spacing="14.0">
+                              <padding>
+                                 <Insets left="24.0" />
+                              </padding>
+                              <children>
+                                 <Label id="password-lbl" prefHeight="16.0" prefWidth="98.0" text="Password" />
+                              </children>
+                           </VBox>
+                           <JFXButton id="change-password-btn" onAction="#changePassword" prefHeight="40.0" prefWidth="198.0" text="Change Password " />
+                        </children>
+                     </HBox>
+                     <Pane id="profile-image" fx:id="profileImage" onMouseClicked="#showPopupMenu" prefHeight="116.0" prefWidth="116.0">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </Pane>
+                  </children>
+                  <BorderPane.margin>
+                     <Insets top="72.0" />
+                  </BorderPane.margin>
+               </GridPane>
+            </center>
+         </BorderPane>
+         <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
+            <children>
+               <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </JFXButton>
+               <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </JFXButton>
+            </children>
+         </HBox>
+      </AnchorPane>
+      <JFXDialog fx:id="passwordDialog">
+         <JFXDialogLayout>
+            <body>
+               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                  <children>
+                     <VBox alignment="TOP_CENTER" layoutX="57.0" layoutY="51.0" prefHeight="231.0" prefWidth="401.0" spacing="60.0">
+                        <children>
+                           <JFXPasswordField id="old-password-field" promptText="Old Password" styleClass="password-field">
+                              <opaqueInsets>
+                                 <Insets />
+                              </opaqueInsets>
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </JFXPasswordField>
+                           <JFXPasswordField id="new-password-field" layoutX="10.0" layoutY="10.0" promptText="New Password" styleClass="password-field" />
+                           <JFXButton id="change-password-btn" prefHeight="44.0" prefWidth="277.0" text="Change Password" />
+                        </children>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </VBox>
+                  </children>
+               </Pane>
+            </body>
+         </JFXDialogLayout>
+      </JFXDialog>
+   </children>
+   <stylesheets>
+      <URL value="@../styles/global.css" />
+      <URL value="@../styles/account.css" />
+   </stylesheets>
+</StackPane>
