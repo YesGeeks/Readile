@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.CategoriesController">
+    <children>
+        <AnchorPane prefHeight="706.0" prefWidth="1024.0">
+            <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
+                <top>
+                    <Pane id="navbar" prefHeight="100.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                        <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../images/white-logo.png" />
+                        </ImageView>
+                        <Label id="title" layoutX="73.0" layoutY="21.0" prefHeight="60.0" prefWidth="317.0" text="Categories" />
+                        <Pane id="avatar" fx:id="avatar" layoutX="899.0" layoutY="14.0" onMouseClicked="#showPopupMenu" prefHeight="70.0" prefWidth="70.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Pane>
+                    </Pane>
+                </top>
+            <center>
+               <Pane prefHeight="532.0" prefWidth="1004.0" BorderPane.alignment="CENTER">
+                  <BorderPane.margin>
+                     <Insets />
+                  </BorderPane.margin>
+                  <children>
+                     <StackPane layoutX="-2.0" prefHeight="581.0" prefWidth="1024.0">
+                         <ScrollPane fx:id="categoryCards" hbarPolicy="NEVER" hvalue="0.5" prefHeight="573.0" prefWidth="1024.0" StackPane.alignment="CENTER">
+                             <content>
+                                 <FlowPane id="cards-view" fx:id="categoriesCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="579.0" prefWidth="808.0" vgap="15.0">
+                                 <padding>
+                                    <Insets top="40.0" />
+                                 </padding></FlowPane>
+                             </content>
+                         </ScrollPane>
+                        <StackPane maxHeight="146.0" maxWidth="159.0" prefHeight="200.0" prefWidth="757.0" translateX="406.0">
+                           <children>
+                              <JFXButton id="add-category-btn" alignment="TOP_LEFT" lineSpacing="0.6" onAction="#addNewCategory" prefHeight="146.0" prefWidth="159.0" text="Add new category" textAlignment="CENTER" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="26.0" left="26.0" right="26.0" top="26.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" translateY="28.0">
+                                 <image>
+                                    <Image url="@../icons/plus.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </StackPane>
+                  </children>
+               </Pane>
+            </center>
+            </BorderPane>
+            <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
+                <children>
+                    <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </JFXButton>
+                    <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </JFXButton>
+                </children>
+            </HBox>
+        </AnchorPane>
+        <JFXDialog fx:id="newCategoryDialog">
+            <JFXDialogLayout>
+                <body>
+                    <Pane layoutX="-1.0" layoutY="1.0" prefHeight="111.0" prefWidth="335.0">
+                        <children>
+                            <JFXTextField id="category-name-field" layoutX="16.0" layoutY="21.0" prefHeight="27.0" prefWidth="304.0" promptText="Category name" />
+                            <JFXButton id="add-category-btn" layoutX="127.0" layoutY="73.0" prefHeight="38.0" prefWidth="81.0" text="Add" />
+                        </children>
+                    </Pane>
+                </body>
+            </JFXDialogLayout>
+        </JFXDialog>
+    </children>
+    <stylesheets>
+        <URL value="@../styles/global.css" />
+        <URL value="@../styles/categories.css" />
+    </stylesheets>
+</StackPane>

@@ -1,0 +1,100 @@
+#navbar {
+    -fx-background-color: main-color;
+    -fx-border-radius: 0pt 0pt 20pt 20pt;
+    -fx-background-radius: 0pt 0pt 20pt 20pt;
+    -fx-alignment: center;
+}
+
+#title {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+#avatar {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-image: url("../icons/avatar.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 70;
+    -fx-background-repeat: no-repeat;
+}
+
+#add-category-btn {
+    -fx-background-color: secondary-color;
+    -fx-text-fill: white;
+    -fx-font-family: 'Montserrat Bold', sans-serif;
+    -fx-font-size: 14pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+    -fx-border-radius: 8pt;
+    -fx-background-radius: 8pt;
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+#cards-view {
+    -fx-background-color: #F8F8F8;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color :#F8F8F8;
+    -fx-border-color :#F8F8F8;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color : gray-2;
+    -fx-background-insets : 4.0, 0.0, 0.0;
+    -fx-background-radius : 4.0em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :gray-1;
+    -fx-background-insets : 4.0, 0.0, 0.0;
+    -fx-background-radius : 4.0em;
+}
+
+/* New category dialog styling*/
+
+#category-name-field {
+    -fx-font-family: 'Montserrat SemiBold', sans-serif;
+    -jfx-unfocus-color: gray-2;
+    -jfx-focus-color: light-orange-1;
+    -fx-prompt-text-fill: light-orange-1;
+    -fx-text-fill: black;
+    -jfx-label-float: true;
+}
+
+#add-category-btn {
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+    -fx-font-family: "Montserrat Bold";
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+    -fx-border-radius: 8pt;
+    -fx-background-radius: 8pt;
+    -fx-background-color: secondary-color;
+}
