@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Rectangle2D?>
@@ -19,8 +21,53 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.HomeScreenController">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.HomeScreenController">
    <children>
+      <JFXDialog fx:id="addBookDialog" maxHeight="706.0" maxWidth="1024.0" minHeight="706.0" minWidth="1024.0" prefHeight="706.0" prefWidth="1024.0">
+         <children>
+            <JFXDialogLayout maxHeight="530.0" maxWidth="730.0" minHeight="530.0" minWidth="730.0" prefHeight="530.0" prefWidth="730.0">
+               <children>
+                  <Pane id="main" maxHeight="530.0" maxWidth="730.0" minHeight="530.0" minWidth="730.0" prefHeight="530.0" prefWidth="730.0">
+                     <children>
+                        <JFXButton layoutX="550.0" layoutY="36.0" onAction="#modalSearchForBook" ripplerFill="WHITE" text=" ">
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/search.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXTextField id="search-field" fx:id="searchField" layoutX="154.0" layoutY="31.0" prefHeight="37.0" prefWidth="396.0" promptText="Search for a book" />
+                        <StackPane layoutX="24.0" layoutY="78.0" prefHeight="450.0" prefWidth="685.0">
+                           <children>
+                              <ImageView fx:id="noResultsFound" fitHeight="284.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/no-results-found.png" />
+                                 </image>
+                              </ImageView>
+                              <ScrollPane fx:id="searchResults" hbarPolicy="NEVER" hvalue="0.5" prefHeight="450.0" prefWidth="720.0">
+                                 <content>
+                                    <FlowPane id="cards-view" fx:id="searchResultsView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="447.0" prefWidth="720.0" vgap="15.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </Pane>
+               </children>
+            </JFXDialogLayout>
+         </children>
+      </JFXDialog>
       <AnchorPane prefHeight="706.0" prefWidth="1024.0">
          <stylesheets>
             <URL value="@../styles/global.css" />
