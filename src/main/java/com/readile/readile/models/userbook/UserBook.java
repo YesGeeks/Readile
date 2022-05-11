@@ -41,8 +41,7 @@ public class UserBook {
     public UserBook() {
     }
 
-    public UserBook(UserBookId id, Book book, User user, Integer currentPage, Date startDate, Date endDate, Rating rating, Status status) {
-        this.id = id;
+    public UserBook(Book book, User user, Integer currentPage, Date startDate, Date endDate, Rating rating, Status status) {
         this.book = book;
         this.user = user;
         this.currentPage = currentPage;

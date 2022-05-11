@@ -23,8 +23,7 @@ public class Highlight {
     public Highlight() {
     }
 
-    public Highlight(Integer id, Book book, String highlight) {
-        this.id = id;
+    public Highlight(Book book, String highlight) {
         this.book = book;
         this.highlight = highlight;
     }
