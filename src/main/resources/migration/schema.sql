@@ -5,7 +5,6 @@ USE Readile;
 CREATE TABLE IF NOT EXISTS Book (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(128) NOT NULL,
-    description VARCHAR(512) DEFAULT NULL,
     cover_id VARCHAR(1024) NOT NULL,
     length INT NOT NULL
 );
@@ -40,6 +39,7 @@ CREATE TABLE IF NOT EXISTS User_Profile (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(32) NOT NULL,
     email VARCHAR(64) UNIQUE NOT NULL,
+    theme TINYINT DEFAULT 1,
     profile_image VARCHAR(1024)
 );
 
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS Highlight (
 );
 
 CREATE TABLE IF NOT EXISTS Login_Info (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL UNIQUE,
     password VARCHAR(256) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User_Profile(id)
