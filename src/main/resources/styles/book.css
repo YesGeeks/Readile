@@ -1,0 +1,257 @@
+#navbar {
+    -fx-background-color: main-color;
+    -fx-border-radius: 0pt 0pt 20pt 20pt;
+    -fx-background-radius: 0pt 0pt 20pt 20pt;
+    -fx-alignment: center;
+}
+
+#title {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+#avatar {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-image: url("../icons/avatar.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 70;
+    -fx-background-repeat: no-repeat;
+}
+
+#book-img {
+    -fx-border-radius: 15pt;
+    -fx-background-radius: 15pt;
+    -fx-background-color: gray-1;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+#status {
+    -fx-background-color: light-orange-2;
+    -fx-padding: 5;
+    -fx-text-fill: dark-orange-1;
+    -fx-font-family: "Montserrat Bold";
+    -fx-border-radius: 20pt;
+    -fx-background-radius: 20pt;
+    -fx-border-width: 1;
+    -fx-border-color: dark-orange-1;
+    -fx-font-size: 10pt;
+}
+
+#plus-minus {
+    -fx-background-color: secondary-color;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-font-size: 15pt;
+    -fx-border-radius: 30pt;
+    -fx-alignment: center;
+    -fx-padding: 5;
+    -fx-background-radius: 30pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.1), 4, 0, 0, 2);
+}
+
+#page {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -jfx-unfocus-color: #F8F8F8;
+    -fx-background-color: light-orange-1;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -jfx-focus-color: #F8F8F8;
+    -fx-text-fill: secondary-color;
+    -fx-alignment: center;
+    -jfx-label-float: false;
+}
+
+#delete {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/delete.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-position: center;
+}
+
+#highlight {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/highlight.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 18;
+    -fx-background-position: center;
+}
+
+#book-name {
+    -fx-font-size: 16pt;
+    -fx-font-family: "Montserrat ExtraBold";
+}
+
+#meta-bold {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat SemiBold";
+}
+
+#meta {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat Medium";
+}
+
+#authors {
+    -fx-font-size: 12pt;
+    -fx-text-fill: main-color;
+    -fx-font-family: "Montserrat Medium";
+}
+
+#pages {
+    -fx-font-size: 12pt;
+    -fx-text-fill: main-color;
+    -fx-font-family: "Montserrat Medium";
+}
+
+#date {
+    -fx-font-size: 12pt;
+    -fx-text-fill: main-color;
+    -fx-font-family: "Montserrat Medium";
+}
+
+.rating > .container {
+    -fx-spacing: 4;
+}
+
+.rating > .container > .button {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/off.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 18;
+    -fx-padding: 14;
+    -fx-background-position: center;
+}
+
+.rating > .container > .button.strong {
+    -fx-background-image: url("../icons/on.png");
+}
+
+.rating > .container > .button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(69, 90, 100, 0.2), 6, 0.0, 0, 0);
+}
+
+.jfx-spinner:determinate .arc {
+    -fx-stroke: main-color;
+}
+
+.jfx-spinner:determinate .percentage {
+    -fx-text-fill: gray;
+}
+
+.combo-box .list-cell {
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-font-family: "Montserrat Medium";
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 8, 0.0, 0, 0);
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-padding: 4 0 4 5;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover {
+    -fx-background-color: light-orange-1;
+    -fx-text-fill: dark-orange-1;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: white;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base {
+    -fx-background-color: gray-1;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 5;
+}
+
+.check-box .box {
+    -fx-background-color: light-orange-1;
+    -fx-border-color: main-color;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: main-color;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+
+#add {
+    -fx-background-color: secondary-color;
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-border-radius: 8pt;
+    -fx-font-family: "Montserrat Medium";
+    -fx-background-radius: 8pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
+
+#search-field {
+    -fx-font-size: 11pt;
+    -jfx-unfocus-color: #E5E5E5;
+    -jfx-focus-color: light-orange-1;
+    -fx-prompt-text-fill: light-orange-1;
+    -fx-text-fill: black;
+    -jfx-label-float: true;
+}
+
+#main {
+    -fx-background-color: #F8F8F8;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+}
+
+.list-view {
+    -fx-background-color: gray-1;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: gray-2;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: gray-2;
+    -fx-text-fill: main-color;
+}
+
+.list-view .list-cell {
+    -fx-font-family: "Montserrat Medium";
+    -fx-font-size: 14;
+    -fx-pref-height: 50;
+}
+
+.jfx-rippler {
+    -jfx-rippler-fill: gray-3;
+}
