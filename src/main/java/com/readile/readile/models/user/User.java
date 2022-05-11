@@ -21,6 +21,9 @@ public class User {
     @Column(length = 64, nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private Byte theme;
+
     @Column(length = 1024, name = "profile_image")
     private String profileImage;
 
@@ -30,8 +33,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String name, String email, String profileImage) {
-        this.id = id;
+    public User(String name, String email, String profileImage) {
         this.name = name;
         this.email = email;
         this.profileImage = profileImage;
@@ -61,6 +63,14 @@ public class User {
         this.email = email;
     }
 
+    public Byte getTheme() {
+        return theme;
+    }
+
+    public void setTheme(Byte theme) {
+        this.theme = theme;
+    }
+
     public String getProfileImage() {
         return profileImage;
     }
@@ -82,12 +92,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && name.equals(user.name) && email.equals(user.email) && Objects.equals(profileImage, user.profileImage);
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(theme, user.theme) && Objects.equals(profileImage, user.profileImage) && Objects.equals(userBooks, user.userBooks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, profileImage);
+        return Objects.hash(id, name, email, theme, profileImage, userBooks);
     }
 
     @Override
@@ -96,7 +106,9 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", theme=" + theme +
                 ", profileImage='" + profileImage + '\'' +
+                ", userBooks=" + userBooks +
                 '}';
     }
 }
