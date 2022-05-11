@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDialog?>
 <?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -16,8 +17,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<?import com.jfoenix.controls.JFXTextField?>
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.CategoriesController">
     <children>
         <AnchorPane prefHeight="706.0" prefWidth="1024.0">
@@ -68,6 +69,24 @@
                            </children>
                         </StackPane>
                      </StackPane>
+                     <JFXButton layoutX="17.0" layoutY="11.0" onAction="#back" ripplerFill="WHITE" text=" ">
+                        <font>
+                           <Font size="1.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <graphic>
+                           <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                              <cursor>
+                                 <Cursor fx:constant="DEFAULT" />
+                              </cursor>
+                              <image>
+                                 <Image url="@../icons/back.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </JFXButton>
                   </children>
                </Pane>
             </center>
