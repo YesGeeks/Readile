@@ -1,0 +1,104 @@
+#navbar {
+    -fx-background-color: main-color;
+    -fx-border-radius: 0pt 0pt 20pt 20pt;
+    -fx-background-radius: 0pt 0pt 20pt 20pt;
+    -fx-alignment: center;
+}
+
+#title {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+#avatar {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-image: url("../icons/avatar.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 70;
+    -fx-background-repeat: no-repeat;
+}
+
+#book-img {
+    -fx-border-radius: 15pt;
+    -fx-background-radius: 15pt;
+    -fx-background-color: gray-1;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+#status {
+    -fx-background-color: light-orange-2;
+    -fx-padding: 5;
+    -fx-text-fill: dark-orange-1;
+    -fx-font-family: "Montserrat Bold";
+    -fx-border-radius: 20pt;
+    -fx-background-radius: 20pt;
+    -fx-border-width: 1;
+    -fx-border-color: dark-orange-1;
+    -fx-font-size: 10pt;
+}
+
+#button {
+    -fx-background-color: main-color;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-font-size: 12pt;
+    -fx-border-radius: 30pt;
+    -fx-alignment: center;
+    -fx-padding: 5;
+    -fx-background-radius: 30pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.1), 4, 0, 0, 2);
+}
+
+#page {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat SemiBold";
+    -jfx-unfocus-color: #F8F8F8;
+    -fx-background-color: light-orange-1;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -jfx-focus-color: #F8F8F8;
+    -fx-text-fill: secondary-color;
+    -fx-alignment: center;
+    -jfx-label-float: false;
+}
+
+#delete {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/delete.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-position: center;
+}
+
+#book-name {
+    -fx-font-size: 16pt;
+    -fx-font-family: "Montserrat ExtraBold";
+}
+
+#meta-bold {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat SemiBold";
+}
+
+#meta {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat Medium";
+}
+
+#authors {
+    -fx-font-size: 12pt;
+    -fx-text-fill: main-color;
+    -fx-font-family: "Montserrat Medium";
+}
+
+#pages {
+    -fx-font-size: 12pt;
+    -fx-text-fill: main-color;
+    -fx-font-family: "Montserrat Medium";
+}
