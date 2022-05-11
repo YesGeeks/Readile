@@ -3,12 +3,10 @@ package com.readile.readile.utils;
 import java.util.List;
 
 public class ResultBook {
-
     private String name;
     private String coverURL;
     private Integer length;
     private List<String> authorNames;
-
 
     public ResultBook() {
     }

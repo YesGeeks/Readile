@@ -4,12 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookAPIConnector {
-
     private static final String SEARCH_BASE_URL = "https://openlibrary.org/search.json";
     private static final String COVER_BASE_URL = "http://covers.openlibrary.org/b/id/";
 
@@ -21,11 +21,10 @@ public class BookAPIConnector {
                     .build())
             .baseUrl(SEARCH_BASE_URL).build();
 
-    private BookAPIConnector() {
-    }
+    private BookAPIConnector() {}
 
     public static List<ResultBook> getSearchResults(String query) {
-        String jsonResult =  webClient.get()
+        String jsonResult = webClient.get()
                 .uri("?q={query}", query)
                 .retrieve()
                 .bodyToMono(String.class)
@@ -51,7 +50,8 @@ public class BookAPIConnector {
                     "default-book-image.jpg";
             List<String> authorNames = new ArrayList<>();
             JSONArray authorNamesJsonArray = bookJsonObject.optJSONArray("author_name");
-            if(authorNamesJsonArray != null)
+
+            if (authorNamesJsonArray != null)
                 for (int j = 0; j < authorNamesJsonArray.length(); j++)
                     authorNames.add(authorNamesJsonArray.getString(j));
 
