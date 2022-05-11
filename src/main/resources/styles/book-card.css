@@ -9,7 +9,7 @@
     -fx-border-radius: 15pt 15pt 0 0;
     -fx-background-radius: 15pt 15pt 0 0;
     -fx-background-color: gray-1;
-    -fx-background-size: 215;
+    -fx-background-size: 215 210;
     -fx-background-position: top center;
     -fx-background-repeat: no-repeat;
 }
