@@ -47,7 +47,6 @@
 
 #delete-account-btn {
     -fx-background-color: #D83C3E;
-
 }
 
 #username-container, #email-container, #password-container {
@@ -82,7 +81,7 @@
     -fx-background-color: secondary-color;
 }
 
-/* Password dialog styling*/
+/* Password dialog styling */
 
 #old-password-field, #new-password-field {
     -fx-font-family: 'Montserrat SemiBold', sans-serif;
@@ -92,4 +91,3 @@
     -fx-text-fill: black;
     -jfx-label-float: true;
 }
-

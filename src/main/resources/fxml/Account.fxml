@@ -19,6 +19,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.AccountController">
    <children>
@@ -53,11 +55,17 @@
                         <GridPane.margin>
                            <Insets top="-28.0" />
                         </GridPane.margin>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
                      </JFXButton>
                      <JFXButton id="delete-account-btn" onAction="#deleteAccount" prefHeight="46.0" prefWidth="173.0" text="Delete Account" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                         <GridPane.margin>
                            <Insets top="20.0" />
                         </GridPane.margin>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
                      </JFXButton>
                      <HBox id="username-container" alignment="CENTER_LEFT" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                         <children>
@@ -70,7 +78,10 @@
                                  <Insets left="24.0" />
                               </padding>
                            </VBox>
-                           <JFXButton id="edit-btn" onAction="#editUsername" prefHeight="40.0" prefWidth="82.0" text="Edit" />
+                           <JFXButton id="edit-btn" onAction="#editUsername" prefHeight="40.0" prefWidth="82.0" text="Edit">
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor></JFXButton>
                         </children>
                      </HBox>
                      <HBox id="email-container" alignment="CENTER_LEFT" layoutX="309.0" layoutY="50.0" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
@@ -84,7 +95,10 @@
                                  <Insets left="24.0" />
                               </padding>
                            </VBox>
-                           <JFXButton id="edit-btn" onAction="#editEmail" prefHeight="40.0" prefWidth="82.0" text="Edit" />
+                           <JFXButton id="edit-btn" onAction="#editEmail" prefHeight="40.0" prefWidth="82.0" text="Edit">
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor></JFXButton>
                         </children>
                      </HBox>
                      <HBox id="password-container" alignment="CENTER_LEFT" layoutX="309.0" layoutY="188.0" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
@@ -97,13 +111,19 @@
                                  <Label id="password-lbl" prefHeight="16.0" prefWidth="98.0" text="Password" />
                               </children>
                            </VBox>
-                           <JFXButton id="change-password-btn" onAction="#changePassword" prefHeight="40.0" prefWidth="198.0" text="Change Password " />
+                           <JFXButton id="change-password-btn" onAction="#changePassword" prefHeight="40.0" prefWidth="198.0" text="Change Password ">
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor></JFXButton>
                         </children>
                      </HBox>
-                     <Pane id="profile-image" fx:id="profileImage" onMouseClicked="#showPopupMenu" prefHeight="116.0" prefWidth="116.0">
+                     <Pane maxHeight="180.0" maxWidth="180.0" minHeight="180.0" minWidth="180.0" onMouseClicked="#showPopupMenu" prefHeight="180.0" prefWidth="180.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                         <cursor>
                            <Cursor fx:constant="HAND" />
                         </cursor>
+                        <children>
+                           <Circle fx:id="profileImage" fill="#e0e0e0" layoutX="90.0" layoutY="90.0" radius="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        </children>
                      </Pane>
                   </children>
                   <BorderPane.margin>
@@ -126,6 +146,28 @@
                </JFXButton>
             </children>
          </HBox>
+         <Pane layoutY="124.0" prefHeight="55.0" prefWidth="123.0">
+            <children>
+               <JFXButton layoutX="18.0" layoutY="14.0" onAction="#back" ripplerFill="WHITE" text=" ">
+                  <font>
+                     <Font size="1.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <graphic>
+                     <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                        <image>
+                           <Image url="@../icons/back.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </JFXButton>
+            </children>
+         </Pane>
       </AnchorPane>
       <JFXDialog fx:id="passwordDialog">
          <JFXDialogLayout>
@@ -134,7 +176,7 @@
                   <children>
                      <VBox alignment="TOP_CENTER" layoutX="57.0" layoutY="51.0" prefHeight="231.0" prefWidth="401.0" spacing="60.0">
                         <children>
-                           <JFXPasswordField id="old-password-field" promptText="Old Password" styleClass="password-field">
+                           <JFXPasswordField id="old-password-field" promptText="Old Password">
                               <opaqueInsets>
                                  <Insets />
                               </opaqueInsets>
@@ -142,7 +184,7 @@
                                  <Insets />
                               </VBox.margin>
                            </JFXPasswordField>
-                           <JFXPasswordField id="new-password-field" layoutX="10.0" layoutY="10.0" promptText="New Password" styleClass="password-field" />
+                           <JFXPasswordField id="new-password-field" layoutX="10.0" layoutY="10.0" promptText="New Password"/>
                            <JFXButton id="change-password-btn" prefHeight="44.0" prefWidth="277.0" text="Change Password" />
                         </children>
                         <opaqueInsets>
