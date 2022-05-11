@@ -37,7 +37,7 @@ public class CategoryService implements CrudService<Category> {
 
     @Override
     public void deleteInBatch(List<Category> entities) {
-        categoryRepository.deleteInBatch(entities);
+        categoryRepository.deleteAllInBatch(entities);
     }
 
     @Override

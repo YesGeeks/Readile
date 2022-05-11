@@ -35,7 +35,7 @@ public class AuthorService implements CrudService<Author> {
 
     @Override
     public void deleteInBatch(List<Author> entities) {
-        authorRepository.deleteInBatch(entities);
+        authorRepository.deleteAllInBatch(entities);
     }
 
     @Override

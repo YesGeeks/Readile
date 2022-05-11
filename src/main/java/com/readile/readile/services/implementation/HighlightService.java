@@ -35,7 +35,7 @@ public class HighlightService implements CrudService<Highlight> {
 
     @Override
     public void deleteInBatch(List<Highlight> entities) {
-        highlightRepository.deleteInBatch(entities);
+        highlightRepository.deleteAllInBatch(entities);
     }
 
     @Override

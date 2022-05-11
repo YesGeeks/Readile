@@ -35,7 +35,7 @@ public class UserBookService implements CrudService<UserBook> {
 
     @Override
     public void deleteInBatch(List<UserBook> entities) {
-        userBookRepository.deleteInBatch(entities);
+        userBookRepository.deleteAllInBatch(entities);
     }
 
     @Override
