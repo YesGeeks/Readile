@@ -18,9 +18,6 @@ public class Book {
     @Column(nullable = false, length = 128)
     private String name;
 
-    @Column(length = 512)
-    private String description;
-
     @Column(name = "cover_id", nullable = false, length = 1024)
     private String coverId;
 
@@ -44,10 +41,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(Integer id, String name, String description, String coverId, Integer length) {
-        this.id = id;
+    public Book(String name, String coverId, Integer length) {
         this.name = name;
-        this.description = description;
         this.coverId = coverId;
         this.length = length;
     }
@@ -66,14 +61,6 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getCoverId() {
@@ -129,12 +116,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(id, book.id) && name.equals(book.name) && Objects.equals(description, book.description) && coverId.equals(book.coverId) && length.equals(book.length);
+        return Objects.equals(id, book.id) && name.equals(book.name) && coverId.equals(book.coverId) && length.equals(book.length);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, coverId, length);
+        return Objects.hash(id, name, coverId, length);
     }
 
     @Override
@@ -142,7 +129,6 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 ", coverId='" + coverId + '\'' +
                 ", length=" + length +
                 '}';
