@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService implements CrudService<User> {
@@ -35,7 +36,7 @@ public class UserService implements CrudService<User> {
 
     @Override
     public void deleteInBatch(List<User> entities) {
-        userRepository.deleteInBatch(entities);
+        userRepository.deleteAllInBatch(entities);
     }
 
     @Override
@@ -46,5 +47,9 @@ public class UserService implements CrudService<User> {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
