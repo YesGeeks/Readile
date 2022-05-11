@@ -1,6 +1,6 @@
 #parent {
     -fx-font-family: "Montserrat SemiBold";
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-background-color: #F5F5F5;
     -fx-border-radius: 10pt;
     -fx-background-radius: 10pt;
@@ -12,11 +12,11 @@
 }
 
 #my-account-item:hover {
-    -fx-border-radius: 10pt 10pt 0pt 0pt ;
+    -fx-border-radius: 10pt 10pt 0pt 0pt;
     -fx-background-radius: 10pt 10pt 0pt 0pt;
 }
 
 #logout-item:hover {
-    -fx-border-radius: 0pt 0pt 10pt 10pt ;
+    -fx-border-radius: 0pt 0pt 10pt 10pt;
     -fx-background-radius: 0pt 0pt 10pt 10pt;
 }
