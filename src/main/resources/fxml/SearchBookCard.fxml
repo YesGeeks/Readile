@@ -11,6 +11,7 @@
         <URL value="@../styles/global.css" />
         <URL value="@../styles/search-book-card.css" />
     </stylesheets>
+    <children>
     <Label id="book-name" fx:id="bookName" layoutX="10.0" layoutY="6.0" prefHeight="60.0" prefWidth="196.0" text="Book Name" textAlignment="JUSTIFY" wrapText="true" />
    <Label id="author" fx:id="authorName" layoutX="10.0" layoutY="65.0" prefHeight="56.0" prefWidth="196.0" text="Author Name" textAlignment="JUSTIFY" wrapText="true" />
    <Pane id="bottom-pane" layoutY="126.0" prefHeight="80.0" prefWidth="215.0">
@@ -22,6 +23,7 @@
          </JFXButton>
       </children>
    </Pane>
+    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
    </cursor>
