@@ -4,14 +4,25 @@ import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
+import com.readile.readile.config.FxController;
+import com.readile.readile.models.userbook.Status;
+import com.readile.readile.models.userbook.UserBook;
+import com.readile.readile.services.implementation.BookService;
+import com.readile.readile.services.implementation.UserBookService;
+import com.readile.readile.utils.BookAPIConnector;
+import com.readile.readile.utils.ResultBook;
+import com.readile.readile.views.Intent;
+import com.readile.readile.views.StageManager;
 import com.readile.readile.views.components.BookCard;
-import com.readile.readile.views.components.SearchBookCard;
+import com.readile.readile.views.components.DoughnutChart;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,12 +33,24 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeScreenController implements Initializable {
+@Controller
+@FxmlView("/fxml/Home.fxml")
+public class HomeScreenController implements Initializable, FxController {
+    @FXML
+    public JFXDialog addBookDialog;
+    @FXML
+    private StackPane root;
+
     @FXML
     public JFXTextField search;
     @FXML
@@ -59,54 +82,118 @@ public class HomeScreenController implements Initializable {
 
     static boolean isInitialize = false;
 
+    private List<UserBook> userBookList;
+
+    @Lazy
+    @Autowired
+    StageManager stageManager;
+
+    @Autowired
+    BookService bookService;
+
+    @Autowired
+    UserBookService userBookService;
+
+    // Local search
     @FXML
     public void searchForBook() {
+        if (!search.getText().trim().equals("")) {
+            bookCards.setVisible(true);
+            List<UserBook> searchResult = userBookList.stream()
+                    .filter(userBook -> userBook.getBook().getName().toLowerCase()
+                            .contains(search.getText().toLowerCase())).toList();
+            if (searchResult.size() == 0) {
+                booksCardView.getChildren().clear();
+                bookCards.setVisible(false);
+            } else {
+                booksCardView.getChildren().clear();
+                for (UserBook record : searchResult) {
+                    try {
+                        BookCard bookCard = new BookCard();
+                        booksCardView.getChildren().add(bookCard.getBookCard(record));
+                    } catch (IOException ignored) {}
+                }
+            }
+        } else {
+            loadBooksAndChart();
+        }
     }
 
     @FXML
     void showPopupMenu(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Popup popup = new Popup();
-
         popup.setAutoHide(true);
-        try {
-            Node popupContent = (Node) new FXMLLoader(getClass().getResource("/fxml/PopupMenu.fxml")).load();
-            popup.getContent().addAll(popupContent);
-            new FadeIn(popupContent).setSpeed(1.6).play();
-            popup.show(stage, stage.getX() + 726, stage.getY() + 84);
-        } catch (IOException e) {}
+        Node popupContent = stageManager.loadView(PopupMenuController.class);
+        popupContent.setOnMouseClicked(mouseEvent -> popup.hide());
+        popup.getContent().addAll(popupContent);
+        new FadeIn(popupContent).setSpeed(1.6).play();
+        popup.show(stage, stage.getX() + 726, stage.getY() + 84);
     }
 
     @FXML
-    public void addNewBook(ActionEvent event) {
-        Scene homeScene = ((Node) event.getSource()).getScene();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/HomeModal.fxml"));
+    public void addNewBook() {
         try {
-            JFXDialog dialog = new JFXDialog((StackPane) homeScene.getRoot(), fxmlLoader.load(), JFXDialog.DialogTransition.CENTER);
-            dialog.show();
+            addBookDialog.show();
+            addBookDialog.setOnDialogClosed(
+                    jfxDialogEvent -> {
+                        searchField.setText("");
+                        searchResultsView.getChildren().clear();
+                        Intent.clearTempResults();
 
-            // Add new book sample
-            BookCard bookCard = new BookCard();
-            String path = String.valueOf(getClass().getResource("/images/colorful-logo.png"));
-            booksCardView.getChildren().add(bookCard.getBookCard("Crime and Punishment", 37, path, "CURRENTLY_READING", "TWO_STARS"));
+                        booksCardView.getChildren().clear();
+                        userBookList = userBookService.findAllByUser(Intent.activeUser);
+                        loadBooksAndChart();
+                    }
+            );
         } catch (Exception ignored) {}
     }
 
     @FXML
     public void browseCategories() {
+        Intent.pushClosedScene(HomeScreenController.class);
+        stageManager.rebuildStage(CategoriesController.class);
     }
 
+    private int counter = 0;
+
+    // Modal window API search
     @FXML
     public void modalSearchForBook() {
-        // Add new search book sample
-        SearchBookCard searchBookCard = new SearchBookCard();
-        try {
-            searchResultsView.getChildren().add(searchBookCard.getSearchBookCard("Crime and Punishment", "Fyodor Dostoevsky"));
-        } catch (IOException ignored) {}
+        searchResultsView.getChildren().clear();
+        if (!searchField.getText().equals("")) {
+            List<ResultBook> resultBooks = BookAPIConnector.getSearchResults(searchField.getText());
+            if (resultBooks.size() == 0) {
+                searchResults.setVisible(false);
+            } else {
+                searchResults.setVisible(true);
+                Intent.set(resultBooks);
+                for (ResultBook resultBook : resultBooks) {
+                    try {
+                        Pane card = getSearchBookCard(resultBook);
+                        card.setAccessibleText(String.valueOf(counter));
+                        searchResultsView.getChildren().add(card);
+                    } catch (IOException ignored) {}
+                }
+                counter = 0;
+            }
+        }
+    }
+
+    private Pane getSearchBookCard(ResultBook resultBook) throws IOException {
+        Pane root = stageManager.loadView(SearchBookCardController.class);
+        ((Label) root.getChildren().get(0)).setText(resultBook.getName());
+        ((Label) root.getChildren().get(1)).setText(resultBook.getAuthorNames().toString().replace("[","").replace("]",""));
+        ((Pane) root.getChildren().get(2)).getChildren().get(0).setAccessibleText(String.valueOf(counter++));
+        return root;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        booksCardView.getChildren().clear();
+        userBookList = userBookService.findAllByUser(Intent.activeUser);
+        loadBooksAndChart();
+
         if (!isInitialize) {
             Rectangle mask = new Rectangle(70, 70);
             mask.setArcHeight(100);
@@ -114,33 +201,58 @@ public class HomeScreenController implements Initializable {
             avatar.setClip(mask);
 
             ratingComboBox.getItems().addAll(
-                    "One Star", "Two Stars", "Three Stars",
+                    "","One Star", "Two Stars", "Three Stars",
                     "Four Stars", "Five Stars"
             );
 
             statusComboBox.getItems().addAll(
-                    "To Read", "Currently Reading", "Read"
+                    "","To Read", "Currently Reading", "Read"
             );
+            isInitialize = true;
+        }
 
-            /* Add book card to cardView
-            try {
-                booksCardView.getChildren().add(new FXMLLoader(getClass().getResource("/fxml/BookCard.fxml")).load());
-            } catch (IOException ignored) {
-            }
-            */
+        addBookDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+        addBookDialog.setDialogContainer(root);
+        Intent.addNewBookDialog = addBookDialog;
+    }
 
-            /* Add Doughnut Chart to home screen
+    private void loadBooksAndChart() {
+        if (userBookList.size() == 0) {
+            booksCardView.getChildren().clear();
+            bookCards.setVisible(false);
+            chartEmptyImage.setVisible(true);
+        } else {
+            chartEmptyImage.setVisible(false);
             ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                    new PieChart.Data("Currently Reading", 13),
-                    new PieChart.Data("To Read", 25),
-                    new PieChart.Data("Read", 9));
+                    new PieChart.Data("Currently Reading", userBookList
+                            .stream()
+                            .filter(userBook ->
+                                    userBook.getStatus().equals(Status.CURRENTLY_READING))
+                            .count()),
+                    new PieChart.Data("To Read", userBookList
+                            .stream()
+                            .filter(userBook ->
+                                    userBook.getStatus().equals(Status.TO_READ))
+                            .count()),
+                    new PieChart.Data("Read",userBookList
+                            .stream()
+                            .filter(userBook ->
+                                    userBook.getStatus().equals(Status.READ))
+                            .count())
+            );
             final DoughnutChart chart = new DoughnutChart(pieChartData);
             chart.setLegendVisible(false);
             chart.getStylesheets().add(String.valueOf(getClass().getResource("/styles/doughnut-chart.css")));
+            charts.getChildren().clear();
             charts.getChildren().add(chart);
-            chartEmptyImage.setVisible(false);
-            */
-            isInitialize = true;
+
+            booksCardView.getChildren().clear();
+            BookCard bookCard = new BookCard();
+            for (UserBook record : userBookList) {
+                try {
+                    booksCardView.getChildren().add(bookCard.getBookCard(record));
+                } catch (IOException ignored) {}
+            }
         }
     }
 
@@ -164,7 +276,6 @@ public class HomeScreenController implements Initializable {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
         });
-
         toolBar.setOnMouseDragged(event -> {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);

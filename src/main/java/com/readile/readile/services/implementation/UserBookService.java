@@ -1,5 +1,6 @@
 package com.readile.readile.services.implementation;
 
+import com.readile.readile.models.user.User;
 import com.readile.readile.models.userbook.UserBook;
 import com.readile.readile.repositories.UserBookRepository;
 import com.readile.readile.services.CrudService;
@@ -46,5 +47,9 @@ public class UserBookService implements CrudService<UserBook> {
     @Override
     public List<UserBook> findAll() {
         return userBookRepository.findAll();
+    }
+
+    public List<UserBook> findAllByUser(User user) {
+        return userBookRepository.findAllByUser(user);
     }
 }
