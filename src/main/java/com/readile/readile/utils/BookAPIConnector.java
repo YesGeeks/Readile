@@ -47,7 +47,7 @@ public class BookAPIConnector {
             int coverId = bookJsonObject.optInt("cover_i", -1);
             String coverURL = (coverId > 0) ?
                     String.format("%s%d%s", COVER_BASE_URL, coverId, "-L.jpg") :
-                    "default-book-image.jpg";
+                    String.valueOf(BookAPIConnector.class.getResource("/images/colorful-logo.png"));
             List<String> authorNames = new ArrayList<>();
             JSONArray authorNamesJsonArray = bookJsonObject.optJSONArray("author_name");
 
@@ -55,7 +55,9 @@ public class BookAPIConnector {
                 for (int j = 0; j < authorNamesJsonArray.length(); j++)
                     authorNames.add(authorNamesJsonArray.getString(j));
 
-            books.add(new ResultBook(title, coverURL, length, authorNames));
+            if (!title.equals("No title") && length > 0 && coverId > 0) {
+                books.add(new ResultBook(title, coverURL, length, authorNames));
+            }
         }
         return books;
     }
