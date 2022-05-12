@@ -1,7 +1,6 @@
 package com.readile.readile;
 
 import com.readile.readile.config.StageReadyEvent;
-import com.readile.readile.controllers.SignInScreenController;
 import com.readile.readile.controllers.SplashScreenController;
 import com.readile.readile.views.StageManager;
 import javafx.application.Application;
@@ -27,7 +26,7 @@ public class ReadileApp implements ApplicationListener<StageReadyEvent> {
     @Override
     public void onApplicationEvent(StageReadyEvent event) {
         STAGE_MANAGER = springAppContext.getBean(StageManager.class, event.stage);
-        STAGE_MANAGER.rebuildStage(SignInScreenController.class);
+        STAGE_MANAGER.rebuildStage(SplashScreenController.class);
     }
 
     public static StageManager getStageManager() {
