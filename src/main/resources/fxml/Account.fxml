@@ -117,7 +117,7 @@
                               </cursor></JFXButton>
                         </children>
                      </HBox>
-                     <Pane maxHeight="180.0" maxWidth="180.0" minHeight="180.0" minWidth="180.0" onMouseClicked="#showPopupMenu" prefHeight="180.0" prefWidth="180.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <Pane maxHeight="180.0" maxWidth="180.0" minHeight="180.0" minWidth="180.0" prefHeight="180.0" prefWidth="180.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                         <cursor>
                            <Cursor fx:constant="HAND" />
                         </cursor>
@@ -184,7 +184,7 @@
                                  <Insets />
                               </VBox.margin>
                            </JFXPasswordField>
-                           <JFXPasswordField id="new-password-field" layoutX="10.0" layoutY="10.0" promptText="New Password"/>
+                           <JFXPasswordField id="new-password-field" layoutX="10.0" layoutY="10.0" promptText="New Password" />
                            <JFXButton id="change-password-btn" prefHeight="44.0" prefWidth="277.0" text="Change Password" />
                         </children>
                         <opaqueInsets>
