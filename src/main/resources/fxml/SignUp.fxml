@@ -62,19 +62,19 @@
                             <Cursor fx:constant="HAND" />
                         </cursor></JFXButton>
                 </VBox>
+            <Label id="error" fx:id="error" layoutX="101.0" layoutY="369.0" prefHeight="20.0" prefWidth="325.0" text="Please enter a valid email" visible="false" />
             </Pane>
         </center>
     </BorderPane>
-    <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0"
-          prefWidth="1024.0">
+    <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
         <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
            <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
            </cursor>
         </JFXButton>
         <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
            <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
            </cursor>
         </JFXButton>
     </HBox>
