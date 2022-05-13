@@ -1,5 +1,6 @@
 package com.readile.readile.controllers;
 
+import com.jthemedetecor.OsThemeDetector;
 import com.readile.readile.config.FxController;
 import com.readile.readile.views.StageManager;
 import javafx.application.Platform;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -21,6 +23,10 @@ import java.util.ResourceBundle;
 @Controller
 @FxmlView("/fxml/Splash.fxml")
 public class SplashScreenController implements Initializable, FxController {
+
+    @FXML
+    private AnchorPane root;
+
     @FXML
     public HBox toolBar;
     private double xOffset = 0, yOffset = 0;
@@ -67,6 +73,23 @@ public class SplashScreenController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        final OsThemeDetector detector = OsThemeDetector.getDetector();
+        final boolean isDarkThemeUsed = detector.isDark();
+        toggleTheme(isDarkThemeUsed);
+
+        detector.registerListener(isDarkTheme -> {
+            Platform.runLater(() -> {
+                toggleTheme(isDarkTheme);
+            });
+        });
         new ShowAndWait().start();
+    }
+
+    public void toggleTheme(boolean isDarkTheme) {
+        if(isDarkTheme)
+            root.getStyleClass().add("dark-theme");
+        else
+            root.getStyleClass().remove("dark-theme");
     }
 }

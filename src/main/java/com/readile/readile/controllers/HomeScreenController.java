@@ -15,6 +15,7 @@ import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import com.readile.readile.views.components.BookCard;
 import com.readile.readile.views.components.DoughnutChart;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,6 +85,9 @@ public class HomeScreenController implements Initializable, FxController {
 
     private List<UserBook> userBookList;
 
+//    private ObservableIntegerValue theme;
+
+
     @Lazy
     @Autowired
     StageManager stageManager;
@@ -152,7 +156,7 @@ public class HomeScreenController implements Initializable, FxController {
     @FXML
     public void browseCategories() {
         Intent.pushClosedScene(HomeScreenController.class);
-        stageManager.rebuildStage(CategoriesController.class);
+        stageManager.rebuildStage(CategoryController.class);
     }
 
     private int counter = 0;
@@ -189,6 +193,10 @@ public class HomeScreenController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        boolean darkTheme =  Intent.activeUser.getTheme() == 1 ? true : false;
+        toggleTheme(darkTheme);
+
         booksCardView.getChildren().clear();
         userBookList = userBookService.findAllByUser(Intent.activeUser);
         loadBooksAndChart();
@@ -253,6 +261,13 @@ public class HomeScreenController implements Initializable, FxController {
                 } catch (IOException ignored) {}
             }
         }
+    }
+
+    public void toggleTheme(boolean isDarkTheme) {
+        if(isDarkTheme)
+            root.getStyleClass().add("dark-theme");
+        else
+            root.getStyleClass().remove("dark-theme");
     }
 
     @FXML
