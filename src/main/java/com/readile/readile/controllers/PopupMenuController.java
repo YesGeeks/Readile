@@ -1,6 +1,7 @@
 package com.readile.readile.controllers;
 
 import com.readile.readile.config.FxController;
+import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -29,6 +30,7 @@ public class PopupMenuController implements FxController {
     public void logout(MouseEvent mouseEvent) {
         Parent menu = ((Node) mouseEvent.getSource()).getScene().getRoot();
         menu.setVisible(true);
+        Intent.activeUser = null;
         stageManager.rebuildStage(SignInScreenController.class);
     }
 }
