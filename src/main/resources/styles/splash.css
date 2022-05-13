@@ -2,9 +2,19 @@
     -fx-background-color: gray-1;
 }
 
+#logo {
+    -fx-background-image: url("../images/colorful-logo.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+}
+
+.root.dark-theme #logo {
+    -fx-background-image: url("../images/colorful-logo__dark-theme.png");
+}
+
 #title, #subtitle {
     -fx-alignment: center;
-    -fx-text-fill: black;
+    -fx-text-fill: text-fill-2;
     -fx-font-weight: bold;
 }
 
@@ -15,4 +25,21 @@
 
 #subtitle {
     -fx-font-size: 13pt;
+}
+
+#loading-image {
+    -fx-background-image: url("../icons/loading.gif");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 420;
+}
+
+#splash-background {
+    -fx-background-image: url("../images/splash-background.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+}
+
+.root.dark-theme #splash-background {
+    -fx-background-image: url("../images/splash-background__dark-theme.png");
 }

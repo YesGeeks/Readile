@@ -4,15 +4,13 @@
 <?import java.net.URL?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SplashScreenController">
+<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SplashScreenController">
    <stylesheets>
       <URL value="@../styles/global.css" />
       <URL value="@../styles/splash.css" />
@@ -20,36 +18,27 @@
    <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
       <left>
          <Pane prefHeight="680.0" prefWidth="402.0" BorderPane.alignment="CENTER">
-            <VBox alignment="CENTER" layoutX="70.0" layoutY="80.0" prefHeight="328.0" prefWidth="273.0">
-               <ImageView fitHeight="281.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/colorful-logo.png" />
-               </ImageView>
+            <VBox alignment="CENTER" layoutX="70.0" layoutY="80.0" prefHeight="336.0" prefWidth="292.0">
+               <Pane id="logo" maxHeight="326.0" maxWidth="275.0" prefHeight="326.0" prefWidth="239.0" />
                <Label id="title" prefHeight="53.0" prefWidth="278.0" text="Readile" />
             </VBox>
-            <Label id="subtitle" layoutX="-25.0" layoutY="459.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
-            <ImageView fitHeight="278.0" fitWidth="405.0" layoutX="-1.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../icons/loading.gif" />
-            </ImageView>
+            <Label id="subtitle" layoutX="-16.0" layoutY="455.0" prefHeight="21.0" prefWidth="465.0" text="The Way to Track Your Readings ..." />
+            <Pane id="loading-image" layoutX="98.0" layoutY="487.0" prefHeight="179.0" prefWidth="207.0" />
          </Pane>
       </left>
-      <center>
-         <Pane prefHeight="680.0" prefWidth="664.0" BorderPane.alignment="CENTER">
-            <ImageView fitHeight="566.0" fitWidth="630.0" layoutX="1.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../images/splash-background.png" />
-            </ImageView>
-         </Pane>
-      </center>
+      <right>
+         <Pane id="splash-background" maxWidth="600.0" prefHeight="680.0" prefWidth="641.0" BorderPane.alignment="CENTER" />
+      </right>
    </BorderPane>
-   <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0"
-         prefWidth="1024.0">
+   <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
       <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
       <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
    </HBox>
