@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 @Controller
@@ -44,6 +43,8 @@ public class PopupMenuController implements FxController, Initializable {
     public void toggleMode(MouseEvent mouseEvent) {
         User updatedUser = Intent.activeUser;
         updatedUser.setTheme((byte) (updatedUser.getTheme() ^ 1));
+        boolean darkTheme = Intent.activeUser.getTheme() == 1;
+        toggleTheme(darkTheme, Intent.currentRoot);
         userService.update(updatedUser);
     }
 
@@ -58,12 +59,19 @@ public class PopupMenuController implements FxController, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boolean darkTheme =  Intent.activeUser.getTheme() == 1 ? true : false;
+        boolean darkTheme = Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
     }
 
     public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
+        if (isDarkTheme)
+            root.getStyleClass().add("dark-theme");
+        else
+            root.getStyleClass().remove("dark-theme");
+    }
+
+    public void toggleTheme(boolean isDarkTheme, Parent root) {
+        if (isDarkTheme)
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");
