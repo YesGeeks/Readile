@@ -6,10 +6,13 @@ import com.jfoenix.controls.JFXDialog;
 import com.readile.readile.config.FxController;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.readile.readile.config.FxController;
+import com.readile.readile.models.book.Book;
 import com.readile.readile.models.user.LoginInfo;
 import com.readile.readile.models.user.User;
+import com.readile.readile.models.userbook.UserBook;
+import com.readile.readile.services.implementation.BookService;
 import com.readile.readile.services.implementation.LoginInfoService;
+import com.readile.readile.services.implementation.UserBookService;
 import com.readile.readile.services.implementation.UserService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
@@ -39,6 +42,8 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -82,6 +87,12 @@ public class AccountController implements Initializable, FxController {
 
     @Autowired
     LoginInfoService loginInfoService;
+
+    @Autowired
+    UserBookService userBookService;
+
+    @Autowired
+    BookService bookService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -130,8 +141,13 @@ public class AccountController implements Initializable, FxController {
 
     @FXML
     void deleteAccount() {
+        List<UserBook> list = userBookService.findAllByUser(Intent.activeUser);
+        userBookService.deleteInBatch(list);
         loginInfoService.delete(loginInfoService.findByUser(Intent.activeUser));
         userService.delete(Intent.activeUser);
+        List<Book> books = new ArrayList<>();
+        list.forEach(userBook -> books.add(userBook.getBook()));
+        bookService.deleteInBatch(books);
         Intent.activeUser = null;
         Intent.currentSceneClass = null;
         stageManager.rebuildStage(SignInScreenController.class);
