@@ -222,6 +222,7 @@ public class HomeScreenController implements Initializable, FxController {
             chartEmptyImage.setVisible(true);
         } else {
             chartEmptyImage.setVisible(false);
+            bookCards.setVisible(true);
             ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                     new PieChart.Data("Currently Reading", userBookList
                             .stream()
