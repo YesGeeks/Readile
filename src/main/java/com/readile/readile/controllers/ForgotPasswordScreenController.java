@@ -1,6 +1,7 @@
 package com.readile.readile.controllers;
 
 import com.jfoenix.controls.JFXTextField;
+import com.readile.readile.config.FxController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class ForgotPasswordScreenController {
+public class ForgotPasswordScreenController implements FxController {
     @FXML
     public JFXTextField email;
     @FXML
