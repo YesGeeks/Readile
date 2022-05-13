@@ -1,6 +1,7 @@
 package com.readile.readile.views;
 
 import com.jfoenix.controls.JFXDialog;
+import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.User;
 import com.readile.readile.utils.ResultBook;
 
@@ -12,13 +13,13 @@ public class Intent {
     public static User activeUser;
     public static JFXDialog addNewBookDialog;
 
-    private static final Stack<Class> backStack = new Stack<>();
+    private static final Stack<Class<? extends FxController>> backStack = new Stack<>();
 
-    public static void pushClosedScene(Class sceneController) {
+    public static void pushClosedScene(Class<? extends FxController> sceneController) {
         backStack.push(sceneController);
     }
 
-    public static Class popClosedScene() {
+    public static Class<? extends FxController> popClosedScene() {
         return backStack.pop();
     }
 
