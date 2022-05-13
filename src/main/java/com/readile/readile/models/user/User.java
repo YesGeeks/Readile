@@ -27,7 +27,7 @@ public class User {
     @Column(length = 1024, name = "profile_image")
     private String profileImage;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     Set<UserBook> userBooks = new HashSet<>();
 
     public User() {

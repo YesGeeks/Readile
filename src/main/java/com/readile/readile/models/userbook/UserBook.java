@@ -13,12 +13,12 @@ public class UserBook {
     @EmbeddedId
     private UserBookId id = new UserBookId();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("bookId")
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
