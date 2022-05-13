@@ -37,7 +37,7 @@ public class PopupMenuController implements FxController, Initializable {
     public void viewAccount(MouseEvent mouseEvent) {
         Parent menu = ((Node) mouseEvent.getSource()).getScene().getRoot();
         menu.setVisible(true);
-//        Intent.pushClosedScene(((Node) mouseEvent.getSource()).getScene().getRoot());
+        Intent.pushClosedScene(Intent.currentSceneClass);
         stageManager.rebuildStage(AccountController.class);
     }
 
@@ -51,6 +51,8 @@ public class PopupMenuController implements FxController, Initializable {
         Parent menu = ((Node) mouseEvent.getSource()).getScene().getRoot();
         menu.setVisible(true);
         Intent.clearBackStack();
+        Intent.activeUser = null;
+        Intent.currentSceneClass = null;
         stageManager.rebuildStage(SignInScreenController.class);
     }
 

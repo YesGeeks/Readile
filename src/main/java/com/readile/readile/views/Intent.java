@@ -16,6 +16,7 @@ import java.util.Stack;
 public class Intent {
     public static User activeUser;
     public static JFXDialog addNewBookDialog;
+    public static Class<? extends FxController> currentSceneClass;
 
     private static final Stack<Class<? extends FxController>> backStack = new Stack<>();
 
