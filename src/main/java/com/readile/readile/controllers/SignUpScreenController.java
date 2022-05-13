@@ -32,8 +32,6 @@ import java.util.regex.Pattern;
 @Controller
 @FxmlView("/fxml/SignUp.fxml")
 public class SignUpScreenController implements FxController, Initializable {
-
-
     @FXML
     private AnchorPane root;
 
@@ -120,23 +118,17 @@ public class SignUpScreenController implements FxController, Initializable {
         return pattern.matcher(email).matches();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         final OsThemeDetector detector = OsThemeDetector.getDetector();
         final boolean isDarkThemeUsed = detector.isDark();
         toggleTheme(isDarkThemeUsed);
 
-        detector.registerListener(isDarkTheme -> {
-            Platform.runLater(() -> {
-                toggleTheme(isDarkTheme);
-            });
-        });
+        detector.registerListener(isDarkTheme -> Platform.runLater(() -> toggleTheme(isDarkTheme)));
     }
 
     public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
+        if (isDarkTheme)
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");

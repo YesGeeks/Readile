@@ -29,10 +29,8 @@ import java.util.ResourceBundle;
 @Controller
 @FxmlView("/fxml/SignIn.fxml")
 public class SignInScreenController implements FxController, Initializable {
-
     @FXML
     public AnchorPane root;
-
 
     @FXML
     public JFXTextField email;
@@ -108,26 +106,20 @@ public class SignInScreenController implements FxController, Initializable {
             stage.setY(event.getScreenY() - yOffset);
         });
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         final OsThemeDetector detector = OsThemeDetector.getDetector();
         final boolean isDarkThemeUsed = detector.isDark();
         toggleTheme(isDarkThemeUsed);
 
-        detector.registerListener(isDarkTheme -> {
-            Platform.runLater(() -> {
-                toggleTheme(isDarkTheme);
-            });
-        });
+        detector.registerListener(isDarkTheme -> Platform.runLater(() -> toggleTheme(isDarkTheme)));
     }
 
-    public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
+    private void toggleTheme(boolean isDarkTheme) {
+        if (isDarkTheme)
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");
     }
-
-
 }

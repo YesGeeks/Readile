@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 @Controller
 @FxmlView("/fxml/Splash.fxml")
 public class SplashScreenController implements Initializable, FxController {
-
     @FXML
     private AnchorPane root;
 
@@ -73,21 +72,16 @@ public class SplashScreenController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         final OsThemeDetector detector = OsThemeDetector.getDetector();
         final boolean isDarkThemeUsed = detector.isDark();
         toggleTheme(isDarkThemeUsed);
 
-        detector.registerListener(isDarkTheme -> {
-            Platform.runLater(() -> {
-                toggleTheme(isDarkTheme);
-            });
-        });
+        detector.registerListener(isDarkTheme -> Platform.runLater(() -> toggleTheme(isDarkTheme)));
         new ShowAndWait().start();
     }
 
     public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
+        if (isDarkTheme)
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");
