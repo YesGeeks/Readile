@@ -189,16 +189,15 @@ public class HomeScreenController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Intent.currentSceneClass = HomeScreenController.class;
+
         booksCardView.getChildren().clear();
         userBookList = userBookService.findAllByUser(Intent.activeUser);
         loadBooksAndChart();
 
-        if (!isInitialize) {
-            Rectangle mask = new Rectangle(70, 70);
-            mask.setArcHeight(100);
-            mask.setArcWidth(100);
-            avatar.setClip(mask);
+        fetchNavAvatar();
 
+        if (!isInitialize) {
             ratingComboBox.getItems().addAll(
                     "","One Star", "Two Stars", "Three Stars",
                     "Four Stars", "Five Stars"
@@ -213,6 +212,15 @@ public class HomeScreenController implements Initializable, FxController {
         addBookDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
         addBookDialog.setDialogContainer(root);
         Intent.addNewBookDialog = addBookDialog;
+    }
+
+    private void fetchNavAvatar() {
+        String path = "\"" + Intent.activeUser.getProfileImage() + "\"";
+        avatar.setStyle("-fx-background-image: url("+path+");");
+        Rectangle mask = new Rectangle(70, 70);
+        mask.setArcHeight(100);
+        mask.setArcWidth(100);
+        avatar.setClip(mask);
     }
 
     private void loadBooksAndChart() {
