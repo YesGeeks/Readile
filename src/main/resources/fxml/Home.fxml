@@ -6,7 +6,6 @@
 <?import com.jfoenix.controls.JFXDialogLayout?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -21,7 +20,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.HomeScreenController">
+<StackPane id="root" fx:id="root" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.HomeScreenController">
    <children>
       <JFXDialog fx:id="addBookDialog" maxHeight="706.0" maxWidth="1024.0" minHeight="706.0" minWidth="1024.0" prefHeight="706.0" prefWidth="1024.0">
          <children>
@@ -82,12 +81,12 @@
                         <Font size="1.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView accessibleRole="BUTTON" fitHeight="28.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/search.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="DEFAULT" />
+                              <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
                      </graphic>
@@ -117,17 +116,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <ImageView fitHeight="26.0" fitWidth="49.0" layoutX="144.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/category.png" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
+                        <Pane id="browse-image" layoutX="140.0" layoutY="332.0" prefHeight="27.0" prefWidth="29.0" />
                      </children>
                   </Pane>
                   <StackPane layoutX="317.0" layoutY="120.0" prefHeight="450.0" prefWidth="705.0">
@@ -139,18 +128,13 @@
                         </ImageView>
                         <ScrollPane fx:id="bookCards" hbarPolicy="NEVER" hvalue="0.5" prefHeight="450.0" prefWidth="716.0" StackPane.alignment="CENTER">
                            <content>
-                              <FlowPane id="cards-view" fx:id="booksCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="447.0" prefWidth="737.0" vgap="15.0" />
+                              <FlowPane id="cards-view" fx:id="booksCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="448.0" prefWidth="737.0" vgap="15.0" />
                            </content>
                         </ScrollPane>
                      </children>
                   </StackPane>
                   <Pane layoutX="233.0" layoutY="70.0" prefHeight="44.0" prefWidth="532.0">
                      <children>
-                        <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/filter.png" />
-                           </image>
-                        </ImageView>
                         <Label id="filter" layoutX="41.0" layoutY="13.0" text="Filter by: " />
                         <JFXComboBox id="filter-rating" fx:id="ratingComboBox" labelFloat="true" layoutX="334.0" layoutY="9.0" prefHeight="30.0" prefWidth="190.0" promptText="Rating">
                            <cursor>
@@ -162,15 +146,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXComboBox>
+                        <Pane id="filter-icon" layoutX="14.0" layoutY="9.0" prefHeight="26.0" prefWidth="29.0" />
                      </children>
                   </Pane>
                </Pane>
             </center>
             <top>
                <Pane id="navbar" prefHeight="100.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-                  <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../images/white-logo.png" />
-                  </ImageView>
+                  <Pane id="logo" layoutX="43.0" layoutY="13.0" prefHeight="73.0" prefWidth="73.0" />
                   <Label id="title" layoutX="73.0" layoutY="21.0" prefHeight="60.0" prefWidth="317.0" text="My Readings" />
                   <Pane id="avatar" fx:id="avatar" layoutX="899.0" layoutY="14.0" onMouseClicked="#showPopupMenu" prefHeight="70.0" prefWidth="70.0">
                      <cursor>

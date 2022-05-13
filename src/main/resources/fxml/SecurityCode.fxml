@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SecurityCodeController">
+    <BorderPane layoutY="26.0" prefHeight="680.0" prefWidth="1024.0">
+        <left>
+            <Pane id="aside" prefHeight="680.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+                <VBox layoutX="81.0" layoutY="88.0" prefHeight="260.0" prefWidth="218.0">
+               <Pane id="logo" prefHeight="200.0" prefWidth="200.0" />
+                    <Label id="title" prefHeight="63.0" prefWidth="218.0" text="Readile" />
+                </VBox>
+                <Label id="subtitle" layoutY="603.0" prefHeight="21.0" prefWidth="380.0" text="The Way to Track Your Readings" />
+            </Pane>
+        </left>
+        <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <VBox id="main" layoutX="97.0" layoutY="42.0" prefHeight="524.0" prefWidth="450.0">
+                    <VBox id="security-code-container" prefHeight="110.0" prefWidth="450.0">
+                  <Pane id="back" maxHeight="26.0" maxWidth="28.0" onMouseClicked="#back" prefHeight="28.0" prefWidth="327.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                        <Label id="security-code-lbl" prefHeight="66.0" prefWidth="450.0" text="Security Code" />
+                    </VBox>
+               <VBox prefHeight="75.0" prefWidth="450.0" spacing="32.0">
+                  <children>
+                          <JFXTextField id="security-code-field" fx:id="securityCode" promptText="Enter security code" />
+                     <Label id="error-lbl" fx:id="errorLabel" alignment="CENTER" prefHeight="28.0" prefWidth="450.0" text="The entered code is invalid" visible="false" />
+                  </children>
+               </VBox>
+                    <JFXButton id="continue-btn" onAction="#checkCode" prefHeight="55.0" prefWidth="358.0" text="Continue">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor></JFXButton>
+                    <Label id="msg" fx:id="message" alignment="CENTER" prefHeight="41.0" prefWidth="412.0" text="Please check your email inbox for the security code." textAlignment="CENTER" wrapText="true" />
+                </VBox>
+            </Pane>
+        </center>
+    </BorderPane>
+   <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
+      <children>
+         <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </JFXButton>
+         <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </JFXButton>
+      </children>
+   </HBox>
+   <stylesheets>
+      <URL value="@../styles/global.css" />
+      <URL value="@../styles/security-code.css" />
+   </stylesheets>
+</AnchorPane>

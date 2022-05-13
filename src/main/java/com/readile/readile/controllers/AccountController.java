@@ -3,6 +3,7 @@ package com.readile.readile.controllers;
 import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.readile.readile.config.FxController;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.readile.readile.config.FxController;

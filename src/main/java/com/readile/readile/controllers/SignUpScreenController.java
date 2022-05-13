@@ -2,6 +2,7 @@ package com.readile.readile.controllers;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jthemedetecor.OsThemeDetector;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.LoginInfo;
 import com.readile.readile.models.user.User;
@@ -9,11 +10,14 @@ import com.readile.readile.services.implementation.LoginInfoService;
 import com.readile.readile.services.implementation.UserService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -21,11 +25,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 @Controller
 @FxmlView("/fxml/SignUp.fxml")
-public class SignUpScreenController implements FxController {
+public class SignUpScreenController implements FxController, Initializable {
+
+
+    @FXML
+    private AnchorPane root;
+
     @FXML
     public JFXTextField username, email;
     @FXML
@@ -49,7 +60,7 @@ public class SignUpScreenController implements FxController {
 
     @FXML
     public void back() {
-        stageManager.rebuildStage(SignInScreenController.class);
+        stageManager.rebuildStage(Intent.popClosedScene());
     }
 
     @FXML
@@ -69,6 +80,7 @@ public class SignUpScreenController implements FxController {
                 loginInfoService.save(entry);
 
                 Intent.activeUser = userService.findByEmail(email.getText());
+                Intent.pushClosedScene(SignUpScreenController.class);
                 stageManager.rebuildStage(HomeScreenController.class);
             } else
                 error.setVisible(true);
@@ -106,5 +118,27 @@ public class SignUpScreenController implements FxController {
                 + "[A-Za-z\\d-]+(\\.[A-Za-z\\d]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(email).matches();
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        final OsThemeDetector detector = OsThemeDetector.getDetector();
+        final boolean isDarkThemeUsed = detector.isDark();
+        toggleTheme(isDarkThemeUsed);
+
+        detector.registerListener(isDarkTheme -> {
+            Platform.runLater(() -> {
+                toggleTheme(isDarkTheme);
+            });
+        });
+    }
+
+    public void toggleTheme(boolean isDarkTheme) {
+        if(isDarkTheme)
+            root.getStyleClass().add("dark-theme");
+        else
+            root.getStyleClass().remove("dark-theme");
     }
 }

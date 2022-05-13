@@ -1,6 +1,7 @@
 package com.readile.readile.controllers;
 
 import com.jfoenix.controls.JFXDialog;
+import com.readile.readile.config.FxController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CategoriesController implements Initializable {
+public class CategoriesController implements Initializable, FxController {
 
 
     @FXML

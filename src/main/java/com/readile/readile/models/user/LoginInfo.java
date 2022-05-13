@@ -11,7 +11,7 @@ public class LoginInfo {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", unique = true)
     private User user;
 
     @Column(nullable = false, length = 256)

@@ -4,6 +4,10 @@ import com.jfoenix.controls.JFXDialog;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.User;
 import com.readile.readile.utils.ResultBook;
+import javafx.beans.property.SimpleMapProperty;
+import javafx.beans.value.ObservableBooleanValue;
+import javafx.beans.value.ObservableIntegerValue;
+import javafx.beans.value.ObservableValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,10 @@ public class Intent {
         backStack.push(sceneController);
     }
 
+    public static void clearBackStack() {
+        backStack.clear();
+    }
+
     public static Class<? extends FxController> popClosedScene() {
         return backStack.pop();
     }
@@ -31,7 +39,13 @@ public class Intent {
         tempSearchResults.addAll(resultBookList);
     }
 
+    public static String categoryName = "software engineering";
+
     public static void clearTempResults() {
         tempSearchResults.clear();
     }
+
+    public static int generatedSecurityCode;
+    public static long sendingTime;
+
 }

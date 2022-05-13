@@ -27,7 +27,7 @@
     -fx-font-family: 'Montserrat', sans-serif;
 
     /* Color Palette */
-
+    background-color: #F8F8F8;
     main-color: #FFAB40;
     secondary-color: #455A64;
 
@@ -41,8 +41,36 @@
     gray-2: #E0E0E0;
     gray-3: #BDBDBD;
 
+    text-fill-1: #FFF;
+    text-fill-2: #000;
+
     error: #D83C3E;
     light-navy: #CACED0;
+}
+
+.root.dark-theme {
+    -fx-background-color: #36373A;
+
+    /* Dark Theme Color Palette */
+
+    background-color: #36373A;
+
+    main-color: #C77C02;
+    secondary-color: #1C313A;
+
+    gray-1: #9E9E9E;
+    gray-2: #757575;
+    gray-3: #424242;
+
+    light-orange-1: #C1985E;
+    light-orange-3 : #ECC597;
+
+    text-fill-1: #000;
+    text-fill-2: #FFF;
+
+    error: #8B0000;
+    light-navy: #67696C;
+
 }
 
 .hyperlink:default {

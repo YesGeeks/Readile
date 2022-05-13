@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane id="parent" maxHeight="130.0" maxWidth="200.0" minHeight="130.0" minWidth="200.0" prefHeight="130.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.PopupMenuController">
+<Pane id="parent" fx:id="root" maxHeight="130.0" maxWidth="200.0" minHeight="130.0" minWidth="200.0" prefHeight="130.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.PopupMenuController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="200.0">
          <children>
             <HBox id="my-account-item" alignment="CENTER" onMouseClicked="#viewAccount" prefHeight="43.0" prefWidth="200.0" styleClass="item">
                <children>
-                  <Label prefHeight="53.0" prefWidth="140.0" text="My Account" />
+                  <Label prefHeight="53.0" prefWidth="140.0" text="My Account" textFill="#8d8d8d" />
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/person.png" />
@@ -34,10 +34,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <Separator maxWidth="178.0" prefHeight="0.0" prefWidth="178.0" />
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="200.0" styleClass="item">
+            <Separator maxWidth="200.0" prefHeight="6.0" prefWidth="200.0" />
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#toggleMode" prefHeight="45.0" prefWidth="227.0" styleClass="item">
                <children>
-                  <Label onMouseClicked="#toggleMode" prefHeight="40.0" prefWidth="140.0" text="Toggle Mode" />
+                  <Label prefHeight="40.0" prefWidth="140.0" text="Toggle Mode" textFill="#8d8d8d" />
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/mode.png" />
@@ -54,10 +54,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <Separator layoutX="10.0" layoutY="54.0" maxWidth="178.0" prefHeight="0.0" prefWidth="178.0" />
+            <Separator layoutX="10.0" layoutY="54.0" maxWidth="200.0" prefHeight="0.0" prefWidth="178.0" />
             <HBox id="logout-item" alignment="CENTER" layoutX="10.0" layoutY="60.0" onMouseClicked="#logout" prefHeight="43.0" prefWidth="200.0" styleClass="item">
                <children>
-                  <Label prefHeight="47.0" prefWidth="140.0" text="Logout" />
+                  <Label prefHeight="47.0" prefWidth="140.0" text="Logout" textFill="#8d8d8d" />
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/logout.png" />

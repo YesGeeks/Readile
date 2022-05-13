@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SignInScreenController">
+<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SignInScreenController">
    <stylesheets>
       <URL value="@../styles/global.css" />
       <URL value="@../styles/sign-in.css" />
@@ -25,9 +25,7 @@
       <left>
          <Pane id="aside" prefHeight="700.0" prefWidth="380.0" BorderPane.alignment="CENTER">
             <VBox layoutX="81.0" layoutY="88.0" prefHeight="260.0" prefWidth="218.0">
-               <ImageView fitHeight="218.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/white-logo.png" />
-               </ImageView>
+               <Pane id="logo" prefHeight="200.0" prefWidth="200.0" />
                <Label id="title" prefHeight="63.0" prefWidth="218.0" text="Readile" />
             </VBox>
             <Label id="subtitle" layoutY="603.0" prefHeight="21.0" prefWidth="380.0" text="The Way to Track Your Readings" />
@@ -66,7 +64,7 @@
                   <Hyperlink id="sign-up-link" onAction="#signUp" text="Sign Up Now" />
                </HBox>
             </VBox>
-            <Label id="error" fx:id="error" layoutX="106.0" layoutY="317.0" prefHeight="20.0" prefWidth="325.0" text="You have entered an invalid username or password" visible="false" />
+            <Label id="error" fx:id="error" layoutX="106.0" layoutY="317.0" prefHeight="20.0" prefWidth="441.0" text="You have entered an invalid username or password" visible="false" />
          </Pane>
       </center>
    </BorderPane>

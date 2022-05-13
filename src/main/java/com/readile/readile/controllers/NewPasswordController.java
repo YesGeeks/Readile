@@ -1,11 +1,12 @@
 package com.readile.readile.controllers;
 
-import com.github.javafaker.Faker;
+
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jthemedetecor.OsThemeDetector;
 import com.readile.readile.config.FxController;
-import com.readile.readile.repositories.UserRepository;
-import com.readile.readile.services.implementation.ForgotPasswordService;
+import com.readile.readile.models.user.LoginInfo;
+import com.readile.readile.services.implementation.LoginInfoService;
 import com.readile.readile.services.implementation.UserService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
@@ -28,67 +29,38 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
-@FxmlView("/fxml/ForgotPassword.fxml")
-public class ForgotPasswordScreenController implements FxController, Initializable {
+@FxmlView("/fxml/NewPassword.fxml")
+public class NewPasswordController implements FxController, Initializable {
 
     @Lazy
     @Autowired
     private StageManager stageManager;
 
     @Autowired
-    private ForgotPasswordService forgotPasswordService;
+    private LoginInfoService loginInfoService;
 
     @Autowired
     private UserService userService;
 
-    @FXML
-    public AnchorPane root;
 
     @FXML
-    public JFXTextField email;
+    private AnchorPane root;
+
+    @FXML
+    private JFXPasswordField newPassword;
+
+    @FXML
+    private JFXPasswordField verifiedNewPassword;
 
     @FXML
     private Label errorLabel;
 
     @FXML
-    public Label message;
+    private Label message;
 
     @FXML
-    public HBox toolBar;
+    private HBox toolBar;
     private double xOffset = 0, yOffset = 0;
-
-    @FXML
-    public void back() {
-        stageManager.rebuildStage(Intent.popClosedScene());
-    }
-
-    @FXML
-    public void resetPassword() {
-
-        String emailAddress = email.getText().trim();
-
-        Faker faker = new Faker();
-        int randomCode = faker.number().numberBetween((int) Math.pow(10, 6), (int) Math.pow(10, 7) -1);
-        Intent.generatedSecurityCode = randomCode;
-        if (!email.getText().trim().equals("")) {
-            if ((Intent.activeUser = userService.findByEmail(emailAddress)) != null) {
-
-                String username = userService.findByEmail(emailAddress).getName();
-                forgotPasswordService.sendEmail(
-                        emailAddress,
-                        "Reset Your Password",
-                        String.format("Hi %s.\nWe have just received a request to reset your Readile account password.\n" +
-                                "Please enter the security code below in the app:\n" +
-                                "%d\n" +
-                                "Note: This code is only valid for 30 minutes", username, randomCode));
-                Intent.sendingTime = System.currentTimeMillis();
-                Intent.pushClosedScene(ForgotPasswordScreenController.class);
-                stageManager.rebuildStage((SecurityCodeController.class));
-            } else {
-                errorLabel.setVisible(true);
-            }
-        }
-    }
 
     @FXML
     public void minimize(ActionEvent event) {
@@ -117,6 +89,28 @@ public class ForgotPasswordScreenController implements FxController, Initializab
         });
     }
 
+
+    @FXML
+    void back(MouseEvent event) {
+        stageManager.rebuildStage(Intent.popClosedScene());
+    }
+
+    @FXML
+    void savePassword(ActionEvent event) {
+        if (!newPassword.getText().trim().equals("") && !verifiedNewPassword.getText().trim().equals("")) {
+            if (newPassword.getText().equals(verifiedNewPassword.getText())) {
+                LoginInfo updatedEntry = loginInfoService.findByUser(Intent.activeUser);
+                // TODO: Use a Trigger instead to update the password
+                updatedEntry.setPassword(newPassword.getText()); /*loginInfoService.getMD5(newPassword.getText()));*/
+                loginInfoService.update(updatedEntry);
+                Intent.clearBackStack();
+                stageManager.rebuildStage(SignInScreenController.class);
+            } else {
+                errorLabel.setVisible(true);
+            }
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -138,3 +132,6 @@ public class ForgotPasswordScreenController implements FxController, Initializab
             root.getStyleClass().remove("dark-theme");
     }
 }
+
+
+

@@ -5,10 +5,23 @@
     -fx-border-radius: 10pt;
     -fx-background-radius: 10pt;
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.10), 4, 0, 0, 2);
+    -fx-text-fill: #000;
+}
+
+#parent.dark-theme {
+    -fx-background-color: #36373A;
 }
 
 .item:hover {
     -fx-background-color: #E0E0E0;
+}
+
+#parent.dark-theme .item:hover{
+    -fx-background-color: #757575;
+}
+
+#parent.dark-theme .item:hover {
+    -fx-background-color: #545558;
 }
 
 #my-account-item:hover {
@@ -19,4 +32,10 @@
 #logout-item:hover {
     -fx-border-radius: 0pt 0pt 10pt 10pt;
     -fx-background-radius: 0pt 0pt 10pt 10pt;
+}
+
+.separator .line {
+    -fx-background-color: gray-3;
+    -fx-pref-height: 2.5;
+    -fx-border-color: null ;
 }

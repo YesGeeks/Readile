@@ -1,5 +1,6 @@
 package com.readile.readile.views.components;
 
+import com.readile.readile.views.Intent;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -15,8 +16,9 @@ public class DoughnutChart extends PieChart {
         super(pieData);
 
         innerCircle = new Circle();
-        innerCircle.setFill(Color.valueOf("#F8F8F8"));
-        innerCircle.setStroke(Color.WHITE);
+        boolean darkTheme = Intent.activeUser.getTheme() == 1 ? true : false;
+        innerCircle.setFill(Color.valueOf(darkTheme ? "#36373A" : "#F8F8F8"));
+        innerCircle.setStroke(darkTheme ? Color.BLACK : Color.WHITE);
         innerCircle.setStrokeWidth(3);
     }
 
