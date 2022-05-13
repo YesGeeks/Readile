@@ -171,7 +171,6 @@ public class HomeScreenController implements Initializable, FxController {
                 for (ResultBook resultBook : resultBooks) {
                     try {
                         Pane card = getSearchBookCard(resultBook);
-                        card.setAccessibleText(String.valueOf(counter));
                         searchResultsView.getChildren().add(card);
                     } catch (IOException ignored) {}
                 }
