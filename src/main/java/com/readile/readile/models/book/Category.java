@@ -16,7 +16,7 @@ public class Category {
     @Column(length = 32, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
     Set<Book> books = new HashSet<>();
 
     public Category() {

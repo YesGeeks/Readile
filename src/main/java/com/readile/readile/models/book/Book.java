@@ -24,10 +24,10 @@ public class Book {
     @Column(nullable = false)
     private Integer length;
 
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
     Set<Author> authors = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable (
             name = "Book_Category",
             joinColumns = @JoinColumn(name = "category_id"),
