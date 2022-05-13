@@ -23,17 +23,14 @@ public class BookAPIConnector {
 
     private BookAPIConnector() {}
 
-    public static List<ResultBook> getSearchResults(String query) {
+    public static List<ResultBook> getSearchResults(String title) {
         String jsonResult = webClient.get()
-                .uri("?q={query}", query)
+                .uri("?title={title}&limit={limit}", title, 20)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
 
-        return parseBooksJSON(jsonResult)
-                .stream()
-                .limit(20)
-                .collect(Collectors.toList());
+        return parseBooksJSON(jsonResult);
     }
 
     private static List<ResultBook> parseBooksJSON(String json) {
