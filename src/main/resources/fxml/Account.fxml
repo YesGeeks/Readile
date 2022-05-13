@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDialog?>
 <?import com.jfoenix.controls.JFXDialogLayout?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -72,13 +73,13 @@
                            <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="585.0" spacing="14.0">
                               <children>
                                  <Label id="username-lbl" prefHeight="20.0" prefWidth="579.0" text="Username" />
-                                 <Label id="username" fx:id="username" prefHeight="20.0" prefWidth="579.0" text="Zaki Kurdya" />
+                                 <JFXTextField id="username" fx:id="username" disable="true" prefHeight="30.0" prefWidth="561.0" />
                               </children>
                               <padding>
                                  <Insets left="24.0" />
                               </padding>
                            </VBox>
-                           <JFXButton id="edit-btn" onAction="#editUsername" prefHeight="40.0" prefWidth="82.0" text="Edit">
+                           <JFXButton id="edit-btn" fx:id="editUsername" onAction="#editUsername" prefHeight="40.0" prefWidth="82.0" text="Edit">
                               <cursor>
                                  <Cursor fx:constant="HAND" />
                               </cursor></JFXButton>
@@ -86,19 +87,21 @@
                      </HBox>
                      <HBox id="email-container" alignment="CENTER_LEFT" layoutX="309.0" layoutY="50.0" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                         <children>
-                           <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="585.0" spacing="14.0">
+                           <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="585.0" spacing="3.0">
                               <children>
                                  <Label id="email-lbl" prefHeight="20.0" prefWidth="605.0" text="Email" />
-                                 <Label id="email" fx:id="email" prefHeight="20.0" prefWidth="571.0" text="zkordya@gmail.com" />
+                                 <JFXTextField id="email" fx:id="email" disable="true" prefHeight="30.0" prefWidth="561.0" />
+                                 <Label id="error" fx:id="error" prefHeight="20.0" prefWidth="325.0" text="Please enter a valid email" visible="false" />
                               </children>
                               <padding>
                                  <Insets left="24.0" />
                               </padding>
                            </VBox>
-                           <JFXButton id="edit-btn" onAction="#editEmail" prefHeight="40.0" prefWidth="82.0" text="Edit">
+                           <JFXButton id="edit-btn" fx:id="editEmail" onAction="#editEmail" prefHeight="40.0" prefWidth="82.0" text="Edit">
                               <cursor>
                                  <Cursor fx:constant="HAND" />
-                              </cursor></JFXButton>
+                              </cursor>
+                           </JFXButton>
                         </children>
                      </HBox>
                      <HBox id="password-container" alignment="CENTER_LEFT" layoutX="309.0" layoutY="188.0" maxHeight="98.0" maxWidth="684.0" prefHeight="100.0" prefWidth="650.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
@@ -119,7 +122,7 @@
                      </HBox>
                      <Pane maxHeight="180.0" maxWidth="180.0" minHeight="180.0" minWidth="180.0" prefHeight="180.0" prefWidth="180.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                         <cursor>
-                           <Cursor fx:constant="HAND" />
+                           <Cursor fx:constant="DEFAULT" />
                         </cursor>
                         <children>
                            <Circle fx:id="profileImage" fill="#e0e0e0" layoutX="90.0" layoutY="90.0" radius="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
@@ -176,7 +179,7 @@
                   <children>
                      <VBox alignment="TOP_CENTER" layoutX="57.0" layoutY="51.0" prefHeight="231.0" prefWidth="401.0" spacing="60.0">
                         <children>
-                           <JFXPasswordField id="old-password-field" promptText="Old Password">
+                           <JFXPasswordField id="old-password-field" fx:id="oldPassword" promptText="Old Password">
                               <opaqueInsets>
                                  <Insets />
                               </opaqueInsets>
@@ -184,8 +187,8 @@
                                  <Insets />
                               </VBox.margin>
                            </JFXPasswordField>
-                           <JFXPasswordField id="new-password-field" layoutX="10.0" layoutY="10.0" promptText="New Password" />
-                           <JFXButton id="change-password-btn" prefHeight="44.0" prefWidth="277.0" text="Change Password" />
+                           <JFXPasswordField id="new-password-field" fx:id="newPassword" layoutX="10.0" layoutY="10.0" promptText="New Password" />
+                           <JFXButton id="change-password-btn" onAction="#editPassword" prefHeight="44.0" prefWidth="277.0" text="Change Password" />
                         </children>
                         <opaqueInsets>
                            <Insets />
