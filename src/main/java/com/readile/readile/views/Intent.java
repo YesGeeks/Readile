@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.User;
 import com.readile.readile.utils.ResultBook;
-import javafx.beans.property.SimpleMapProperty;
-import javafx.beans.value.ObservableBooleanValue;
-import javafx.beans.value.ObservableIntegerValue;
-import javafx.beans.value.ObservableValue;
+import javafx.scene.Parent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ public class Intent {
     public static User activeUser;
     public static JFXDialog addNewBookDialog;
     public static Class<? extends FxController> currentSceneClass;
+    public static Parent currentRoot;
 
     private static final Stack<Class<? extends FxController>> backStack = new Stack<>();
 
@@ -39,7 +37,7 @@ public class Intent {
         tempSearchResults.addAll(resultBookList);
     }
 
-    public static String categoryName = "software engineering";
+    public static String categoryName;
 
     public static void clearTempResults() {
         tempSearchResults.clear();
@@ -47,5 +45,4 @@ public class Intent {
 
     public static int generatedSecurityCode;
     public static long sendingTime;
-
 }
