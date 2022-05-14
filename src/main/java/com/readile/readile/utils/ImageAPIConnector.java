@@ -29,13 +29,13 @@ public class ImageAPIConnector {
                 .block();
 
         if (jsonResult != null && jsonResult.equals("Not Found"))
-            return "default-category-image.jpg";
+            return "/images/colorful-logo.png";
 
         return parseImageJSON(jsonResult);
     }
 
     private static String parseImageJSON(String json) {
         JSONObject imageUrlsJsonObject = new JSONObject(json).getJSONObject("urls");
-        return imageUrlsJsonObject.getString("small");
+        return String.format("%s&w=%d&dpr=2", imageUrlsJsonObject.getString("raw"), 250);
     }
 }

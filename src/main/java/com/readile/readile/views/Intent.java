@@ -3,6 +3,7 @@ package com.readile.readile.views;
 import com.jfoenix.controls.JFXDialog;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.User;
+import com.readile.readile.utils.ImageAPIConnector;
 import com.readile.readile.utils.ResultBook;
 import javafx.scene.Parent;
 
@@ -37,7 +38,8 @@ public class Intent {
         tempSearchResults.addAll(resultBookList);
     }
 
-    public static String categoryName;
+    public static String categoryName = "software engineering";
+    public static String categoryUrl;
 
     public static void clearTempResults() {
         tempSearchResults.clear();
