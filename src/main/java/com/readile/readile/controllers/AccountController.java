@@ -96,6 +96,10 @@ public class AccountController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        boolean darkTheme =  Intent.activeUser.getTheme() == 1;
+        toggleTheme(darkTheme);
+
         fetchNavAvatar();
 
         passwordDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
@@ -260,5 +264,12 @@ public class AccountController implements Initializable, FxController {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
         });
+    }
+
+    public void toggleTheme(boolean isDarkTheme) {
+        if(isDarkTheme)
+            root.getStyleClass().add("dark-theme");
+        else
+            root.getStyleClass().remove("dark-theme");
     }
 }

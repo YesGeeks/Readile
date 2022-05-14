@@ -1,7 +1,9 @@
 package com.readile.readile.controllers;
 
+import com.readile.readile.config.FxController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -11,7 +13,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class CategoryController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CategoryController implements Initializable, FxController {
 
     @FXML
     private Label numberOfBooks;
@@ -61,4 +66,8 @@ public class CategoryController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

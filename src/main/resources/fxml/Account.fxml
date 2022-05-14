@@ -9,8 +9,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -29,15 +27,13 @@
          <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
             <top>
                <Pane id="navbar" prefHeight="100.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-                  <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../images/white-logo.png" />
-                  </ImageView>
                   <Label id="title" layoutX="73.0" layoutY="21.0" prefHeight="60.0" prefWidth="317.0" text="My Account" />
                   <Pane id="avatar" fx:id="avatar" layoutX="899.0" layoutY="14.0" onMouseClicked="#showPopupMenu" prefHeight="70.0" prefWidth="70.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
+                  <Pane id="logo" layoutX="43.0" layoutY="13.0" prefHeight="73.0" prefWidth="73.0" />
                </Pane>
             </top>
             <center>
@@ -91,7 +87,7 @@
                               <children>
                                  <Label id="email-lbl" prefHeight="20.0" prefWidth="605.0" text="Email" />
                                  <JFXTextField id="email" fx:id="email" disable="true" prefHeight="30.0" prefWidth="561.0" />
-                                 <Label id="error" fx:id="error" prefHeight="20.0" prefWidth="325.0" text="Please enter a valid email" visible="false" />
+                                 <Label id="error" fx:id="error" prefHeight="16.0" prefWidth="325.0" text="Please enter a valid email" visible="false" />
                               </children>
                               <padding>
                                  <Insets left="24.0" />
@@ -158,22 +154,17 @@
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
-                  <graphic>
-                     <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                        <cursor>
-                           <Cursor fx:constant="DEFAULT" />
-                        </cursor>
-                        <image>
-                           <Image url="@../icons/back.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
                </JFXButton>
+               <Pane id="back" layoutX="28.0" layoutY="25.0" maxHeight="26.0" maxWidth="28.0" onMouseClicked="#back" prefHeight="200.0" prefWidth="200.0">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Pane>
             </children>
          </Pane>
       </AnchorPane>
       <JFXDialog fx:id="passwordDialog">
-         <JFXDialogLayout>
+         <JFXDialogLayout id="password-dialog">
             <body>
                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
                   <children>
