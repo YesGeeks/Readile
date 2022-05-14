@@ -76,7 +76,7 @@
 }
 
 #msg{
-    -fx-text-fill: gray-3;
+    -fx-text-fill: gray-2;
     -fx-font-size: 11pt;
     -fx-font-family: "Montserrat SemiBold";
 }

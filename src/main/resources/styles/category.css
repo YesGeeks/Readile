@@ -5,11 +5,23 @@
     -fx-alignment: center;
 }
 
+#logo {
+    -fx-background-image: url("../images/white-logo.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 80;
+}
+
+.root.dark-theme #logo {
+    -fx-background-image: url("../images/black-logo.png");
+}
+
+
 #title {
     -fx-font-size: 20pt;
     -fx-font-family: "Montserrat SemiBold";
     -fx-alignment: center;
-    -fx-text-fill: white;
+    -fx-text-fill: text-fill-1;
 }
 
 #avatar {
@@ -22,18 +34,46 @@
     -fx-background-repeat: no-repeat;
 }
 
+.root.dark-theme #avatar {
+    -fx-background-image: url("../icons/avatar__dark-theme.png");
+}
+
+#back {
+    -fx-background-image: url("../icons/back.png");
+}
+
+.root.dark-theme #back {
+    -fx-background-image: url("../icons/back__dark-theme.png");
+}
+
 #category-lbl {
-    -fx-font-size: 12pt;
+    -fx-font-size: 15pt;
     -fx-font-family: "Montserrat Bold";
+    -fx-text-fill: text-fill-2;
+}
+
+.root.dark-theme #category-lbl {
+    -fx-text-fill: gray-1;
 }
 
 #number-of-books-lbl, #number-of-books {
+    -fx-text-fill: text-fill-2;
     -fx-font-size: 10pt;
     -fx-font-family: "Montserrat SemiBold";
 }
 
+.root.dark-theme #number-of-books-lbl {
+    -fx-text-fill: gray-1;
+}
+
 #number-of-books {
     -fx-text-fill: main-color;
+}
+
+.separator .line {
+    -fx-background-color: gray-2;
+    -fx-pref-height: 2.5;
+    -fx-border-color: null ;
 }
 
 .scroll-pane {
@@ -41,12 +81,12 @@
 }
 
 #cards-view {
-    -fx-background-color: #F8F8F8;
+    -fx-background-color: background-color;
 }
 
 .scroll-bar:vertical .track {
-    -fx-background-color: #F8F8F8;
-    -fx-border-color: #F8F8F8;
+    -fx-background-color: background-color;
+    -fx-border-color: background-color;
     -fx-background-radius: 0.0em;
     -fx-border-radius: 2.0em;
 }

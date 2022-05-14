@@ -46,7 +46,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXTextField id="search-field" fx:id="searchField" layoutX="154.0" layoutY="31.0" prefHeight="37.0" prefWidth="396.0" promptText="Search for a book" />
+                        <JFXTextField id="search-field" fx:id="searchField" layoutX="154.0" layoutY="31.0" onAction="#modalSearchForBook" prefHeight="37.0" prefWidth="396.0" promptText="Search for a book" />
                         <StackPane layoutX="24.0" layoutY="78.0" prefHeight="450.0" prefWidth="685.0">
                            <children>
                               <ImageView fx:id="noResultsFound" fitHeight="284.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true">
@@ -94,7 +94,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXTextField id="search-field" fx:id="search" layoutX="301.0" layoutY="21.0" prefHeight="37.0" prefWidth="396.0" promptText="Search for a book" />
+                  <JFXTextField id="search-field" fx:id="search" layoutX="301.0" layoutY="21.0" onAction="#searchForBook" prefHeight="37.0" prefWidth="396.0" promptText="Search for a book" />
                   <Pane layoutY="120.0" prefHeight="450.0" prefWidth="309.0">
                      <children>
                         <StackPane fx:id="charts" layoutX="4.0" maxHeight="210.0" maxWidth="300.0" minHeight="210.0" minWidth="300.0" prefHeight="210.0" prefWidth="300.0">
