@@ -27,11 +27,11 @@ public class Book {
     @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
     Set<Author> authors = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable (
             name = "Book_Category",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     Set<Category> categories = new HashSet<>();
 
