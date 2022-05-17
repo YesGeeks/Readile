@@ -7,16 +7,16 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 public class CategoryCard {
-    public Pane getCategoryCard(String categoryName, String categoryImage, int numberOfBooks) throws IOException {
+    public Pane getCategoryCard(Long id, String categoryName, String categoryImage, int numberOfBooks) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/CategoryCard.fxml"));
         Pane root = fxmlLoader.load();
         CategoryCardController controller = fxmlLoader.getController();
 
+        root.setUserData(id);
         controller.categoryName.setText(categoryName);
         String path = "\"" + categoryImage + "\"";
         controller.categoryImage.setStyle("-fx-background-image: url(" + path + ");");
         controller.count.setText(String.valueOf(numberOfBooks));
-
         return root;
     }
 }
