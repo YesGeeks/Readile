@@ -130,7 +130,7 @@ public class CategoryController implements FxController, Initializable {
         toggleTheme(darkTheme);
         fetchNavAvatar();
 
-        Category currentCategory = categoryService.findById(Long.valueOf(Intent.categoryId));
+        Category currentCategory = categoryService.findById(Intent.categoryId);
         categoryImage.setImage(new Image(currentCategory.getCategoryImage()));
         categoryName.setText(currentCategory.getName());
 
