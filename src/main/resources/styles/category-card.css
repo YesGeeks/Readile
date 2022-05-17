@@ -1,12 +1,12 @@
 #base {
-    -fx-background-color: white;
+    -fx-background-color: text-fill-1;
     -fx-border-radius: 15pt;
     -fx-background-radius: 15pt;
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
 }
 
 .root.dark-theme #base {
-    -fx-background-color: #545454;
+    -fx-background-color: gray-3;
 }
 
 #category-img {
@@ -23,9 +23,17 @@
     -fx-font-family: "Montserrat ExtraBold";
 }
 
+.root.dark-theme #category-name {
+    -fx-text-fill: gray-1;
+}
+
 #books-number {
     -fx-font-size: 10pt;
     -fx-font-family: "Montserrat SemiBold";
+}
+
+.root.dark-theme #books-number {
+    -fx-text-fill: gray-1;
 }
 
 #count {

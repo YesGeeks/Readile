@@ -5,15 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#viewCategory" prefHeight="280.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.CategoryCardController">
+<Pane id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#viewCategory" prefHeight="273.0" prefWidth="233.0" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.CategoryCardController">
     <stylesheets>
         <URL value="@../styles/global.css" />
         <URL value="@../styles/category-card.css" />
     </stylesheets>
-     <Pane id="category-img" fx:id="categoryImage" maxHeight="240.0" maxWidth="270.0" minHeight="188.0" minWidth="270.0" prefHeight="189.0" prefWidth="270.0" />
-    <Label id="category-name" fx:id="categoryName" layoutX="13.0" layoutY="189.0" prefHeight="56.0" prefWidth="249.0" text="Category Name" textAlignment="JUSTIFY" wrapText="true" />
-   <Label id="books-number" layoutX="14.0" layoutY="239.0" prefHeight="32.0" prefWidth="132.0" text="Number of Books: " textAlignment="JUSTIFY" wrapText="true" />
-   <Label id="count" fx:id="count" layoutX="146.0" layoutY="239.0" prefHeight="32.0" prefWidth="46.0" text="0" wrapText="true" />
+     <Pane id="category-img" fx:id="categoryImage" maxHeight="240.0" maxWidth="270.0" minHeight="187.0" minWidth="233.0" prefHeight="187.0" prefWidth="233.0" />
+    <Label id="category-name" fx:id="categoryName" layoutX="14.0" layoutY="187.0" prefHeight="56.0" prefWidth="218.0" text="Category Name" textAlignment="JUSTIFY" wrapText="true" />
+   <Label id="books-number" layoutX="14.0" layoutY="229.0" prefHeight="32.0" prefWidth="132.0" text="Number of Books: " textAlignment="JUSTIFY" wrapText="true" />
+   <Label id="count" fx:id="count" layoutX="146.0" layoutY="229.0" prefHeight="32.0" prefWidth="46.0" text="0" wrapText="true" />
    <cursor>
       <Cursor fx:constant="HAND" />
    </cursor>
