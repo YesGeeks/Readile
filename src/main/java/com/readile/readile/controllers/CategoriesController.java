@@ -9,12 +9,11 @@ import com.readile.readile.services.implementation.CategoryService;
 import com.readile.readile.utils.ImageAPIConnector;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
-import com.readile.readile.views.components.CategoryCard;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -78,10 +77,9 @@ public class CategoriesController implements Initializable, FxController {
         if(!newCategoryName.equals("")) {
             Category newCategory = new Category(newCategoryName, Intent.activeUser, ImageAPIConnector.getRandomImage(newCategoryName));
             try {
-                CategoryCard categoryCard = new CategoryCard();
+                System.out.println(newCategory.getId());
                 categoriesCardView.getChildren().
-                        add(categoryCard.
-                                getCategoryCard(newCategory.getId(), newCategory.getName(), newCategory.getCategoryImage(), 0));
+                        add(getCategoryCard(newCategory.getId(), newCategory.getName(), newCategory.getCategoryImage(), 0));
                 categoryService.save(newCategory);
             } catch (IOException e) {}
         }
@@ -102,7 +100,7 @@ public class CategoriesController implements Initializable, FxController {
                 forEach(category -> {
                     try {
                         categoriesCardView.getChildren()
-                                .add(new CategoryCard().getCategoryCard(category.getId(),
+                                .add(getCategoryCard(category.getId(),
                                         category.getName(),
                                         category.getCategoryImage(),
                                         category.getBooks().size()));
@@ -111,6 +109,16 @@ public class CategoriesController implements Initializable, FxController {
 
         newCategoryDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
         newCategoryDialog.setDialogContainer(root);
+    }
+
+    public Pane getCategoryCard(Long id, String categoryName, String categoryImage, int numberOfBooks) throws IOException {
+        Pane root = stageManager.loadView(CategoryCardController.class);
+        root.setUserData(id);
+        String path = "\"" + categoryImage + "\"";
+        root.getChildren().get(0).setStyle("-fx-background-image: url(" + path + ");");
+        ((Label)root.getChildren().get(1)).setText(categoryName);
+        ((Label)root.getChildren().get(3)).setText(String.valueOf(numberOfBooks));
+        return root;
     }
 
     private void fetchNavAvatar() {

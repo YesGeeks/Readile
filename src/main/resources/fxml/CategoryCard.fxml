@@ -10,10 +10,12 @@
         <URL value="@../styles/global.css" />
         <URL value="@../styles/category-card.css" />
     </stylesheets>
-     <Pane id="category-img" fx:id="categoryImage" maxHeight="240.0" maxWidth="270.0" minHeight="187.0" minWidth="233.0" prefHeight="187.0" prefWidth="233.0" />
-    <Label id="category-name" fx:id="categoryName" layoutX="14.0" layoutY="187.0" prefHeight="56.0" prefWidth="218.0" text="Category Name" textAlignment="JUSTIFY" wrapText="true" />
-   <Label id="books-number" layoutX="14.0" layoutY="229.0" prefHeight="32.0" prefWidth="132.0" text="Number of Books: " textAlignment="JUSTIFY" wrapText="true" />
-   <Label id="count" fx:id="count" layoutX="146.0" layoutY="229.0" prefHeight="32.0" prefWidth="46.0" text="0" wrapText="true" />
+    <children>
+        <Pane id="category-img" fx:id="categoryImage" maxHeight="240.0" maxWidth="270.0" minHeight="187.0" minWidth="233.0" prefHeight="187.0" prefWidth="233.0" />
+        <Label id="category-name" fx:id="categoryName" layoutX="14.0" layoutY="187.0" prefHeight="56.0" prefWidth="218.0" text="Category Name" textAlignment="JUSTIFY" wrapText="true" />
+       <Label id="books-number" layoutX="14.0" layoutY="229.0" prefHeight="32.0" prefWidth="132.0" text="Number of Books: " textAlignment="JUSTIFY" wrapText="true" />
+       <Label id="count" fx:id="count" layoutX="146.0" layoutY="229.0" prefHeight="32.0" prefWidth="46.0" text="0" wrapText="true" />
+    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
    </cursor>

@@ -39,7 +39,7 @@ public class Intent {
         tempSearchResults.addAll(resultBookList);
     }
 
-    public static Long categoryId = (long) 1; // for testing
+    public static Long categoryId;
 
     public static void clearTempResults() {
         tempSearchResults.clear();
