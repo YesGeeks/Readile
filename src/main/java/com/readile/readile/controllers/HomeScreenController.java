@@ -156,7 +156,7 @@ public class HomeScreenController implements Initializable, FxController {
     @FXML
     public void browseCategories() {
         Intent.pushClosedScene(HomeScreenController.class);
-        stageManager.rebuildStage(CategoryController.class);
+        stageManager.rebuildStage(CategoriesController.class);
     }
 
     private int counter = 0;
@@ -193,7 +193,7 @@ public class HomeScreenController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boolean darkTheme =  Intent.activeUser.getTheme() == 1 ? true : false;
+        boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
       
         Intent.currentSceneClass = HomeScreenController.class;
@@ -219,6 +219,8 @@ public class HomeScreenController implements Initializable, FxController {
         addBookDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
         addBookDialog.setDialogContainer(root);
         Intent.addNewBookDialog = addBookDialog;
+
+        Intent.currentRoot = root;
     }
 
     private void fetchNavAvatar() {

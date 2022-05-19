@@ -50,6 +50,9 @@ public class CategoryController implements FxController, Initializable {
     @Autowired
     UserBookService userBookService;
 
+    @Autowired
+    CategoryService categoryService;
+
     @FXML
     private AnchorPane root;
 
@@ -127,10 +130,9 @@ public class CategoryController implements FxController, Initializable {
         toggleTheme(darkTheme);
         fetchNavAvatar();
 
-        // TODO: The category image should be stored in the intent class by the categories controller
-        String imageURL = ImageAPIConnector.getRandomImage(Intent.categoryName);
-        categoryImage.setImage(new Image(imageURL));
-        categoryName.setText(Intent.categoryName);
+        Category currentCategory = categoryService.findById(Intent.categoryId);
+        categoryImage.setImage(new Image(currentCategory.getCategoryImage()));
+        categoryName.setText(currentCategory.getName());
 
         booksCardView.getChildren().clear();
         List<UserBook> userBooks = userBookService.findAllByUser(Intent.activeUser);
@@ -138,7 +140,7 @@ public class CategoryController implements FxController, Initializable {
         List<UserBook> categoryUserBooks =
                 userBooks.stream()
                         .filter(userBook -> userBook.getBook().getCategories().stream()
-                                .anyMatch(category -> category.getName().equals(Intent.categoryName))).
+                                .anyMatch(category -> category.getName().equals(currentCategory.getName()))).
                         collect(Collectors.toList());
 
         numberOfBooks.setText(String.valueOf(categoryUserBooks.size()));

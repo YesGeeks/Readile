@@ -78,6 +78,7 @@ public class SignInScreenController implements FxController, Initializable {
 
     @FXML
     public void signUp() {
+        Intent.pushClosedScene(SignInScreenController.class);
         stageManager.rebuildStage(SignUpScreenController.class);
     }
 

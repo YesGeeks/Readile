@@ -25,10 +25,22 @@ CREATE TABLE IF NOT EXISTS Author_Book
     FOREIGN KEY (book_id)   REFERENCES Book (id)
 );
 
+CREATE TABLE IF NOT EXISTS User_Profile
+(
+    id            INT PRIMARY KEY AUTO_INCREMENT,
+    name          VARCHAR(32)        NOT NULL,
+    email         VARCHAR(64) UNIQUE NOT NULL,
+    theme         TINYINT DEFAULT 1,
+    profile_image VARCHAR(1024)
+);
+
 CREATE TABLE IF NOT EXISTS Category
 (
-    id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(32) NOT NULL
+    id      INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    name    VARCHAR(32) NOT NULL,
+    category_image VARCHAR(1024),
+    FOREIGN KEY (user_id) REFERENCES User_Profile (id)
 );
 
 CREATE TABLE IF NOT EXISTS Book_Category
@@ -38,15 +50,6 @@ CREATE TABLE IF NOT EXISTS Book_Category
     PRIMARY KEY (category_id, book_id),
     FOREIGN KEY (category_id) REFERENCES Category (id),
     FOREIGN KEY (book_id)     REFERENCES Book (id)
-);
-
-CREATE TABLE IF NOT EXISTS User_Profile
-(
-    id            INT PRIMARY KEY AUTO_INCREMENT,
-    name          VARCHAR(32)        NOT NULL,
-    email         VARCHAR(64) UNIQUE NOT NULL,
-    theme         TINYINT DEFAULT 1,
-    profile_image VARCHAR(1024)
 );
 
 CREATE TABLE IF NOT EXISTS User_Book

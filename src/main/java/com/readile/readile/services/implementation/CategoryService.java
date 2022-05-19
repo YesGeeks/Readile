@@ -1,6 +1,7 @@
 package com.readile.readile.services.implementation;
 
 import com.readile.readile.models.book.Category;
+import com.readile.readile.models.user.User;
 import com.readile.readile.repositories.CategoryRepository;
 import com.readile.readile.services.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,9 @@ public class CategoryService implements CrudService<Category> {
     @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    public List<Category> findByUser(User user) {
+        return categoryRepository.findByUser(user);
     }
 }
