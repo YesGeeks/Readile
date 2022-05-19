@@ -39,4 +39,8 @@ The following guides illustrate how to use some features concretely:
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 * [Using WebSocket to build an interactive web application](https://spring.io/guides/gs/messaging-stomp-websocket/)
 
+### Contact Details
+
+Feel free to reach out to us at: readileapp@gmail.com
+
 <i>© 2022 Readile</i>
