@@ -10,12 +10,13 @@ import com.readile.readile.models.userbook.UserBook;
 import com.readile.readile.services.implementation.BookService;
 import com.readile.readile.services.implementation.UserBookService;
 import com.readile.readile.utils.BookAPIConnector;
+import com.readile.readile.views.Observer;
 import com.readile.readile.utils.ResultBook;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import com.readile.readile.views.components.BookCard;
 import com.readile.readile.views.components.DoughnutChart;
-import javafx.beans.value.ObservableIntegerValue;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,13 +25,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -46,7 +45,7 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView("/fxml/Home.fxml")
-public class HomeScreenController implements Initializable, FxController {
+public class HomeScreenController implements Initializable, FxController, Observer {
     @FXML
     public JFXDialog addBookDialog;
     @FXML
@@ -84,9 +83,6 @@ public class HomeScreenController implements Initializable, FxController {
     static boolean isInitialize = false;
 
     private List<UserBook> userBookList;
-
-//    private ObservableIntegerValue theme;
-
 
     @Lazy
     @Autowired
@@ -165,6 +161,10 @@ public class HomeScreenController implements Initializable, FxController {
     @FXML
     public void modalSearchForBook() {
         searchResultsView.getChildren().clear();
+        ListView<Pane> listView = new ListView<>();
+        listView.getItems().add(new Pane());
+        listView.getItems();
+        listView.getSelectionModel().getSelectedIndices();
         if (!searchField.getText().equals("")) {
             List<ResultBook> resultBooks = BookAPIConnector.getSearchResults(searchField.getText());
             if (resultBooks.size() == 0) {
@@ -172,12 +172,15 @@ public class HomeScreenController implements Initializable, FxController {
             } else {
                 searchResults.setVisible(true);
                 Intent.set(resultBooks);
-                for (ResultBook resultBook : resultBooks) {
-                    try {
-                        Pane card = getSearchBookCard(resultBook);
-                        searchResultsView.getChildren().add(card);
-                    } catch (IOException ignored) {}
-                }
+                Platform.runLater(() -> {
+                    for (ResultBook resultBook : resultBooks) {
+                        try {
+                            Pane card = getSearchBookCard(resultBook);
+                            searchResultsView.getChildren().add(card);
+                        } catch (IOException ignored) {
+                        }
+                    }
+                });
                 counter = 0;
             }
         }
@@ -193,14 +196,17 @@ public class HomeScreenController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boolean darkTheme =  Intent.activeUser.getTheme() == 1;
+        Intent.observer = this;
+        boolean darkTheme = Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
-      
+
         Intent.currentSceneClass = HomeScreenController.class;
-      
-        booksCardView.getChildren().clear();
-        userBookList = userBookService.findAllByUser(Intent.activeUser);
-        loadBooksAndChart();
+
+        Platform.runLater(() -> {
+            booksCardView.getChildren().clear();
+            userBookList = userBookService.findAllByUser(Intent.activeUser);
+            loadBooksAndChart();
+        });
 
         fetchNavAvatar();
 
@@ -219,8 +225,6 @@ public class HomeScreenController implements Initializable, FxController {
         addBookDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
         addBookDialog.setDialogContainer(root);
         Intent.addNewBookDialog = addBookDialog;
-
-        Intent.currentRoot = root;
     }
 
     private void fetchNavAvatar() {
@@ -274,7 +278,7 @@ public class HomeScreenController implements Initializable, FxController {
     }
 
     public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
+        if (isDarkTheme)
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");
@@ -304,5 +308,10 @@ public class HomeScreenController implements Initializable, FxController {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
         });
+    }
+
+    @Override
+    public void notification(boolean isDarkTheme) {
+        toggleTheme(isDarkTheme);
     }
 }

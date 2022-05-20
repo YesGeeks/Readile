@@ -15,6 +15,7 @@ import com.readile.readile.services.implementation.LoginInfoService;
 import com.readile.readile.services.implementation.UserBookService;
 import com.readile.readile.services.implementation.UserService;
 import com.readile.readile.views.Intent;
+import com.readile.readile.views.Observer;
 import com.readile.readile.views.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ import java.util.regex.Pattern;
 
 @Controller
 @FxmlView("/fxml/Account.fxml")
-public class AccountController implements Initializable, FxController {
+public class AccountController implements Initializable, FxController, Observer {
     @FXML
     public JFXButton editEmail;
     @FXML
@@ -96,7 +97,7 @@ public class AccountController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Intent.observer = this;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
 
@@ -271,5 +272,10 @@ public class AccountController implements Initializable, FxController {
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");
+    }
+
+    @Override
+    public void notification(boolean isDarkTheme) {
+        toggleTheme(isDarkTheme);
     }
 }

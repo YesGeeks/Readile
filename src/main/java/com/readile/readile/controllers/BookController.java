@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.readile.readile.config.FxController;
+import com.readile.readile.views.Intent;
+import com.readile.readile.views.Observer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +31,8 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView("/fxml/Book.fxml")
-public class BookController implements Initializable, FxController {
-    public JFXListView highlightsListView;
+public class BookController implements Initializable, FxController, Observer {
+    public JFXListView<String> highlightsListView;
     public Pane bookCover;
     public Label status;
     public Label bookName;
@@ -56,6 +58,8 @@ public class BookController implements Initializable, FxController {
         }
         highlightDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
         highlightDialog.setDialogContainer(root);
+
+        Intent.observer = this;
     }
 
     @FXML
@@ -100,4 +104,15 @@ public class BookController implements Initializable, FxController {
     public void back(ActionEvent event) {
     }
 
+    @Override
+    public void notification(boolean isDarkTheme) {
+        toggleTheme(isDarkTheme);
+    }
+
+    public void toggleTheme(boolean isDarkTheme) {
+        if (isDarkTheme)
+            root.getStyleClass().add("dark-theme");
+        else
+            root.getStyleClass().remove("dark-theme");
+    }
 }

@@ -8,6 +8,7 @@ import com.readile.readile.models.book.Category;
 import com.readile.readile.services.implementation.CategoryService;
 import com.readile.readile.utils.ImageAPIConnector;
 import com.readile.readile.views.Intent;
+import com.readile.readile.views.Observer;
 import com.readile.readile.views.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +36,7 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView("/fxml/Categories.fxml")
-public class CategoriesController implements Initializable, FxController {
+public class CategoriesController implements Initializable, FxController, Observer {
 
     @Lazy
     @Autowired
@@ -81,7 +82,7 @@ public class CategoriesController implements Initializable, FxController {
                 categoriesCardView.getChildren().
                         add(getCategoryCard(newCategory.getId(), newCategory.getName(), newCategory.getCategoryImage(), 0));
                 categoryService.save(newCategory);
-            } catch (IOException e) {}
+            } catch (IOException ignored) {}
         }
         if(!newCategoryName.equals(""))
             newCategoryDialog.close();
@@ -90,13 +91,15 @@ public class CategoriesController implements Initializable, FxController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Intent.observer = this;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
+
         fetchNavAvatar();
 
         categoriesCardView.getChildren().clear();
         List<Category> categories = categoryService.findByUser(Intent.activeUser);
-        categories.stream().
+        categories.
                 forEach(category -> {
                     try {
                         categoriesCardView.getChildren()
@@ -104,7 +107,7 @@ public class CategoriesController implements Initializable, FxController {
                                         category.getName(),
                                         category.getCategoryImage(),
                                         category.getBooks().size()));
-                    } catch (IOException e) {}
+                    } catch (IOException ignored) {}
                 });
 
         newCategoryDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
@@ -113,7 +116,7 @@ public class CategoriesController implements Initializable, FxController {
 
     public Pane getCategoryCard(Long id, String categoryName, String categoryImage, int numberOfBooks) throws IOException {
         Pane root = stageManager.loadView(CategoryCardController.class);
-        root.setUserData(id);
+        root.setAccessibleText(String.valueOf(id));
         String path = "\"" + categoryImage + "\"";
         root.getChildren().get(0).setStyle("-fx-background-image: url(" + path + ");");
         ((Label)root.getChildren().get(1)).setText(categoryName);
@@ -181,5 +184,8 @@ public class CategoriesController implements Initializable, FxController {
         });
     }
 
-
+    @Override
+    public void notification(boolean isDarkTheme) {
+        toggleTheme(isDarkTheme);
+    }
 }

@@ -2,14 +2,12 @@ package com.readile.readile.controllers;
 
 import animatefx.animation.FadeIn;
 import com.readile.readile.config.FxController;
-import com.readile.readile.models.book.Book;
 import com.readile.readile.models.book.Category;
 import com.readile.readile.models.userbook.UserBook;
-import com.readile.readile.services.implementation.BookService;
 import com.readile.readile.services.implementation.CategoryService;
 import com.readile.readile.services.implementation.UserBookService;
-import com.readile.readile.utils.ImageAPIConnector;
 import com.readile.readile.views.Intent;
+import com.readile.readile.views.Observer;
 import com.readile.readile.views.StageManager;
 import com.readile.readile.views.components.BookCard;
 import javafx.event.ActionEvent;
@@ -41,7 +39,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @FxmlView("/fxml/Category.fxml")
-public class CategoryController implements FxController, Initializable {
+public class CategoryController implements FxController, Initializable, Observer {
 
     @Lazy
     @Autowired
@@ -78,7 +76,7 @@ public class CategoryController implements FxController, Initializable {
     private HBox toolBar;
     private double xOffset = 0, yOffset = 0;
 
-    private static boolean initialized = false;
+    private static final boolean initialized = false;
 
     @FXML
     public void back() {
@@ -126,8 +124,10 @@ public class CategoryController implements FxController, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Intent.observer = this;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
+
         fetchNavAvatar();
 
         Category currentCategory = categoryService.findById(Intent.categoryId);
@@ -168,5 +168,10 @@ public class CategoryController implements FxController, Initializable {
             root.getStyleClass().add("dark-theme");
         else
             root.getStyleClass().remove("dark-theme");
+    }
+
+    @Override
+    public void notification(boolean isDarkTheme) {
+        toggleTheme(isDarkTheme);
     }
 }
