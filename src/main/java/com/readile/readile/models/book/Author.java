@@ -1,5 +1,7 @@
 package com.readile.readile.models.book;
 
+import com.readile.readile.models.userbook.UserBook;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,13 +18,9 @@ public class Author {
     @Column(nullable = false, length = 32)
     private String name;
 
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable (
-            name = "Author_Book",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
-    Set<Book> books = new HashSet<>();
+
+    @OneToMany(mappedBy = "author")
+    Set<AuthorBook> authorBooks = new HashSet<>();
 
     public Author() {
     }
@@ -45,18 +43,6 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void addBook(Book book) {
-        this.books.add(book);
-    }
-
-    public void removeBook(Book book) {
-        this.books.remove(book);
     }
 
     @Override
