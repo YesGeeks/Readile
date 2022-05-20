@@ -1,17 +1,22 @@
 package com.readile.readile.controllers;
 
 import com.jfoenix.controls.JFXSpinner;
+import com.readile.readile.config.FxController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BookCardController implements Initializable {
+@Controller
+@FxmlView("/fxml/BookCard.fxml")
+public class BookCardController implements Initializable, FxController {
     @FXML
     public Pane bookCover;
     @FXML
