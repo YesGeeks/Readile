@@ -100,8 +100,7 @@ public class NewPasswordController implements FxController, Initializable {
         if (!newPassword.getText().trim().equals("") && !verifiedNewPassword.getText().trim().equals("")) {
             if (newPassword.getText().equals(verifiedNewPassword.getText())) {
                 LoginInfo updatedEntry = loginInfoService.findByUser(Intent.activeUser);
-                // TODO: Use a Trigger instead to update the password
-                updatedEntry.setPassword(newPassword.getText()); /*loginInfoService.getMD5(newPassword.getText()));*/
+                updatedEntry.setPassword(newPassword.getText());
                 loginInfoService.update(updatedEntry);
                 Intent.clearBackStack();
                 stageManager.rebuildStage(SignInScreenController.class);
