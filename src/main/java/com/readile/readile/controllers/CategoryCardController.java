@@ -40,7 +40,7 @@ public class CategoryCardController implements FxController, Initializable {
 
     @FXML
     void viewCategory(Event event) {
-        Intent.categoryId = (long) ((Pane) event.getSource()).getUserData();
+        Intent.categoryId = Long.parseLong(((Pane) event.getSource()).getAccessibleText());
         Intent.pushClosedScene(CategoriesController.class);
        stageManager.rebuildStage(CategoryController.class);
     }
