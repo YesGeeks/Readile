@@ -61,7 +61,7 @@ public class StageManager {
     }
 
     private void logAndExit(Exception exception) {
-        LOG.error("Unable to show scene", exception, exception.getCause());
+        LOG.error("Unable to show scene {}", exception, exception.getCause());
         Platform.exit();
     }
 
