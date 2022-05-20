@@ -29,54 +29,54 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Pane>
-                  <Pane id="logo" layoutX="43.0" layoutY="13.0" prefHeight="73.0" prefWidth="73.0" />
+                        <Pane id="logo" layoutX="43.0" layoutY="13.0" prefHeight="73.0" prefWidth="73.0" />
                     </Pane>
                 </top>
-            <center>
-               <Pane prefHeight="580.0" prefWidth="784.0" BorderPane.alignment="CENTER">
-                  <BorderPane.margin>
-                     <Insets />
-                  </BorderPane.margin>
-                  <children>
-                      <ScrollPane fx:id="categoryCards" hbarPolicy="NEVER" hvalue="0.5" layoutX="-2.0" layoutY="67.0" prefHeight="514.0" prefWidth="1018.0">
-                          <content>
-                              <FlowPane id="cards-view" fx:id="categoriesCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="512.0" prefWidth="840.0" prefWrapLength="100.0" vgap="15.0">
-                              <padding>
-                                 <Insets left="46.0" />
-                              </padding>
-                              <opaqueInsets>
-                                 <Insets />
-                              </opaqueInsets>
-                           </FlowPane>
-                          </content>
-                      </ScrollPane>
-                     <Pane id="back" layoutX="28.0" layoutY="25.0" maxHeight="26.0" maxWidth="28.0" onMouseClicked="#back" prefHeight="200.0" prefWidth="200.0">
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </Pane>
-                  </children>
-               </Pane>
-            </center>
-            <right>
-               <Pane id="new-category-container" prefHeight="580.0" prefWidth="186.0" BorderPane.alignment="CENTER">
-                  <children>
-                     <StackPane layoutX="2.0" layoutY="217.0" maxHeight="146.0" maxWidth="159.0" prefHeight="200.0" prefWidth="757.0">
+                <center>
+                    <Pane prefHeight="580.0" prefWidth="784.0" BorderPane.alignment="CENTER">
+                        <BorderPane.margin>
+                            <Insets />
+                        </BorderPane.margin>
                         <children>
-                           <JFXButton id="add-category-btn" alignment="TOP_LEFT" lineSpacing="0.6" onAction="#openNewCategoryDialog" prefHeight="146.0" prefWidth="159.0" text="Add new category" textAlignment="CENTER" wrapText="true">
-                              <padding>
-                                 <Insets bottom="26.0" left="26.0" right="26.0" top="26.0" />
-                              </padding>
-                              <cursor>
-                                 <Cursor fx:constant="HAND" />
-                              </cursor>
-                           </JFXButton>
-                           <Pane id="plus" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" translateY="28.0" />
+                            <ScrollPane fx:id="categoryCards" hbarPolicy="NEVER" hvalue="0.5" layoutX="-2.0" layoutY="67.0" prefHeight="514.0" prefWidth="1018.0">
+                                <content>
+                                    <FlowPane id="cards-view" fx:id="categoriesCardView" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="512.0" prefWidth="840.0" prefWrapLength="100.0" vgap="15.0">
+                                        <padding>
+                                            <Insets left="46.0" />
+                                        </padding>
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                    </FlowPane>
+                                </content>
+                            </ScrollPane>
+                            <Pane id="back" layoutX="28.0" layoutY="25.0" maxHeight="26.0" maxWidth="28.0" onMouseClicked="#back" prefHeight="200.0" prefWidth="200.0">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </Pane>
                         </children>
-                     </StackPane>
-                  </children>
-               </Pane>
-            </right>
+                    </Pane>
+                </center>
+                <right>
+                    <Pane id="new-category-container" prefHeight="580.0" prefWidth="186.0" BorderPane.alignment="CENTER">
+                        <children>
+                            <StackPane layoutY="234.0" maxHeight="146.0" maxWidth="159.0" prefHeight="200.0" prefWidth="757.0">
+                                <children>
+                                    <JFXButton id="add-category-btn" alignment="TOP_LEFT" lineSpacing="0.6" onAction="#openNewCategoryDialog" prefHeight="146.0" prefWidth="159.0" text="Add new category" textAlignment="CENTER" wrapText="true">
+                                        <padding>
+                                            <Insets bottom="26.0" left="26.0" right="26.0" top="26.0" />
+                                        </padding>
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </JFXButton>
+                                    <Pane id="plus" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" translateY="28.0" />
+                                </children>
+                            </StackPane>
+                        </children>
+                    </Pane>
+                </right>
             </BorderPane>
             <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
                 <children>

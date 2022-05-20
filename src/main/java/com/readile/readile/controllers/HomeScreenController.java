@@ -3,8 +3,10 @@ package com.readile.readile.controllers;
 import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.readile.readile.config.FxController;
+import com.readile.readile.models.userbook.Rating;
 import com.readile.readile.models.userbook.Status;
 import com.readile.readile.models.userbook.UserBook;
 import com.readile.readile.services.implementation.BookService;
@@ -14,7 +16,6 @@ import com.readile.readile.views.Observer;
 import com.readile.readile.utils.ResultBook;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
-import com.readile.readile.views.components.BookCard;
 import com.readile.readile.views.components.DoughnutChart;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -37,6 +38,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -109,8 +111,7 @@ public class HomeScreenController implements Initializable, FxController, Observ
                 booksCardView.getChildren().clear();
                 for (UserBook record : searchResult) {
                     try {
-                        BookCard bookCard = new BookCard();
-                        booksCardView.getChildren().add(bookCard.getBookCard(record));
+                        booksCardView.getChildren().add(getBookCard(record));
                     } catch (IOException ignored) {}
                 }
             }
@@ -199,7 +200,6 @@ public class HomeScreenController implements Initializable, FxController, Observ
         Intent.observer = this;
         boolean darkTheme = Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
-
         Intent.currentSceneClass = HomeScreenController.class;
 
         Platform.runLater(() -> {
@@ -268,11 +268,58 @@ public class HomeScreenController implements Initializable, FxController, Observ
             charts.getChildren().add(chart);
 
             booksCardView.getChildren().clear();
-            BookCard bookCard = new BookCard();
             for (UserBook record : userBookList) {
                 try {
-                    booksCardView.getChildren().add(bookCard.getBookCard(record));
+                    booksCardView.getChildren().add(getBookCard(record));
                 } catch (IOException ignored) {}
+            }
+        }
+    }
+
+    public Pane getBookCard(UserBook userBook) throws IOException {
+
+        Pane root = stageManager.loadView(BookCardController.class);
+        root.setUserData(userBook.getId());
+        String path = "\"" + userBook.getBook().getCoverId() + "\"";
+        ((StackPane) root.getChildren().get(0)).getChildren().get(0).setStyle("-fx-background-image: url(" + path + ");");
+        String statue = String.valueOf(userBook.getStatus()).replace('_', ' ').toLowerCase();
+        ((Label) ((HBox) ((Pane) (((StackPane) root.getChildren().get(0)).getChildren().get(0))).getChildren().get(0)).getChildren().get(0))
+                .setText(StringUtils.capitalize(statue));
+        ((Label) root.getChildren().get(1)).setText(userBook.getBook().getName());
+        ((JFXSpinner) root.getChildren().get(2)).setProgress(Double.parseDouble(String.format("%.2f", (userBook.getCurrentPage()/userBook.getBook().getLength().doubleValue()))));
+        ObservableList<Node> stars =  ((GridPane) root.getChildren().get(3)).getChildren();
+        setRating(userBook.getRating(), stars);
+
+        return root;
+    }
+
+    private void setRating(Rating rating, ObservableList<Node> stars) {
+        String path = String.valueOf(getClass().getResource("/icons/on.png"));
+        switch (rating) {
+            case ONE_STAR -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case TWO_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case THREE_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case FOUR_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case FIVE_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(4)).setStyle("-fx-image: url(" + path + ")");
             }
         }
     }

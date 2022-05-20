@@ -19,51 +19,61 @@
         <URL value="@../styles/global.css" />
         <URL value="@../styles/book-card.css" />
     </stylesheets>
-    <StackPane layoutY="-1.0" prefHeight="212.0" prefWidth="215.0">
-        <Pane id="book-img" fx:id="bookCover" maxHeight="210.0" maxWidth="215.0" minHeight="210.0" minWidth="215.0" prefHeight="210.0" prefWidth="215.0">
-            <HBox alignment="CENTER_RIGHT" layoutX="41.0" layoutY="10.0" prefHeight="28.0" prefWidth="174.0">
-                <padding>
-                    <Insets right="12.0" />
-                </padding>
-                <Label id="status" fx:id="status" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" text="Status" />
-            </HBox>
-        </Pane>
-    </StackPane>
-    <Label id="book-name" fx:id="bookName" layoutX="10.0" layoutY="212.0" prefHeight="56.0" prefWidth="196.0" text="Book Name" textAlignment="JUSTIFY" wrapText="true" />
-    <JFXSpinner fx:id="progress" layoutX="159.0" layoutY="253.0" prefHeight="50.0" prefWidth="42.0" progress="0.0" radius="233.0" startingAngle="0.0" />
-    <GridPane alignment="CENTER" layoutX="11.0" layoutY="270.0" prefHeight="20.0" prefWidth="88.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="67.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="68.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-        <ImageView fx:id="star1" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/off.png" />
-         </image></ImageView>
-        <ImageView fx:id="star2" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-         <image>
-            <Image url="@../icons/off.png" />
-         </image></ImageView>
-        <ImageView fx:id="star3" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-         <image>
-            <Image url="@../icons/off.png" />
-         </image></ImageView>
-        <ImageView fx:id="star4" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
-         <image>
-            <Image url="@../icons/off.png" />
-         </image></ImageView>
-        <ImageView fx:id="star5" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-         <image>
-            <Image url="@../icons/off.png" />
-         </image></ImageView>
-    </GridPane>
-   <cursor>
-      <Cursor fx:constant="HAND" />
-   </cursor>
+    <children>
+        <StackPane layoutY="-1.0" prefHeight="212.0" prefWidth="215.0">
+            <children>
+                <Pane id="book-img" fx:id="bookCover" maxHeight="210.0" maxWidth="215.0" minHeight="210.0" minWidth="215.0" prefHeight="210.0" prefWidth="215.0">
+                    <children>
+                        <HBox alignment="CENTER_RIGHT" layoutX="41.0" layoutY="10.0" prefHeight="28.0" prefWidth="174.0">
+                            <padding>
+                                <Insets right="12.0" />
+                            </padding>
+                            <children>
+                                <Label id="status" fx:id="status" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" text="Status" />
+                            </children>
+                        </HBox>
+                    </children>
+                </Pane>
+            </children>
+        </StackPane>
+        <Label id="book-name" fx:id="bookName" layoutX="10.0" layoutY="212.0" prefHeight="56.0" prefWidth="196.0" text="Book Name" textAlignment="JUSTIFY" wrapText="true" />
+        <JFXSpinner fx:id="progress" layoutX="159.0" layoutY="253.0" prefHeight="50.0" prefWidth="42.0" progress="0.0" radius="233.0" startingAngle="0.0" />
+        <GridPane alignment="CENTER" layoutX="11.0" layoutY="270.0" prefHeight="20.0" prefWidth="88.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="67.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="68.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ImageView fx:id="star1" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/off.png" />
+                    </image></ImageView>
+                <ImageView fx:id="star2" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../icons/off.png" />
+                    </image></ImageView>
+                <ImageView fx:id="star3" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../icons/off.png" />
+                    </image></ImageView>
+                <ImageView fx:id="star4" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                    <image>
+                        <Image url="@../icons/off.png" />
+                    </image></ImageView>
+                <ImageView fx:id="star5" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                    <image>
+                        <Image url="@../icons/off.png" />
+                    </image></ImageView>
+            </children>
+        </GridPane>
+    </children>
+    <cursor>
+        <Cursor fx:constant="HAND" />
+    </cursor>
 </Pane>

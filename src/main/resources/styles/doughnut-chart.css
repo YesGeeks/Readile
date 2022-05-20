@@ -1,28 +1,43 @@
-.default-color0.chart-pie {
-    -fx-pie-color: #ffab40;
+#base {
+    -fx-background-color: text-fill-1;
+    -fx-border-radius: 15pt;
+    -fx-background-radius: 15pt;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.25), 4, 0, 0, 2);
 }
 
-.default-color1.chart-pie {
-    -fx-pie-color: #ffd180;
+.root.dark-theme #base {
+    -fx-background-color: gray-3;
 }
 
-.default-color2.chart-pie {
-    -fx-pie-color: #455a64;
+#category-img {
+    -fx-border-radius: 15pt 15pt 0 0;
+    -fx-background-radius: 15pt 15pt 0 0;
+    -fx-background-color: gray-1;
+    -fx-background-size: 325;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
 }
 
-.chart-pie-label {
-    -fx-font-size: 8;
+#category-name {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Montserrat ExtraBold";
 }
 
-.chart{
-    -fx-label-line-length: 10;
+.root.dark-theme #category-name {
+    -fx-text-fill: gray-1;
 }
 
-.chart {
-    -fx-pref-width: 350;
-    -fx-pref-height: 260;
-    -fx-min-width: 350;
-    -fx-min-height: 260;
-    -fx-max-width: 350;
-    -fx-max-height: 260;
+#books-number {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Montserrat SemiBold";
+}
+
+.root.dark-theme #books-number {
+    -fx-text-fill: gray-1;
+}
+
+#count {
+    -fx-font-size: 12pt;
+    -fx-text-fill: main-color;
+    -fx-font-family: "Montserrat SemiBold";
 }

@@ -3,6 +3,7 @@ package com.readile.readile.views;
 import com.jfoenix.controls.JFXDialog;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.User;
+import com.readile.readile.models.userbook.UserBookId;
 import com.readile.readile.utils.ResultBook;
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class Intent {
     }
 
     public static Long categoryId;
+
+    public static UserBookId userBookId;
 
     public static int generatedSecurityCode;
     public static long sendingTime;
