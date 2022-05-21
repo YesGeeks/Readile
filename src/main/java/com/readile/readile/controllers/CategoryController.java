@@ -1,15 +1,17 @@
 package com.readile.readile.controllers;
 
 import animatefx.animation.FadeIn;
+import com.jfoenix.controls.JFXSpinner;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.book.Category;
+import com.readile.readile.models.userbook.Rating;
 import com.readile.readile.models.userbook.UserBook;
 import com.readile.readile.services.implementation.CategoryService;
 import com.readile.readile.services.implementation.UserBookService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.Observer;
 import com.readile.readile.views.StageManager;
-import com.readile.readile.views.components.BookCard;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,10 +21,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -30,6 +29,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -127,8 +127,10 @@ public class CategoryController implements FxController, Initializable, Observer
         Intent.observer = this;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
-
+        Intent.currentSceneClass = CategoryController.class;
         fetchNavAvatar();
+
+        Intent.currentSceneClass = CategoryController.class;
 
         Category currentCategory = categoryService.findById(Intent.categoryId);
         categoryImage.setImage(new Image(currentCategory.getCategoryImage()));
@@ -147,9 +149,8 @@ public class CategoryController implements FxController, Initializable, Observer
 
         categoryUserBooks.stream()
                 .forEach(categoryUserBook -> {
-                    BookCard bookCard = new BookCard();
                     try {
-                        booksCardView.getChildren().add(bookCard.getBookCard(categoryUserBook));
+                        booksCardView.getChildren().add(getBookCard(categoryUserBook));
                     } catch (IOException e) {}
                 });
     }
@@ -161,6 +162,54 @@ public class CategoryController implements FxController, Initializable, Observer
         mask.setArcHeight(100);
         mask.setArcWidth(100);
         avatar.setClip(mask);
+    }
+
+    public Pane getBookCard(UserBook userBook) throws IOException {
+
+        Pane root = stageManager.loadView(BookCardController.class);
+        root.setUserData(userBook.getId());
+        String path = "\"" + userBook.getBook().getCoverId() + "\"";
+        ((StackPane) root.getChildren().get(0)).getChildren().get(0).setStyle("-fx-background-image: url(" + path + ");");
+        String statue = String.valueOf(userBook.getStatus()).replace('_', ' ').toLowerCase();
+        ((Label) ((HBox) ((Pane) (((StackPane) root.getChildren().get(0)).getChildren().get(0))).getChildren().get(0)).getChildren().get(0))
+                .setText(StringUtils.capitalize(statue));
+        ((Label) root.getChildren().get(1)).setText(userBook.getBook().getName());
+        ((JFXSpinner) root.getChildren().get(2)).setProgress(Double.parseDouble(String.format("%.2f", (userBook.getCurrentPage()/userBook.getBook().getLength().doubleValue()))));
+        ObservableList<Node> stars =  ((GridPane) root.getChildren().get(3)).getChildren();
+        setRating(userBook.getRating(), stars);
+
+        return root;
+    }
+
+    private void setRating(Rating rating, ObservableList<Node> stars) {
+        String path = String.valueOf(getClass().getResource("/icons/on.png"));
+        switch (rating) {
+            case ONE_STAR -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case TWO_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case THREE_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case FOUR_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
+            }
+            case FIVE_STARS -> {
+                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
+                ((ImageView) stars.get(4)).setStyle("-fx-image: url(" + path + ")");
+            }
+        }
     }
 
     public void toggleTheme(boolean isDarkTheme) {

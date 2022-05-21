@@ -5,11 +5,22 @@
     -fx-alignment: center;
 }
 
+#logo {
+    -fx-background-image: url("../images/white-logo.png");
+    -fx-background-color: none;
+    -fx-background-position: center center;
+    -fx-background-size: 80;
+}
+
+.root.dark-theme #logo {
+    -fx-background-image: url("../images/black-logo.png");
+}
+
 #title {
     -fx-font-size: 20pt;
     -fx-font-family: "Montserrat SemiBold";
     -fx-alignment: center;
-    -fx-text-fill: white;
+    -fx-text-fill: text-fill-1;
 }
 
 #avatar {
@@ -20,6 +31,18 @@
     -fx-background-position: center center;
     -fx-background-size: 70;
     -fx-background-repeat: no-repeat;
+}
+
+.root.dark-theme #avatar {
+    -fx-background-image: url("../icons/avatar__dark-theme.png");
+}
+
+#back {
+    -fx-background-image: url("../icons/back.png");
+}
+
+.root.dark-theme #back {
+    -fx-background-image: url("../icons/back__dark-theme.png");
 }
 
 #book-img {
@@ -44,8 +67,8 @@
 }
 
 #button {
-    -fx-background-color: main-color;
-    -fx-text-fill: white;
+    -fx-background-color: secondary-color;
+    -fx-text-fill: text-fill-1;
     -fx-font-family: "Montserrat SemiBold";
     -fx-font-size: 12pt;
     -fx-border-radius: 30pt;
@@ -55,6 +78,10 @@
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.1), 4, 0, 0, 2);
 }
 
+.root.dark-theme #button {
+    -fx-text-fill: main-color;
+}
+
 #page {
     -fx-font-size: 12pt;
     -fx-font-family: "Montserrat SemiBold";
@@ -62,7 +89,7 @@
     -fx-background-color: light-orange-1;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -jfx-focus-color: #F8F8F8;
+    -jfx-focus-color: background-color;
     -fx-text-fill: secondary-color;
     -fx-alignment: center;
     -jfx-label-float: false;
@@ -76,17 +103,24 @@
     -fx-background-position: center;
 }
 
+.root.dark-theme #delete {
+    -fx-background-image: url("../icons/delete__dark-theme.png");
+}
+
 #book-name {
+    -fx-text-fill: text-fill-2;
     -fx-font-size: 16pt;
     -fx-font-family: "Montserrat ExtraBold";
 }
 
 #meta-bold {
+    -fx-text-fill: text-fill-2;
     -fx-font-size: 12pt;
     -fx-font-family: "Montserrat SemiBold";
 }
 
 #meta {
+    -fx-text-fill: text-fill-2;
     -fx-font-size: 12pt;
     -fx-font-family: "Montserrat Medium";
 }

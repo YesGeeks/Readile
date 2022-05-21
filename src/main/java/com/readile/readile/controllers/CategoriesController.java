@@ -78,10 +78,9 @@ public class CategoriesController implements Initializable, FxController, Observ
         if(!newCategoryName.equals("")) {
             Category newCategory = new Category(newCategoryName, Intent.activeUser, ImageAPIConnector.getRandomImage(newCategoryName));
             try {
-                System.out.println(newCategory.getId());
-                categoriesCardView.getChildren().
-                        add(getCategoryCard(newCategory.getId(), newCategory.getName(), newCategory.getCategoryImage(), 0));
                 categoryService.save(newCategory);
+                categoriesCardView.getChildren().
+                        add(getCategoryCard(categoryService.findAll().get(categoryService.findAll().size()-1).getId(), newCategory.getName(), newCategory.getCategoryImage(), 0));
             } catch (IOException ignored) {}
         }
         if(!newCategoryName.equals(""))
@@ -94,7 +93,7 @@ public class CategoriesController implements Initializable, FxController, Observ
         Intent.observer = this;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
-
+        Intent.currentSceneClass = CategoriesController.class;
         fetchNavAvatar();
 
         categoriesCardView.getChildren().clear();

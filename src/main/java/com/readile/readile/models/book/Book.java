@@ -24,8 +24,8 @@ public class Book {
     @Column(nullable = false)
     private Integer length;
 
-    @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
-    Set<Author> authors = new HashSet<>();
+    @OneToMany(mappedBy = "book")
+    Set<AuthorBook> authorBooks = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable (
@@ -77,18 +77,6 @@ public class Book {
 
     public void setLength(Integer length) {
         this.length = length;
-    }
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void addAuthor(Author author) {
-        this.authors.add(author);
-    }
-
-    public void removeAuthor(Author author) {
-        this.authors.remove(author);
     }
 
     public Set<Category> getCategories() {

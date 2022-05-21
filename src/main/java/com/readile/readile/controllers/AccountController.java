@@ -100,7 +100,7 @@ public class AccountController implements Initializable, FxController, Observer 
         Intent.observer = this;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
         toggleTheme(darkTheme);
-
+        Intent.currentSceneClass = AccountController.class;
         fetchNavAvatar();
 
         passwordDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
@@ -153,8 +153,10 @@ public class AccountController implements Initializable, FxController, Observer 
         List<Book> books = new ArrayList<>();
         list.forEach(userBook -> books.add(userBook.getBook()));
         bookService.deleteInBatch(books);
+        // TODO: Delete the authors associated with the books & the user categories
         Intent.activeUser = null;
         Intent.currentSceneClass = null;
+        Intent.clearBackStack();
         stageManager.rebuildStage(SignInScreenController.class);
     }
 
