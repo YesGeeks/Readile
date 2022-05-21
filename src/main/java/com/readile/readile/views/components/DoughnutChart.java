@@ -14,12 +14,12 @@ public class DoughnutChart extends PieChart {
 
     public DoughnutChart(ObservableList<Data> pieData) {
         super(pieData);
-
         innerCircle = new Circle();
-        boolean darkTheme = Intent.activeUser.getTheme() == 1 ? true : false;
+        boolean darkTheme = Intent.activeUser.getTheme() == 1;
         innerCircle.setFill(Color.valueOf(darkTheme ? "#36373A" : "#F8F8F8"));
         innerCircle.setStroke(darkTheme ? Color.BLACK : Color.WHITE);
         innerCircle.setStrokeWidth(3);
+        Intent.innerCircle = innerCircle;
     }
 
     @Override

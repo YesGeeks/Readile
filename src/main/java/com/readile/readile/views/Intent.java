@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.user.User;
 import com.readile.readile.utils.ResultBook;
+import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Intent {
     public static Observer observer;
 
     private static final Stack<Class<? extends FxController>> backStack = new Stack<>();
+    public static Circle innerCircle;
 
     public static void pushClosedScene(Class<? extends FxController> sceneController) {
         backStack.push(sceneController);
