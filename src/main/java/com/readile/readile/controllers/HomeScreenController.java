@@ -31,6 +31,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -42,6 +43,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -360,5 +362,39 @@ public class HomeScreenController implements Initializable, FxController, Observ
     @Override
     public void notification(boolean isDarkTheme) {
         toggleTheme(isDarkTheme);
+        Intent.innerCircle.setFill(Color.valueOf(isDarkTheme ? "#36373A" : "#F8F8F8"));
+        Intent.innerCircle.setStroke(isDarkTheme ? Color.BLACK : Color.WHITE);
+    }
+
+    @FXML
+    public void filter() {
+        int rating = ratingComboBox.getSelectionModel().getSelectedIndex();
+        int status = statusComboBox.getSelectionModel().getSelectedIndex();
+        bookCards.setVisible(true);
+        List<UserBook> searchResult = new ArrayList<>();
+        if (rating <= 0 && status <= 0) {
+            searchResult = userBookList.stream().toList();
+        } else if (rating <= 0) {
+            searchResult = userBookList.stream()
+                    .filter(userBook -> userBook.getStatus().ordinal()+1 == status).toList();
+        } else if (status <= 0) {
+            searchResult = userBookList.stream()
+                    .filter(userBook -> userBook.getRating().ordinal()+1 == rating).toList();
+        } else {
+            searchResult = userBookList.stream()
+                    .filter(userBook -> userBook.getStatus().ordinal()+1 == status &&
+                                        userBook.getRating().ordinal()+1 == rating).toList();
+        }
+        if (searchResult.size() == 0) {
+            booksCardView.getChildren().clear();
+            bookCards.setVisible(false);
+        } else {
+            booksCardView.getChildren().clear();
+            for (UserBook record : searchResult) {
+                try {
+                    booksCardView.getChildren().add(getBookCard(record));
+                } catch (IOException ignored) {}
+            }
+        }
     }
 }

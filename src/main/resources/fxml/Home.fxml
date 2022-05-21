@@ -136,12 +136,12 @@
                   <Pane layoutX="233.0" layoutY="70.0" prefHeight="44.0" prefWidth="532.0">
                      <children>
                         <Label id="filter" layoutX="41.0" layoutY="13.0" text="Filter by: " />
-                        <JFXComboBox id="filter-rating" fx:id="ratingComboBox" labelFloat="true" layoutX="334.0" layoutY="9.0" prefHeight="30.0" prefWidth="190.0" promptText="Rating">
+                        <JFXComboBox id="filter-rating" fx:id="ratingComboBox" labelFloat="true" layoutX="334.0" layoutY="9.0" onAction="#filter" prefHeight="30.0" prefWidth="190.0" promptText="Rating">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXComboBox>
-                        <JFXComboBox id="filter-status" fx:id="statusComboBox" labelFloat="true" layoutX="122.0" layoutY="9.0" prefHeight="30.0" prefWidth="190.0" promptText="Status">
+                        <JFXComboBox id="filter-status" fx:id="statusComboBox" labelFloat="true" layoutX="122.0" layoutY="9.0" onAction="#filter" prefHeight="30.0" prefWidth="190.0" promptText="Status">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
