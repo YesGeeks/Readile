@@ -43,7 +43,6 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -298,30 +297,28 @@ public class HomeScreenController implements Initializable, FxController, Observ
     private void setRating(Rating rating, ObservableList<Node> stars) {
         String path = String.valueOf(getClass().getResource("/icons/on.png"));
         switch (rating) {
-            case ONE_STAR -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-            }
+            case ONE_STAR -> stars.get(0).setStyle("-fx-image: url(" + path + ")");
             case TWO_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                stars.get(0).setStyle("-fx-image: url(" + path + ")");
+                stars.get(1).setStyle("-fx-image: url(" + path + ")");
             }
             case THREE_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+                stars.get(0).setStyle("-fx-image: url(" + path + ")");
+                stars.get(1).setStyle("-fx-image: url(" + path + ")");
+                stars.get(2).setStyle("-fx-image: url(" + path + ")");
             }
             case FOUR_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
+                stars.get(0).setStyle("-fx-image: url(" + path + ")");
+                stars.get(1).setStyle("-fx-image: url(" + path + ")");
+                stars.get(2).setStyle("-fx-image: url(" + path + ")");
+                stars.get(3).setStyle("-fx-image: url(" + path + ")");
             }
             case FIVE_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(4)).setStyle("-fx-image: url(" + path + ")");
+                stars.get(0).setStyle("-fx-image: url(" + path + ")");
+                stars.get(1).setStyle("-fx-image: url(" + path + ")");
+                stars.get(2).setStyle("-fx-image: url(" + path + ")");
+                stars.get(3).setStyle("-fx-image: url(" + path + ")");
+                stars.get(4).setStyle("-fx-image: url(" + path + ")");
             }
         }
     }
@@ -371,7 +368,7 @@ public class HomeScreenController implements Initializable, FxController, Observ
         int rating = ratingComboBox.getSelectionModel().getSelectedIndex();
         int status = statusComboBox.getSelectionModel().getSelectedIndex();
         bookCards.setVisible(true);
-        List<UserBook> searchResult = new ArrayList<>();
+        List<UserBook> searchResult;
         if (rating <= 0 && status <= 0) {
             searchResult = userBookList.stream().toList();
         } else if (rating <= 0) {
