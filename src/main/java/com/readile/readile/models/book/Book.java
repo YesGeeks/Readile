@@ -13,7 +13,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, length = 128)
     private String name;
@@ -27,13 +27,8 @@ public class Book {
     @OneToMany(mappedBy = "book")
     Set<AuthorBook> authorBooks = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable (
-            name = "Book_Category",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    Set<Category> categories = new HashSet<>();
+    @OneToMany(mappedBy = "book")
+    Set<BookCategory> bookCategories = new HashSet<>();
 
     @OneToMany(mappedBy = "book")
     Set<UserBook> userBooks = new HashSet<>();
@@ -47,11 +42,11 @@ public class Book {
         this.length = length;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -77,18 +72,6 @@ public class Book {
 
     public void setLength(Integer length) {
         this.length = length;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void addCategory(Category category) {
-        this.categories.add(category);
-    }
-
-    public void removeCategory(Category category) {
-        this.categories.remove(category);
     }
 
     public Set<UserBook> getUserBooks() {

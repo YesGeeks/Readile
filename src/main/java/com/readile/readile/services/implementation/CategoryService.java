@@ -54,4 +54,9 @@ public class CategoryService implements CrudService<Category> {
     public List<Category> findByUser(User user) {
         return categoryRepository.findByUser(user);
     }
+
+    public Category findByName(String name) {
+        return categoryRepository.findByName(name);
+    }
+
 }
