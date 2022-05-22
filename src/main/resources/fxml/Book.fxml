@@ -10,18 +10,15 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.CheckComboBox?>
 <?import org.controlsfx.control.Rating?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.BookController">
+<StackPane fx:id="root" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.BookController">
    <children>
       <AnchorPane prefHeight="706.0" prefWidth="1024.0">
          <stylesheets>
@@ -31,27 +28,26 @@
          <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
             <center>
                <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                  <Pane id="book-img" fx:id="bookCover" layoutX="47.0" layoutY="35.0" prefHeight="390.0" prefWidth="300.0" />
-                  <Label id="status" fx:id="status" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="443.0" prefHeight="30.0" prefWidth="160.0" text="Status" />
-                  <Label id="book-name" fx:id="bookName" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="416.0" layoutY="35.0" prefHeight="96.0" prefWidth="536.0" text="Book Name" wrapText="true" />
-                  <JFXButton id="delete" layoutX="264.0" layoutY="437.0" onAction="#deleteBook" prefHeight="40.0" prefWidth="40.0" ripplerFill="WHITE" text=" " />
-                  <Label id="meta" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="130.0" prefHeight="20.0" prefWidth="47.0" text="by:" wrapText="true" />
-                  <Label id="authors" fx:id="authors" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="448.0" layoutY="130.0" prefHeight="96.0" prefWidth="481.0" text="list of authors" wrapText="true" />
+                  <Label id="status" fx:id="status" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="469.0" prefHeight="30.0" prefWidth="160.0" text="Status" />
+                  <Label id="book-name" fx:id="bookName" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="416.0" layoutY="65.0" prefHeight="96.0" prefWidth="536.0" text="Book Name" wrapText="true" />
+                  <JFXButton id="delete" layoutX="271.0" layoutY="464.0" onAction="#deleteBook" prefHeight="40.0" prefWidth="40.0" ripplerFill="WHITE" text=" " />
+                  <Label id="meta" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="140.0" prefHeight="20.0" prefWidth="47.0" text="by:" wrapText="true" />
+                  <Label id="authors" fx:id="authors" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="448.0" layoutY="140.0" prefHeight="96.0" prefWidth="481.0" wrapText="true" />
                   <Label id="meta-bold" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="226.0" prefHeight="23.0" prefWidth="76.0" text="Pages:" wrapText="true" />
                   <Label id="pages" fx:id="totalPages" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="479.0" layoutY="226.0" prefHeight="23.0" prefWidth="76.0" text="0" wrapText="true" />
                   <Label id="meta" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="265.0" prefHeight="23.0" prefWidth="127.0" text="Start date:" wrapText="true" />
                   <Label id="date" fx:id="startDate" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="515.0" layoutY="266.0" prefHeight="23.0" prefWidth="179.0" text="01/01/2022" wrapText="true" />
-                  <Rating fx:id="rating" layoutX="412.0" layoutY="302.0" prefHeight="28.0" prefWidth="129.0" />
+                  <Rating fx:id="rating" layoutX="412.0" layoutY="302.0" onMouseClicked="#setRating" prefHeight="28.0" prefWidth="129.0" />
                   <Label id="meta-bold" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="346.0" prefHeight="23.0" prefWidth="127.0" text="Current Page:" wrapText="true" />
                   <HBox layoutX="415.0" layoutY="381.0" prefHeight="40.0" prefWidth="178.0" spacing="5.0">
                      <children>
-                        <JFXButton id="plus-minus" onAction="#minus" prefHeight="40.0" prefWidth="40.0" text="-">
+                        <JFXButton id="minus" fx:id="minus" onAction="#setCurrentPage" prefHeight="40.0" prefWidth="40.0" text="-">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXTextField id="page" fx:id="currentPage" prefHeight="43.0" prefWidth="76.0" text="0" unFocusColor="WHITE" />
-                        <JFXButton id="plus-minus" onAction="#plus" prefHeight="40.0" prefWidth="40.0" text="+">
+                        <JFXTextField id="page" fx:id="currentPage" onAction="#setCurrentPage" prefHeight="43.0" prefWidth="76.0" text="0" unFocusColor="WHITE" />
+                        <JFXButton id="plus" fx:id="plus" onAction="#setCurrentPage" prefHeight="40.0" prefWidth="40.0" text="+">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -61,42 +57,34 @@
                         <Point3D />
                      </rotationAxis>
                   </HBox>
-                  <JFXSpinner fx:id="progress" layoutX="155.0" layoutY="493.0" prefHeight="65.0" prefWidth="80.0" progress="0.0" startingAngle="90.0" />
+                  <JFXSpinner fx:id="progress" layoutX="142.0" layoutY="513.0" prefHeight="50.0" prefWidth="67.0" progress="0.0" startingAngle="90.0" />
                   <Label id="meta-bold" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="412.0" layoutY="454.0" prefHeight="23.0" prefWidth="127.0" text="Categories:" wrapText="true" />
                   <Label id="meta-bold" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="412.0" layoutY="504.0" prefHeight="23.0" prefWidth="127.0" text="Highlights:" wrapText="true" />
-                  <JFXButton id="highlight" layoutX="508.0" layoutY="499.0" onAction="#showHighlights" prefHeight="25.0" prefWidth="25.0" text=" " />
-                  <CheckComboBox id="categories" fx:id="categoriesComboBox" layoutX="520.0" layoutY="447.0" prefHeight="30.0" prefWidth="192.0" />
-                  <JFXButton layoutX="18.0" layoutY="13.0" onAction="#back" ripplerFill="WHITE" text=" ">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
+                  <JFXButton id="highlight" layoutX="508.0" layoutY="499.0" onAction="#showHighlights" prefHeight="25.0" prefWidth="25.0" text=" ">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <CheckComboBox id="categories" fx:id="categoriesComboBox" layoutX="520.0" layoutY="447.0" prefHeight="30.0" prefWidth="192.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></CheckComboBox>
+                  <Pane id="back" layoutX="28.0" layoutY="25.0" maxHeight="26.0" maxWidth="28.0" onMouseClicked="#back" prefHeight="200.0" prefWidth="200.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                           <image>
-                              <Image url="@../icons/back.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
+                  </Pane>
+                  <Pane id="book-img" fx:id="bookCover" layoutX="42.0" layoutY="65.0" prefHeight="390.0" prefWidth="300.0" />
                </Pane>
             </center>
             <top>
                <Pane id="navbar" prefHeight="100.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-                  <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../images/white-logo.png" />
-                  </ImageView>
                   <Label id="title" layoutX="46.0" layoutY="21.0" prefHeight="60.0" prefWidth="317.0" text="My Book" />
                   <Pane id="avatar" fx:id="avatar" layoutX="899.0" layoutY="14.0" onMouseClicked="#showPopupMenu" prefHeight="70.0" prefWidth="70.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
+                  <Pane id="logo" layoutX="43.0" layoutY="13.0" prefHeight="73.0" prefWidth="73.0" />
                </Pane>
             </top>
          </BorderPane>
