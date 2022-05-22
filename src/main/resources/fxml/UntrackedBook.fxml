@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.UntrackedBookController">
+<StackPane fx:id="root" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.UntrackedBookController">
    <children>
       <AnchorPane prefHeight="706.0" prefWidth="1024.0">
          <stylesheets>
@@ -21,13 +21,13 @@
             <center>
                <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                   <Pane id="book-img" fx:id="bookCover" layoutX="42.0" layoutY="65.0" prefHeight="390.0" prefWidth="300.0" />
-                  <Label id="status" fx:id="status" alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="477.0" prefHeight="30.0" prefWidth="160.0" text="To Read" />
+                  <Label id="status" fx:id="status" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="469.0" prefHeight="30.0" prefWidth="160.0" text="To Read" />
                   <Label id="book-name" fx:id="bookName" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="416.0" layoutY="65.0" prefHeight="96.0" prefWidth="536.0" text="Book Name" wrapText="true" />
-                  <JFXButton id="delete" layoutX="275.0" layoutY="472.0" onAction="#deleteBook" prefHeight="40.0" prefWidth="40.0" ripplerFill="WHITE" text=" ">
+                  <JFXButton id="delete" layoutX="271.0" layoutY="464.0" onAction="#deleteBook" prefHeight="40.0" prefWidth="40.0" ripplerFill="WHITE" text=" ">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <Label id="meta" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="140.0" prefHeight="20.0" prefWidth="47.0" text="by:" wrapText="true" />
+                  <Label id="meta" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="416.0" layoutY="140.0" prefHeight="20.0" prefWidth="47.0" text="by:" wrapText="true" />
                   <Label id="authors" fx:id="authors" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="453.0" layoutY="140.0" prefHeight="78.0" prefWidth="481.0" wrapText="true" />
                   <Label id="meta-bold" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="415.0" layoutY="237.0" prefHeight="23.0" prefWidth="76.0" text="Pages:" wrapText="true" />
                   <Label id="pages" fx:id="pages" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="479.0" layoutY="237.0" prefHeight="23.0" prefWidth="76.0" text="0" wrapText="true" />

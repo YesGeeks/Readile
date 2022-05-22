@@ -85,7 +85,7 @@
 #page {
     -fx-font-size: 12pt;
     -fx-font-family: "Montserrat SemiBold";
-    -jfx-unfocus-color: #F8F8F8;
+    -jfx-unfocus-color: background-color;
     -fx-background-color: light-orange-1;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;

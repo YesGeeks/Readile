@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import com.readile.readile.config.FxController;
 import com.readile.readile.models.book.Category;
+import com.readile.readile.services.implementation.BookCategoryService;
 import com.readile.readile.services.implementation.CategoryService;
 import com.readile.readile.utils.ImageAPIConnector;
 import com.readile.readile.views.Intent;
@@ -44,6 +45,9 @@ public class CategoriesController implements Initializable, FxController, Observ
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    BookCategoryService bookCategoryService;
 
     @FXML
     private StackPane root;
@@ -105,7 +109,7 @@ public class CategoriesController implements Initializable, FxController, Observ
                                 .add(getCategoryCard(category.getId(),
                                         category.getName(),
                                         category.getCategoryImage(),
-                                        category.getBooks().size()));
+                                        bookCategoryService.findAllByCategory(category).size()));
                     } catch (IOException ignored) {}
                 });
 

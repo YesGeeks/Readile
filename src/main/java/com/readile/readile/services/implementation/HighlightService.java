@@ -1,8 +1,10 @@
 package com.readile.readile.services.implementation;
 
+import com.readile.readile.models.book.Book;
 import com.readile.readile.models.userbook.Highlight;
 import com.readile.readile.repositories.HighlightRepository;
 import com.readile.readile.services.CrudService;
+import com.readile.readile.views.Intent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +48,9 @@ public class HighlightService implements CrudService<Highlight> {
     @Override
     public List<Highlight> findAll() {
         return highlightRepository.findAll();
+    }
+
+    public List<Highlight> findByBook(Book book) {
+        return highlightRepository.findByBook(book);
     }
 }

@@ -18,8 +18,8 @@ public class Category {
     @Column(length = 32, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Set<Book> books = new HashSet<>();
+    @OneToMany(mappedBy = "category")
+    Set<BookCategory> bookCategories = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -70,18 +70,6 @@ public class Category {
         this.categoryImage = categoryImage;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void addBook(Book book) {
-        this.books.add(book);
-    }
-
-    public void removeBook(Book book) {
-        this.books.remove(book);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,7 +88,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
+                ", bookCategories=" + bookCategories +
                 ", user=" + user +
                 ", categoryImage='" + categoryImage + '\'' +
                 '}';

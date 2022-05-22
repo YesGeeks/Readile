@@ -18,7 +18,7 @@ public class UserBook {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;

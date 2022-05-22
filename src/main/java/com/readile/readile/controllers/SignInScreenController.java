@@ -74,6 +74,8 @@ public class SignInScreenController implements FxController, Initializable {
 
     @FXML
     public void signInWithGoogle() {
+        Intent.pushClosedScene(SignInScreenController.class);
+        stageManager.rebuildStage(GoogleSignInController.class);
     }
 
     @FXML
