@@ -6,6 +6,7 @@ import com.readile.readile.config.FxController;
 import com.readile.readile.models.book.Category;
 import com.readile.readile.models.userbook.Rating;
 import com.readile.readile.models.userbook.UserBook;
+import com.readile.readile.services.implementation.BookCategoryService;
 import com.readile.readile.services.implementation.CategoryService;
 import com.readile.readile.services.implementation.UserBookService;
 import com.readile.readile.views.Intent;
@@ -50,6 +51,9 @@ public class CategoryController implements FxController, Initializable, Observer
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    BookCategoryService bookCategoryService;
 
     @FXML
     private AnchorPane root;
@@ -141,7 +145,10 @@ public class CategoryController implements FxController, Initializable, Observer
 
         List<UserBook> categoryUserBooks =
                 userBooks.stream()
-                        .filter(userBook -> userBook.getBook().getCategories().stream()
+                        .filter(userBook -> bookCategoryService.findAllByBook(userBook.getBook()).stream()
+                                .map(bookCategory -> bookCategory.getCategory())
+                                .collect(Collectors.toList())
+                                .stream()
                                 .anyMatch(category -> category.getName().equals(currentCategory.getName()))).
                         collect(Collectors.toList());
 
