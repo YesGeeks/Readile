@@ -2,6 +2,7 @@ package com.readile.readile.controllers;
 
 import com.jthemedetecor.OsThemeDetector;
 import com.readile.readile.config.FxController;
+import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -75,6 +76,7 @@ public class SplashScreenController implements Initializable, FxController {
         final OsThemeDetector detector = OsThemeDetector.getDetector();
         final boolean isDarkThemeUsed = detector.isDark();
         toggleTheme(isDarkThemeUsed);
+        Intent.clearBackStack();
 
         detector.registerListener(isDarkTheme -> Platform.runLater(() -> toggleTheme(isDarkTheme)));
         new ShowAndWait().start();

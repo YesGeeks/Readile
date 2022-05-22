@@ -2,7 +2,11 @@ package com.readile.readile.controllers;
 
 import animatefx.animation.FadeIn;
 import com.readile.readile.config.FxController;
+import com.readile.readile.models.book.Author;
+import com.readile.readile.models.book.AuthorBook;
 import com.readile.readile.models.book.Book;
+import com.readile.readile.models.userbook.Highlight;
+import com.readile.readile.models.userbook.Status;
 import com.readile.readile.models.userbook.UserBook;
 import com.readile.readile.services.implementation.AuthorBookService;
 import com.readile.readile.services.implementation.AuthorService;
@@ -29,6 +33,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -54,18 +61,25 @@ public class UntrackedBookController implements Initializable, FxController, Obs
     @FXML
     private StackPane root;
 
+    @FXML
     public Pane bookCover;
 
+    @FXML
     public Label status;
 
+    @FXML
     public Label bookName;
 
+    @FXML
     public Label authors;
 
+    @FXML
     public Label pages;
 
+    @FXML
     public Pane avatar;
 
+    @FXML
     public HBox toolBar;
     private double xOffset = 0, yOffset = 0;
 
@@ -93,11 +107,29 @@ public class UntrackedBookController implements Initializable, FxController, Obs
     }
 
     public void startTracking(ActionEvent event) {
+        UserBook currentUserBook = userBookService.findById(Intent.userBookId);
+        currentUserBook.setStatus(Status.CURRENTLY_READING);
+        currentUserBook.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+        userBookService.save(currentUserBook);
+        stageManager.rebuildStage(BookController.class);
     }
 
     @FXML
     void deleteBook(ActionEvent event) {
-        // TODO: You must delete all the entities associated with the book at this level(author)
+        UserBook currentUserBook = userBookService.findById(Intent.userBookId);
+        Book currentBook = currentUserBook.getBook();
+
+        List<AuthorBook> authorBooks = authorBookService.findAllByBook(currentBook);
+        authorBookService.deleteInBatch(authorBooks);
+        List<Author> authors = new ArrayList<>();
+        authorBooks.forEach(authorBook -> authors.add(authorBook.getAuthor()));
+        authorService.deleteInBatch(authors);
+
+        userBookService.delete(currentUserBook);
+
+        bookService.delete(currentBook);
+
+        back();
     }
 
     private void fetchNavAvatar() {

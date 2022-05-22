@@ -10,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +49,15 @@ public class BookCardController implements Initializable, FxController {
 
     @FXML
     public void viewBook(Event event) {
-        Intent.userBookId = (UserBookId) ((Pane) event.getSource()).getUserData();
+        Pane root = ((Pane) event.getSource());
+        Intent.userBookId = (UserBookId) root.getUserData();
+        String status = ((Label) ((HBox) ((Pane) (((StackPane) root.getChildren().get(0)).getChildren().get(0))).getChildren().get(0)).getChildren().get(0)).getText();
+        Class<? extends FxController> nextFxControllerClass;
+        if(status.equalsIgnoreCase("to read"))
+            nextFxControllerClass = UntrackedBookController.class;
+        else
+            nextFxControllerClass = BookController.class;
         Intent.pushClosedScene(Intent.currentSceneClass);
-        stageManager.rebuildStage(UntrackedBookController.class);
+        stageManager.rebuildStage(nextFxControllerClass);
     }
 }
