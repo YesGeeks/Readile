@@ -44,6 +44,7 @@
 .root.dark-theme #logo {
     -fx-background-image: url("../images/black-logo.png");
 }
+
 #profile-image {
     -fx-border-radius: 90pt 90pt;
     -fx-background-radius: 90pt 90pt;
@@ -121,11 +122,11 @@
     -fx-text-fill: main-color;
 }
 
-
 /* Password dialog styling */
 #password-dialog {
     -fx-background-color: background-color;
 }
+
 #old-password-field, #new-password-field {
     -fx-font-family: 'Montserrat SemiBold', sans-serif;
     -jfx-unfocus-color: gray-2;

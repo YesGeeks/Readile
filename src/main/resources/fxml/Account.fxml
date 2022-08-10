@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.AccountController">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.user.AccountController">
    <children>
       <AnchorPane prefHeight="706.0" prefWidth="1024.0">
          <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
