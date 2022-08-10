@@ -45,7 +45,6 @@
     -fx-background-image: url("../icons/back__dark-theme.png");
 }
 
-
 #book-img {
     -fx-border-radius: 15pt;
     -fx-background-radius: 15pt;
@@ -174,7 +173,7 @@
 }
 
 .jfx-spinner:determinate .percentage {
-    -fx-text-fill: gray;
+    -fx-fill: main-color;
 }
 
 .combo-box .list-cell {
@@ -311,4 +310,17 @@
 
 .jfx-rippler {
     -jfx-rippler-fill: gray-3;
+}
+
+#goal {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/alarm.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-position: center;
+}
+
+#error {
+    -fx-font-size: 10pt;
+    -fx-text-fill: error;
 }
