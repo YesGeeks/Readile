@@ -44,5 +44,5 @@
 }
 
 .jfx-spinner:determinate .percentage {
-    -fx-text-fill: gray;
+    -fx-fill: main-color;
 }
