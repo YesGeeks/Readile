@@ -1,8 +1,7 @@
-package com.readile.readile.controllers;
+package com.readile.readile.controllers.book;
 
 import com.jfoenix.controls.JFXSpinner;
 import com.readile.readile.config.FxController;
-import com.readile.readile.models.userbook.UserBookId;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import javafx.event.Event;
@@ -25,11 +24,7 @@ import java.util.ResourceBundle;
 @Controller
 @FxmlView("/fxml/BookCard.fxml")
 public class BookCardController implements Initializable, FxController {
-
-    @Lazy
-    @Autowired
-    StageManager stageManager;
-
+    // VIEW VARIABLES --- <
     @FXML
     public Pane bookCover;
     @FXML
@@ -38,6 +33,13 @@ public class BookCardController implements Initializable, FxController {
     public JFXSpinner progress;
     @FXML
     public ImageView star1, star2, star3, star4, star5;
+    // VIEW VARIABLES --- >
+
+    // SERVICES --- <
+    @Lazy
+    @Autowired
+    StageManager stageManager;
+    // SERVICES --- >
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,7 +52,7 @@ public class BookCardController implements Initializable, FxController {
     @FXML
     public void viewBook(Event event) {
         Pane root = ((Pane) event.getSource());
-        Intent.userBookId = (UserBookId) root.getUserData();
+        Intent.bookId = (Long) root.getUserData();
         String status = ((Label) ((HBox) ((Pane) (((StackPane) root.getChildren().get(0)).getChildren().get(0))).getChildren().get(0)).getChildren().get(0)).getText();
         Class<? extends FxController> nextFxControllerClass;
         if(status.equalsIgnoreCase("to read"))
