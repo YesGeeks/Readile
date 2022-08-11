@@ -44,6 +44,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -248,6 +249,7 @@ public class BookController extends ToolBar implements Initializable, FxControll
         bookCategoryService.deleteInBatch(bookCategoryService.findAllByBook(bookService.findById(Intent.bookId)));
         Book currentBook = bookService.findById(Intent.bookId);
         bookService.delete(currentBook);
+        new File(currentBook.getCoverId().replace("file:","").replace("/", "\\")).delete();
         back();
     }
 
