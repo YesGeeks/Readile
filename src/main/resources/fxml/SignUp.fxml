@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="root" fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SignUpScreenController">
+<AnchorPane id="root" fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.authentication.SignUpScreenController">
     <stylesheets>
         <URL value="@../styles/global.css" />
         <URL value="@../styles/sign-up.css" />
@@ -37,15 +37,15 @@
                             </cursor></Pane>
                         <Label id="sign-up-lbl" prefHeight="66.0" prefWidth="450.0" text="Sign Up" />
                     </VBox>
-                    <JFXTextField id="username-field" fx:id="username" promptText="Username" />
                     <JFXTextField id="email-field" fx:id="email" promptText="Email" />
+                    <JFXTextField id="username-field" fx:id="username" promptText="Username" />
                     <JFXPasswordField id="password-field" fx:id="password" layoutX="10.0" layoutY="200.0" promptText="Password" />
                     <JFXButton id="sign-up-btn" onAction="#signUp" prefHeight="55.0" prefWidth="390.0" text="Get Started">
                         <cursor>
                             <Cursor fx:constant="HAND" />
                         </cursor></JFXButton>
                 </VBox>
-                <Label id="error" fx:id="error" layoutX="101.0" layoutY="369.0" prefHeight="20.0" prefWidth="325.0" text="Please enter a valid email" visible="false" />
+                <Label id="error" fx:id="error" layoutX="98.0" layoutY="267.0" prefHeight="20.0" prefWidth="325.0" text="Please enter a valid email" visible="false" />
             </Pane>
         </center>
     </BorderPane>
