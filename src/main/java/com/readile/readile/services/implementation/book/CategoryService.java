@@ -1,6 +1,6 @@
-package com.readile.readile.services.implementation;
+package com.readile.readile.services.implementation.book;
 
-import com.readile.readile.models.book.Category;
+import com.readile.readile.models.book.category.Category;
 import com.readile.readile.models.user.User;
 import com.readile.readile.repositories.CategoryRepository;
 import com.readile.readile.services.CrudService;
@@ -14,7 +14,7 @@ import java.util.List;
 @Configurable
 public class CategoryService implements CrudService<Category> {
     @Autowired
-    private CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
     @Override
     public Category save(Category entity) {
@@ -58,5 +58,4 @@ public class CategoryService implements CrudService<Category> {
     public Category findByName(String name) {
         return categoryRepository.findByName(name);
     }
-
 }
