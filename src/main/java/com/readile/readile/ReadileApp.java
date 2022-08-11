@@ -12,9 +12,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class ReadileApp implements ApplicationListener<StageReadyEvent> {
     private static StageManager STAGE_MANAGER;
+    private final ConfigurableApplicationContext springAppContext;
 
-    @Autowired
-    ConfigurableApplicationContext springAppContext;
+    @Autowired // constructor injection
+    public ReadileApp(ConfigurableApplicationContext springAppContext) {
+        this.springAppContext = springAppContext;
+    }
 
     //1. runs Java application. Neither SpringContext nor JavaFx context is initialized in this stage
     public static void main(String[] args) {
