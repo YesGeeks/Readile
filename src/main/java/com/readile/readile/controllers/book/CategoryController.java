@@ -1,24 +1,25 @@
-package com.readile.readile.controllers;
+package com.readile.readile.controllers.book;
 
 import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXSpinner;
 import com.readile.readile.config.FxController;
-import com.readile.readile.models.book.Category;
-import com.readile.readile.models.userbook.Rating;
-import com.readile.readile.models.userbook.UserBook;
-import com.readile.readile.services.implementation.BookCategoryService;
-import com.readile.readile.services.implementation.CategoryService;
-import com.readile.readile.services.implementation.UserBookService;
+import com.readile.readile.controllers.PopupMenuController;
+import com.readile.readile.controllers.ToolBar;
+import com.readile.readile.models.book.Book;
+import com.readile.readile.models.book.category.BookCategory;
+import com.readile.readile.models.book.category.Category;
+import com.readile.readile.models.book.Rating;
+import com.readile.readile.services.implementation.book.BookCategoryService;
+import com.readile.readile.services.implementation.book.BookService;
+import com.readile.readile.services.implementation.book.CategoryService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.Observer;
 import com.readile.readile.views.StageManager;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -36,82 +37,42 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 @Controller
 @FxmlView("/fxml/Category.fxml")
-public class CategoryController implements FxController, Initializable, Observer {
+public class CategoryController extends ToolBar implements FxController, Initializable, Observer {
+    // VIEW VARIABLES --- <
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private ImageView categoryImage;
+    @FXML
+    private Label categoryName;
+    @FXML
+    private Label numberOfBooks;
+    @FXML
+    private FlowPane booksCardView;
+    @FXML
+    private Pane avatar;
+    @FXML
+    private HBox toolBar;
+    // VIEW VARIABLES --- >
 
+    // SERVICES --- <
     @Lazy
     @Autowired
     StageManager stageManager;
-
-    @Autowired
-    UserBookService userBookService;
-
     @Autowired
     CategoryService categoryService;
-
     @Autowired
     BookCategoryService bookCategoryService;
-
-    @FXML
-    private AnchorPane root;
-
-    @FXML
-    private ImageView categoryImage;
-
-    @FXML
-    private Label categoryName;
-
-    @FXML
-    private Label numberOfBooks;
-
-    @FXML
-    private ScrollPane bookCards;
-
-    @FXML
-    private FlowPane booksCardView;
-
-    @FXML
-    private Pane avatar;
-
-    @FXML
-    private HBox toolBar;
-    private double xOffset = 0, yOffset = 0;
-
-    private static final boolean initialized = false;
+    @Autowired
+    BookService bookService;
+    // SERVICES --- >
 
     @FXML
     public void back() {
         stageManager.rebuildStage(Intent.popClosedScene());
-    }
-
-    @FXML
-    void close(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    void move(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-        toolBar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-
-        toolBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
     }
 
     @FXML
@@ -129,8 +90,9 @@ public class CategoryController implements FxController, Initializable, Observer
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Intent.observer = this;
+        Intent.toolBar = toolBar;
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
-        toggleTheme(darkTheme);
+        Intent.toggleTheme(darkTheme, root);
         Intent.currentSceneClass = CategoryController.class;
         fetchNavAvatar();
 
@@ -141,24 +103,22 @@ public class CategoryController implements FxController, Initializable, Observer
         categoryName.setText(currentCategory.getName());
 
         booksCardView.getChildren().clear();
-        List<UserBook> userBooks = userBookService.findAllByUser(Intent.activeUser);
+        List<Book> userBooks = bookService.findAllByUser(Intent.activeUser);
 
-        List<UserBook> categoryUserBooks =
+        List<Book> categoryUserBooks =
                 userBooks.stream()
-                        .filter(userBook -> bookCategoryService.findAllByBook(userBook.getBook()).stream()
-                                .map(bookCategory -> bookCategory.getCategory())
-                                .collect(Collectors.toList())
+                        .filter(userBook -> bookCategoryService.findAllByBook(userBook).stream()
+                                .map(BookCategory::getCategory).toList()
                                 .stream()
-                                .anyMatch(category -> category.getName().equals(currentCategory.getName()))).
-                        collect(Collectors.toList());
+                                .anyMatch(category -> category.getName().equals(currentCategory.getName()))).toList();
 
         numberOfBooks.setText(String.valueOf(categoryUserBooks.size()));
 
-        categoryUserBooks.stream()
+        categoryUserBooks
                 .forEach(categoryUserBook -> {
                     try {
                         booksCardView.getChildren().add(getBookCard(categoryUserBook));
-                    } catch (IOException e) {}
+                    } catch (IOException ignored) {}
                 });
     }
 
@@ -171,17 +131,16 @@ public class CategoryController implements FxController, Initializable, Observer
         avatar.setClip(mask);
     }
 
-    public Pane getBookCard(UserBook userBook) throws IOException {
-
+    public Pane getBookCard(Book userBook) throws IOException {
         Pane root = stageManager.loadView(BookCardController.class);
         root.setUserData(userBook.getId());
-        String path = "\"" + userBook.getBook().getCoverId() + "\"";
+        String path = "\"" + userBook.getCoverId() + "\"";
         ((StackPane) root.getChildren().get(0)).getChildren().get(0).setStyle("-fx-background-image: url(" + path + ");");
         String statue = String.valueOf(userBook.getStatus()).replace('_', ' ').toLowerCase();
         ((Label) ((HBox) ((Pane) (((StackPane) root.getChildren().get(0)).getChildren().get(0))).getChildren().get(0)).getChildren().get(0))
                 .setText(StringUtils.capitalize(statue));
-        ((Label) root.getChildren().get(1)).setText(userBook.getBook().getName());
-        ((JFXSpinner) root.getChildren().get(2)).setProgress(Double.parseDouble(String.format("%.2f", (userBook.getCurrentPage()/userBook.getBook().getLength().doubleValue()))));
+        ((Label) root.getChildren().get(1)).setText(userBook.getName());
+        ((JFXSpinner) root.getChildren().get(2)).setProgress(Double.parseDouble(String.format("%.2f", (userBook.getCurrentPage()/userBook.getLength()*1.0))));
         ObservableList<Node> stars =  ((GridPane) root.getChildren().get(3)).getChildren();
         setRating(userBook.getRating(), stars);
 
@@ -191,43 +150,35 @@ public class CategoryController implements FxController, Initializable, Observer
     private void setRating(Rating rating, ObservableList<Node> stars) {
         String path = String.valueOf(getClass().getResource("/icons/on.png"));
         switch (rating) {
-            case ONE_STAR -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-            }
+            case ONE_STAR -> stars.get(0).setStyle("-fx-image: url(" + path + ")");
             case TWO_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 2; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
             case THREE_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 3; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
             case FOUR_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 4; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
             case FIVE_STARS -> {
-                ((ImageView) stars.get(0)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(1)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(2)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(3)).setStyle("-fx-image: url(" + path + ")");
-                ((ImageView) stars.get(4)).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 5; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
         }
     }
 
-    public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
-            root.getStyleClass().add("dark-theme");
-        else
-            root.getStyleClass().remove("dark-theme");
+    public void deleteCategory() {
+        bookCategoryService.deleteInBatch(bookCategoryService.findAllByCategory(categoryService.findByName(categoryName.getText())));
+        Category currentCategory = categoryService.findByName(categoryName.getText());
+        categoryService.delete(currentCategory);
+        back();
     }
 
     @Override
     public void notification(boolean isDarkTheme) {
-        toggleTheme(isDarkTheme);
+        Intent.toggleTheme(isDarkTheme, root);
     }
 }
