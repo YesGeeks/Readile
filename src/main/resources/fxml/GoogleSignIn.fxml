@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.readile.readile.controllers.authentication.GoogleSignInController">
+    <stylesheets>
+        <URL value="@../styles/global.css"/>
+        <URL value="@../styles/google-sign-in.css"/>
+    </stylesheets>
+    <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0"
+          prefWidth="1024.0">
+        <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+    </HBox>
+    <Pane layoutX="-1.0" layoutY="27.0" prefHeight="681.0" prefWidth="1024.0">
+        <WebView fx:id="googleWebView" prefHeight="681.0" prefWidth="1024.0"/>
+        <Pane id="back" layoutX="38.0" layoutY="35.0" maxHeight="26.0" maxWidth="28.0" onMouseClicked="#back"
+              prefHeight="200.0" prefWidth="200.0">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Pane>
+    </Pane>
+</AnchorPane>
