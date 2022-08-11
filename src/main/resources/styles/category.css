@@ -16,7 +16,6 @@
     -fx-background-image: url("../images/black-logo.png");
 }
 
-
 #title {
     -fx-font-size: 20pt;
     -fx-font-family: "Montserrat SemiBold";
@@ -32,6 +31,14 @@
     -fx-background-position: center center;
     -fx-background-size: 70;
     -fx-background-repeat: no-repeat;
+}
+
+#delete {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/delete.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 32;
+    -fx-background-position: center;
 }
 
 .root.dark-theme #avatar {

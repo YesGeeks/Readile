@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.CategoryController">
+<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.book.CategoryController">
    <stylesheets>
       <URL value="@../styles/global.css" />
       <URL value="@../styles/category.css" />
@@ -32,6 +32,11 @@
                         <Label id="number-of-books" fx:id="numberOfBooks" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="82.0" text="0" />
                      </children>
                   </HBox>
+                  <JFXButton id="delete" layoutX="132.0" layoutY="343.0" onAction="#deleteCategory" prefHeight="40.0" prefWidth="40.0" ripplerFill="WHITE" text=" ">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                </children>
             </Pane>
             <ScrollPane fx:id="bookCards" hbarPolicy="NEVER" hvalue="0.5" layoutX="309.0" layoutY="66.0" prefHeight="480.0" prefWidth="716.0">
