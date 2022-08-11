@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SecurityCodeController">
+<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.authentication.SecurityCodeController">
     <BorderPane layoutY="26.0" prefHeight="680.0" prefWidth="1024.0">
         <left>
             <Pane id="aside" prefHeight="680.0" prefWidth="380.0" BorderPane.alignment="CENTER">
@@ -34,10 +34,9 @@
                         <Label id="security-code-lbl" prefHeight="66.0" prefWidth="450.0" text="Security Code" />
                     </VBox>
                     <VBox prefHeight="75.0" prefWidth="450.0" spacing="32.0">
-                        <children>
-                            <JFXTextField id="security-code-field" fx:id="securityCode" promptText="Enter security code" />
-                            <Label id="error-lbl" fx:id="errorLabel" alignment="CENTER" prefHeight="28.0" prefWidth="450.0" text="The entered code is invalid" visible="false" />
-                        </children>
+                        <JFXTextField id="security-code-field" fx:id="securityCode" promptText="Enter security code"/>
+                        <Label id="error-lbl" fx:id="errorLabel" alignment="CENTER" prefHeight="28.0" prefWidth="450.0"
+                               text="The entered code is invalid" visible="false"/>
                     </VBox>
                     <JFXButton id="continue-btn" onAction="#checkCode" prefHeight="55.0" prefWidth="358.0" text="Continue">
                         <cursor>
@@ -48,19 +47,18 @@
             </Pane>
         </center>
     </BorderPane>
-    <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
-        <children>
-            <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </JFXButton>
-            <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </JFXButton>
-        </children>
+    <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0"
+          prefWidth="1024.0">
+        <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
     </HBox>
     <stylesheets>
         <URL value="@../styles/global.css" />

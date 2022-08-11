@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.SignInScreenController">
+<AnchorPane fx:id="root" prefHeight="706.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.authentication.SignInScreenController">
    <stylesheets>
       <URL value="@../styles/global.css" />
       <URL value="@../styles/sign-in.css" />
@@ -68,15 +68,16 @@
          </Pane>
       </center>
    </BorderPane>
-   <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0" prefWidth="1024.0">
+   <HBox id="tool-bar" fx:id="toolBar" alignment="CENTER_RIGHT" onMouseEntered="#move" prefHeight="26.0"
+         prefWidth="1024.0">
       <JFXButton id="min" onAction="#minimize" ripplerFill="WHITE" text=" ">
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="HAND"/>
          </cursor>
       </JFXButton>
       <JFXButton id="close" onAction="#close" ripplerFill="WHITE" text=" ">
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="HAND"/>
          </cursor>
       </JFXButton>
    </HBox>

@@ -52,7 +52,7 @@
 }
 
 .root.dark-theme #security-code-lbl,
-.root.dark-theme #continue-btn{
+.root.dark-theme #continue-btn {
     -fx-text-fill: main-color;
 }
 

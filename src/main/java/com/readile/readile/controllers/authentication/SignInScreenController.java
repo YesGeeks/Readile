@@ -1,24 +1,22 @@
-package com.readile.readile.controllers;
+package com.readile.readile.controllers.authentication;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jthemedetecor.OsThemeDetector;
 import com.readile.readile.config.FxController;
-import com.readile.readile.services.implementation.LoginInfoService;
-import com.readile.readile.services.implementation.UserService;
+import com.readile.readile.controllers.HomeScreenController;
+import com.readile.readile.controllers.ToolBar;
+import com.readile.readile.services.implementation.authentication.LoginInfoService;
+import com.readile.readile.services.implementation.user.UserService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxmlView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -28,30 +26,29 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView("/fxml/SignIn.fxml")
-public class SignInScreenController implements FxController, Initializable {
+public class SignInScreenController extends ToolBar implements Initializable, FxController {
+    // VIEW VARIABLES --- <
     @FXML
     public AnchorPane root;
-
     @FXML
     public JFXTextField email;
     @FXML
     public JFXPasswordField password;
     @FXML
     public Label error;
-
     @FXML
     public HBox toolBar;
-    private double xOffset = 0, yOffset = 0;
+    // VIEW VARIABLES --- >
 
+    // SERVICES --- >
     @Lazy
     @Autowired
-    private StageManager stageManager;
-
+    StageManager stageManager;
     @Autowired
     LoginInfoService loginInfoService;
-
     @Autowired
     UserService userService;
+    // SERVICES --- >
 
     @FXML
     public void forgotPassword() {
@@ -84,45 +81,14 @@ public class SignInScreenController implements FxController, Initializable {
         stageManager.rebuildStage(SignUpScreenController.class);
     }
 
-    @FXML
-    public void minimize(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    public void close(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void move(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-        toolBar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-        toolBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Intent.toolBar = toolBar;
+
         final OsThemeDetector detector = OsThemeDetector.getDetector();
         final boolean isDarkThemeUsed = detector.isDark();
-        toggleTheme(isDarkThemeUsed);
+        Intent.toggleTheme(isDarkThemeUsed, root);
 
-        detector.registerListener(isDarkTheme -> Platform.runLater(() -> toggleTheme(isDarkTheme)));
-    }
-
-    private void toggleTheme(boolean isDarkTheme) {
-        if (isDarkTheme)
-            root.getStyleClass().add("dark-theme");
-        else
-            root.getStyleClass().remove("dark-theme");
+        detector.registerListener(isDarkTheme -> Platform.runLater(() -> Intent.toggleTheme(isDarkTheme, root)));
     }
 }

@@ -1,25 +1,19 @@
-package com.readile.readile.controllers;
-
+package com.readile.readile.controllers.authentication;
 
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import com.jthemedetecor.OsThemeDetector;
 import com.readile.readile.config.FxController;
+import com.readile.readile.controllers.ToolBar;
 import com.readile.readile.models.user.LoginInfo;
-import com.readile.readile.services.implementation.LoginInfoService;
-import com.readile.readile.services.implementation.UserService;
+import com.readile.readile.services.implementation.authentication.LoginInfoService;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.StageManager;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -30,73 +24,37 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView("/fxml/NewPassword.fxml")
-public class NewPasswordController implements FxController, Initializable {
-
-    @Lazy
-    @Autowired
-    private StageManager stageManager;
-
-    @Autowired
-    private LoginInfoService loginInfoService;
-
-    @Autowired
-    private UserService userService;
-
-
+public class NewPasswordController extends ToolBar implements FxController, Initializable {
+    // VIEW VARIABLES --- <
     @FXML
     private AnchorPane root;
-
     @FXML
     private JFXPasswordField newPassword;
-
     @FXML
     private JFXPasswordField verifiedNewPassword;
-
     @FXML
     private Label errorLabel;
-
     @FXML
     private Label message;
-
     @FXML
     private HBox toolBar;
-    private double xOffset = 0, yOffset = 0;
+    // VIEW VARIABLES --- >
+
+    // SERVICES --- <
+    @Lazy
+    @Autowired
+    StageManager stageManager;
+    @Autowired
+    LoginInfoService loginInfoService;
+    // SERVICES --- >
 
     @FXML
-    public void minimize(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    public void close(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void move(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-        toolBar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-
-        toolBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
-    }
-
-
-    @FXML
-    void back(MouseEvent event) {
+    void back() {
         stageManager.rebuildStage(Intent.popClosedScene());
     }
 
     @FXML
-    void savePassword(ActionEvent event) {
+    void savePassword() {
         if (!newPassword.getText().trim().equals("") && !verifiedNewPassword.getText().trim().equals("")) {
             if (newPassword.getText().equals(verifiedNewPassword.getText())) {
                 LoginInfo updatedEntry = loginInfoService.findByUser(Intent.activeUser);
@@ -112,25 +70,12 @@ public class NewPasswordController implements FxController, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Intent.toolBar = toolBar;
 
         final OsThemeDetector detector = OsThemeDetector.getDetector();
         final boolean isDarkThemeUsed = detector.isDark();
-        toggleTheme(isDarkThemeUsed);
+        Intent.toggleTheme(isDarkThemeUsed, root);
 
-        detector.registerListener(isDarkTheme -> {
-            Platform.runLater(() -> {
-                toggleTheme(isDarkTheme);
-            });
-        });
-    }
-
-    public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
-            root.getStyleClass().add("dark-theme");
-        else
-            root.getStyleClass().remove("dark-theme");
+        detector.registerListener(isDarkTheme -> Platform.runLater(() -> Intent.toggleTheme(isDarkTheme, root)));
     }
 }
-
-
-

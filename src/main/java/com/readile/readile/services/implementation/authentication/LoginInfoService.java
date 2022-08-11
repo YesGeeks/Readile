@@ -1,9 +1,10 @@
-package com.readile.readile.services.implementation;
+package com.readile.readile.services.implementation.authentication;
 
 import com.readile.readile.models.user.LoginInfo;
 import com.readile.readile.models.user.User;
 import com.readile.readile.repositories.LoginInfoRepository;
 import com.readile.readile.services.CrudService;
+import com.readile.readile.services.implementation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,9 @@ import java.util.List;
 @Service
 public class LoginInfoService implements CrudService<LoginInfo> {
     @Autowired
-    private LoginInfoRepository loginInfoRepository;
-
+    LoginInfoRepository loginInfoRepository;
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Override
     public LoginInfo save(LoginInfo entity) {
@@ -64,7 +64,7 @@ public class LoginInfoService implements CrudService<LoginInfo> {
         if (user == null) {
             return false;
         } else {
-            return getMD5(password).equals(findByUser(user).getPassword());
+            return getMD5(password).equals(findByUser(user).getPassword()) && user.getRegistration().equals("EMAIL");
         }
     }
 
