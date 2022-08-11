@@ -1,7 +1,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/YesGeeks/Readile?style=flat-square)](https://github.com/YesGeeks/Readile/issues)
 [![GitHub forks](https://img.shields.io/github/forks/YesGeeks/Readile?style=flat-square)](https://github.com/YesGeeks/Readile/network)
 [![GitHub license](https://img.shields.io/github/license/YesGeeks/Readile?color=g&style=flat-square)](https://github.com/YesGeeks/Readile)
-![GitHub last commit](https://img.shields.io/github/last-commit/YesGeeks/Readile?color=orange&style=flat-square)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/YesGeeks/Readile?color=red&style=flat-square)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/YesGeeks/Readile?color=lightblue&style=flat-square)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/YesGeeks/Readile?color=light%20green&style=flat-square)
