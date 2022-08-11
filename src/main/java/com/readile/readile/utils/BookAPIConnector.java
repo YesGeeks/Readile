@@ -1,5 +1,6 @@
 package com.readile.readile.utils;
 
+import lombok.NoArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
@@ -7,11 +8,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@NoArgsConstructor
 public class BookAPIConnector {
     private static final String SEARCH_BASE_URL = "https://openlibrary.org/search.json";
-    private static final String COVER_BASE_URL = "http://covers.openlibrary.org/b/id/";
+    private static final String COVER_BASE_URL = "https://covers.openlibrary.org/b/id/";
 
     private static final WebClient webClient = WebClient.builder()
             .exchangeStrategies(ExchangeStrategies.builder()
@@ -20,8 +21,6 @@ public class BookAPIConnector {
                             .maxInMemorySize(32 * 1024 * 1024))
                     .build())
             .baseUrl(SEARCH_BASE_URL).build();
-
-    private BookAPIConnector() {}
 
     public static List<ResultBook> getSearchResults(String title) {
         String jsonResult = webClient.get()
