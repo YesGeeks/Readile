@@ -1,22 +1,22 @@
-package com.readile.readile.controllers;
+package com.readile.readile.controllers.book;
 
 import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import com.readile.readile.config.FxController;
-import com.readile.readile.models.book.Category;
-import com.readile.readile.services.implementation.BookCategoryService;
-import com.readile.readile.services.implementation.CategoryService;
+import com.readile.readile.controllers.PopupMenuController;
+import com.readile.readile.controllers.ToolBar;
+import com.readile.readile.models.book.category.Category;
+import com.readile.readile.services.implementation.book.BookCategoryService;
+import com.readile.readile.services.implementation.book.CategoryService;
 import com.readile.readile.utils.ImageAPIConnector;
 import com.readile.readile.views.Intent;
 import com.readile.readile.views.Observer;
 import com.readile.readile.views.StageManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -37,39 +37,31 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView("/fxml/Categories.fxml")
-public class CategoriesController implements Initializable, FxController, Observer {
+public class CategoriesController extends ToolBar implements Initializable, FxController, Observer {
+    // VIEW VARIABLES --- <
+    @FXML
+    private StackPane root;
+    @FXML
+    private Pane avatar;
+    @FXML
+    private FlowPane categoriesCardView;
+    @FXML
+    private JFXTextField newCategoryNameField;
+    @FXML
+    private HBox toolBar;
+    @FXML
+    private JFXDialog newCategoryDialog;
+    // VIEW VARIABLES --- >
 
+    // SERVICES --- <
     @Lazy
     @Autowired
     StageManager stageManager;
-
     @Autowired
     CategoryService categoryService;
-
     @Autowired
     BookCategoryService bookCategoryService;
-
-    @FXML
-    private StackPane root;
-
-    @FXML
-    private Pane avatar;
-
-    @FXML
-    private ScrollPane categoryCards;
-
-    @FXML
-    private FlowPane categoriesCardView;
-
-    @FXML
-    private JFXTextField newCategoryNameField;
-
-    @FXML
-    private HBox toolBar;
-    private double xOffset = 0, yOffset = 0;
-
-    @FXML
-    private JFXDialog newCategoryDialog;
+    // SERVICES --- >
 
     @FXML
     void openNewCategoryDialog() {
@@ -80,7 +72,7 @@ public class CategoriesController implements Initializable, FxController, Observ
     void addNewCategory() {
         String newCategoryName = newCategoryNameField.getText().trim();
         if(!newCategoryName.equals("")) {
-            Category newCategory = new Category(newCategoryName, Intent.activeUser, ImageAPIConnector.getRandomImage(newCategoryName));
+            Category newCategory = new Category(newCategoryName, ImageAPIConnector.getRandomImage(newCategoryName), Intent.activeUser);
             try {
                 categoryService.save(newCategory);
                 categoriesCardView.getChildren().
@@ -95,8 +87,10 @@ public class CategoriesController implements Initializable, FxController, Observ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Intent.observer = this;
+        Intent.toolBar = toolBar;
+
         boolean darkTheme =  Intent.activeUser.getTheme() == 1;
-        toggleTheme(darkTheme);
+        Intent.toggleTheme(darkTheme, root);
         Intent.currentSceneClass = CategoriesController.class;
         fetchNavAvatar();
 
@@ -136,13 +130,6 @@ public class CategoriesController implements Initializable, FxController, Observ
         avatar.setClip(mask);
     }
 
-    public void toggleTheme(boolean isDarkTheme) {
-        if(isDarkTheme)
-            root.getStyleClass().add("dark-theme");
-        else
-            root.getStyleClass().remove("dark-theme");
-    }
-
     @FXML
     void showPopupMenu(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -160,35 +147,8 @@ public class CategoriesController implements Initializable, FxController, Observ
         stageManager.rebuildStage(Intent.popClosedScene());
     }
 
-    @FXML
-    public void minimize(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    public void close(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void move(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-        toolBar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-
-        toolBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
-    }
-
     @Override
     public void notification(boolean isDarkTheme) {
-        toggleTheme(isDarkTheme);
+        Intent.toggleTheme(isDarkTheme, root);
     }
 }

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane id="root" fx:id="root" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.CategoriesController">
+<StackPane id="root" fx:id="root" styleClass="dark-theme" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.readile.readile.controllers.book.CategoriesController">
     <children>
         <AnchorPane prefHeight="706.0" prefWidth="1024.0">
             <BorderPane layoutY="25.0" prefHeight="680.0" prefWidth="1024.0">
