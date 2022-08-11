@@ -1,4 +1,4 @@
-package com.readile.readile.controllers;
+package com.readile.readile.controllers.book;
 
 import com.readile.readile.config.FxController;
 import com.readile.readile.views.Intent;
@@ -20,15 +20,18 @@ import java.util.ResourceBundle;
 @Controller
 @FxmlView("/fxml/CategoryCard.fxml")
 public class CategoryCardController implements FxController, Initializable {
-
-    @Lazy
-    @Autowired
-    StageManager stageManager;
-
+    // VIEW VARIABLES --- <
     @FXML
     public Pane categoryImage;
     @FXML
     public Label categoryName, count;
+    // VIEW VARIABLES --- >
+
+    // SERVICES --- <
+    @Lazy
+    @Autowired
+    StageManager stageManager;
+    // SERVICES --- >
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
