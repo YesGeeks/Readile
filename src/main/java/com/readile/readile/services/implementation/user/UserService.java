@@ -1,4 +1,4 @@
-package com.readile.readile.services.implementation;
+package com.readile.readile.services.implementation.user;
 
 import com.readile.readile.models.user.User;
 import com.readile.readile.repositories.UserRepository;
@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class UserService implements CrudService<User> {
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     public User save(User entity) {
