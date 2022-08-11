@@ -1,13 +1,12 @@
-[![GitHub issues](https://img.shields.io/github/issues/CSCI-2108-Final-Projects/Readile?style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile/issues)
-[![GitHub forks](https://img.shields.io/github/forks/CSCI-2108-Final-Projects/Readile?style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile/network)
-[![GitHub license](https://img.shields.io/github/license/CSCI-2108-Final-Projects/Readile?color=g&style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile)
-![GitHub last commit](https://img.shields.io/github/last-commit/CSCI-2108-Final-Projects/Readile?color=orange&style=flat-square)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/CSCI-2108-Final-Projects/Readile?color=red&style=flat-square)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/CSCI-2108-Final-Projects/Readile?color=lightblue&style=flat-square)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/CSCI-2108-Final-Projects/Readile?color=light%20green&style=flat-square)
-[![GitHub stars](https://img.shields.io/github/stars/CSCI-2108-Final-Projects/Readile?style=flat-square)](https://github.com/CSCI-2108-Final-Projects/Readile/stargazers)
-![GitHub contributors](https://img.shields.io/github/contributors/CSCI-2108-Final-Projects/Readile?style=flat-square)
-![Lines of code](https://img.shields.io/tokei/lines/github/CSCI-2108-Final-Projects/Readile?style=flat-square)
+[![GitHub issues](https://img.shields.io/github/issues/YesGeeks/Readile?style=flat-square)](https://github.com/YesGeeks/Readile/issues)
+[![GitHub forks](https://img.shields.io/github/forks/YesGeeks/Readile?style=flat-square)](https://github.com/YesGeeks/Readile/network)
+[![GitHub license](https://img.shields.io/github/license/YesGeeks/Readile?color=g&style=flat-square)](https://github.com/YesGeeks/Readile)
+![GitHub last commit](https://img.shields.io/github/last-commit/YesGeeks/Readile?color=orange&style=flat-square)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/YesGeeks/Readile?color=red&style=flat-square)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/YesGeeks/Readile?color=lightblue&style=flat-square)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/YesGeeks/Readile?color=light%20green&style=flat-square)
+[![GitHub stars](https://img.shields.io/github/stars/YesGeeks/Readile?style=flat-square)](https://github.com/YesGeeks/Readile/stargazers)
+![GitHub contributors](https://img.shields.io/github/contributors/YesGeeks/Readile?style=flat-square)
 
 <img src="https://user-images.githubusercontent.com/46399191/165711330-14a2b271-e3ef-4e01-91fc-b18d75a62a6e.png" width="150" alt="Readile">
 
