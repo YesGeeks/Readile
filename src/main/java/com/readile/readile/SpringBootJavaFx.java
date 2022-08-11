@@ -1,7 +1,6 @@
 package com.readile.readile;
 
 import com.readile.readile.config.StageReadyEvent;
-import com.readile.readile.views.StageManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -30,7 +29,6 @@ public class SpringBootJavaFx extends Application {
                 .initializers(initializer)
                 .run(getParameters().getRaw().toArray(new String[0]));
     }
-    private static StageManager STAGE_MANAGER;
 
     @Override
     public void start(Stage primaryStage) {
