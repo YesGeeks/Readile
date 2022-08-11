@@ -169,15 +169,13 @@ public class HomeScreenController extends ToolBar implements Initializable, FxCo
             } else {
                 searchResults.setVisible(true);
                 Intent.set(resultBooks);
-                Platform.runLater(() -> {
-                    for (ResultBook resultBook : resultBooks) {
-                        try {
-                            Pane card = getSearchBookCard(resultBook);
-                            searchResultsView.getChildren().add(card);
-                        } catch (IOException ignored) {
-                        }
+                for (ResultBook resultBook : resultBooks) {
+                    try {
+                        Pane card = getSearchBookCard(resultBook);
+                        searchResultsView.getChildren().add(card);
+                    } catch (IOException ignored) {
                     }
-                });
+                }
                 counter = 0;
             }
         }
