@@ -1,7 +1,7 @@
 package com.readile.readile.repositories;
 
 import com.readile.readile.models.book.Book;
-import com.readile.readile.models.userbook.Highlight;
+import com.readile.readile.models.book.Highlight;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

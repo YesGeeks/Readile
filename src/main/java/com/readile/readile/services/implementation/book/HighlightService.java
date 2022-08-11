@@ -1,10 +1,9 @@
-package com.readile.readile.services.implementation;
+package com.readile.readile.services.implementation.book;
 
 import com.readile.readile.models.book.Book;
-import com.readile.readile.models.userbook.Highlight;
+import com.readile.readile.models.book.Highlight;
 import com.readile.readile.repositories.HighlightRepository;
 import com.readile.readile.services.CrudService;
-import com.readile.readile.views.Intent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,7 @@ import java.util.List;
 @Service
 public class HighlightService implements CrudService<Highlight> {
     @Autowired
-    private HighlightRepository highlightRepository;
+    HighlightRepository highlightRepository;
 
     @Override
     public Highlight save(Highlight entity) {
