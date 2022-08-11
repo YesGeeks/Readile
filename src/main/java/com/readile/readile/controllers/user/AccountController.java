@@ -143,7 +143,7 @@ public class AccountController extends ToolBar implements Initializable, FxContr
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
             Date date = new Date();
             Path source = imageFile.toPath();
-            Path targetDir = Paths.get("data");
+            Path targetDir = Paths.get("data/users");
 
             Files.createDirectories(targetDir); //in case target directory didn't exist
 
@@ -176,8 +176,12 @@ public class AccountController extends ToolBar implements Initializable, FxContr
         categoryService.findByUser(Intent.activeUser).forEach(category -> bookCategoryService.deleteInBatch(bookCategoryService.findAllByCategory(category)));
         categoryService.deleteInBatch(categoryService.findByUser(Intent.activeUser));
         bookService.findAllByUser(Intent.activeUser).forEach(book -> highlightService.deleteInBatch(highlightService.findByBook(book)));
-        bookService.deleteInBatch(bookService.findAllByUser(Intent.activeUser));
+        bookService.findAllByUser(Intent.activeUser).forEach(book -> {
+            new File(book.getCoverId().replace("file:","").replace("/", "\\")).delete();
+            bookService.delete(book);
+        });
         userService.delete(Intent.activeUser);
+        new File(Intent.activeUser.getProfileImage().replace("file:/","").replace("/", "\\")).delete();
         Intent.activeUser = null;
         Intent.currentSceneClass = null;
         Intent.clearBackStack();
