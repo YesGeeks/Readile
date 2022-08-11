@@ -6,11 +6,13 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.readile.readile.config.FxController;
-import com.readile.readile.models.userbook.Rating;
-import com.readile.readile.models.userbook.Status;
-import com.readile.readile.models.userbook.UserBook;
-import com.readile.readile.services.implementation.BookService;
-import com.readile.readile.services.implementation.UserBookService;
+import com.readile.readile.controllers.book.BookCardController;
+import com.readile.readile.controllers.book.CategoriesController;
+import com.readile.readile.controllers.book.SearchBookCardController;
+import com.readile.readile.models.book.Book;
+import com.readile.readile.models.book.Rating;
+import com.readile.readile.models.book.Status;
+import com.readile.readile.services.implementation.book.BookService;
 import com.readile.readile.utils.BookAPIConnector;
 import com.readile.readile.views.Observer;
 import com.readile.readile.utils.ResultBook;
@@ -20,7 +22,6 @@ import com.readile.readile.views.components.DoughnutChart;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -43,17 +44,21 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import static com.readile.readile.models.book.Status.*;
 
 @Controller
 @FxmlView("/fxml/Home.fxml")
-public class HomeScreenController implements Initializable, FxController, Observer {
+public class HomeScreenController extends ToolBar implements Initializable, FxController, Observer {
+    // VIEW VARIABLES --- <
     @FXML
     public JFXDialog addBookDialog;
     @FXML
     private StackPane root;
-
     @FXML
     public JFXTextField search;
     @FXML
@@ -68,7 +73,6 @@ public class HomeScreenController implements Initializable, FxController, Observ
     public Pane avatar;
     @FXML
     public ScrollPane bookCards;
-
     // Modal Window attributes
     @FXML
     public JFXTextField searchField;
@@ -78,47 +82,41 @@ public class HomeScreenController implements Initializable, FxController, Observ
     public ScrollPane searchResults;
     @FXML
     public FlowPane searchResultsView;
-
     @FXML
     public HBox toolBar;
-    private double xOffset = 0, yOffset = 0;
+    // VIEW VARIABLES --- >
 
-    static boolean isInitialize = false;
-
-    private List<UserBook> userBookList;
-
+    // SERVICES --- <
     @Lazy
     @Autowired
     StageManager stageManager;
-
     @Autowired
     BookService bookService;
+    // SERVICES --- >
 
-    @Autowired
-    UserBookService userBookService;
+    private List<Book> bookList;
+    private int counter = 0;
 
-    // Local search
     @FXML
     public void searchForBook() {
         if (!search.getText().trim().equals("")) {
             bookCards.setVisible(true);
-            List<UserBook> searchResult = userBookList.stream()
-                    .filter(userBook -> userBook.getBook().getName().toLowerCase()
+            List<Book> searchResult = bookList.stream()
+                    .filter(book -> book.getName().toLowerCase()
                             .contains(search.getText().toLowerCase())).toList();
-            if (searchResult.size() == 0) {
-                booksCardView.getChildren().clear();
+
+            booksCardView.getChildren().clear();
+            if (searchResult.size() == 0)
                 bookCards.setVisible(false);
-            } else {
-                booksCardView.getChildren().clear();
-                for (UserBook record : searchResult) {
+            else {
+                for (Book record : searchResult) {
                     try {
                         booksCardView.getChildren().add(getBookCard(record));
-                    } catch (IOException ignored) {}
+                    } catch (IOException ignored) {
+                    }
                 }
             }
-        } else {
-            loadBooksAndChart();
-        }
+        } else loadBooksAndChart();
     }
 
     @FXML
@@ -142,13 +140,13 @@ public class HomeScreenController implements Initializable, FxController, Observ
                         searchField.setText("");
                         searchResultsView.getChildren().clear();
                         Intent.clearTempResults();
-
                         booksCardView.getChildren().clear();
-                        userBookList = userBookService.findAllByUser(Intent.activeUser);
+                        bookList = bookService.findAllByUser(Intent.activeUser);
                         loadBooksAndChart();
                     }
             );
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     @FXML
@@ -157,15 +155,12 @@ public class HomeScreenController implements Initializable, FxController, Observ
         stageManager.rebuildStage(CategoriesController.class);
     }
 
-    private int counter = 0;
-
     // Modal window API search
     @FXML
     public void modalSearchForBook() {
         searchResultsView.getChildren().clear();
         ListView<Pane> listView = new ListView<>();
         listView.getItems().add(new Pane());
-        listView.getItems();
         listView.getSelectionModel().getSelectedIndices();
         if (!searchField.getText().equals("")) {
             List<ResultBook> resultBooks = BookAPIConnector.getSearchResults(searchField.getText());
@@ -191,7 +186,7 @@ public class HomeScreenController implements Initializable, FxController, Observ
     private Pane getSearchBookCard(ResultBook resultBook) throws IOException {
         Pane root = stageManager.loadView(SearchBookCardController.class);
         ((Label) root.getChildren().get(0)).setText(resultBook.getName());
-        ((Label) root.getChildren().get(1)).setText(resultBook.getAuthorNames().toString().replace("[","").replace("]",""));
+        ((Label) root.getChildren().get(1)).setText(resultBook.getAuthorNames().toString().replace("[", "").replace("]", ""));
         ((Pane) root.getChildren().get(2)).getChildren().get(0).setAccessibleText(String.valueOf(counter++));
         return root;
     }
@@ -199,29 +194,30 @@ public class HomeScreenController implements Initializable, FxController, Observ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Intent.observer = this;
+        Intent.toolBar = toolBar;
+
         boolean darkTheme = Intent.activeUser.getTheme() == 1;
-        toggleTheme(darkTheme);
+        Intent.toggleTheme(darkTheme, root);
         Intent.currentSceneClass = HomeScreenController.class;
 
         Platform.runLater(() -> {
             booksCardView.getChildren().clear();
-            userBookList = userBookService.findAllByUser(Intent.activeUser);
+            bookList = bookService.findAllByUser(Intent.activeUser);
             loadBooksAndChart();
         });
 
         fetchNavAvatar();
 
-        if (!isInitialize) {
-            ratingComboBox.getItems().addAll(
-                    "","One Star", "Two Stars", "Three Stars",
-                    "Four Stars", "Five Stars"
-            );
+        ratingComboBox.getItems().clear();
+        ratingComboBox.getItems().addAll(
+                "", "One Star", "Two Stars", "Three Stars",
+                "Four Stars", "Five Stars"
+        );
 
-            statusComboBox.getItems().addAll(
-                    "","To Read", "Currently Reading", "Read"
-            );
-            isInitialize = true;
-        }
+        statusComboBox.getItems().clear();
+        statusComboBox.getItems().addAll(
+                "", "To Read", "Currently Reading", "Read"
+        );
 
         addBookDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
         addBookDialog.setDialogContainer(root);
@@ -230,7 +226,7 @@ public class HomeScreenController implements Initializable, FxController, Observ
 
     private void fetchNavAvatar() {
         String path = "\"" + Intent.activeUser.getProfileImage() + "\"";
-        avatar.setStyle("-fx-background-image: url("+path+");");
+        avatar.setStyle("-fx-background-image: url(" + path + ");");
         Rectangle mask = new Rectangle(70, 70);
         mask.setArcHeight(100);
         mask.setArcWidth(100);
@@ -238,58 +234,65 @@ public class HomeScreenController implements Initializable, FxController, Observ
     }
 
     private void loadBooksAndChart() {
-        if (userBookList.size() == 0) {
+        if (bookList.size() == 0) {
             booksCardView.getChildren().clear();
             bookCards.setVisible(false);
             chartEmptyImage.setVisible(true);
         } else {
             chartEmptyImage.setVisible(false);
             bookCards.setVisible(true);
-            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                    new PieChart.Data("Currently Reading", userBookList
-                            .stream()
-                            .filter(userBook ->
-                                    userBook.getStatus().equals(Status.CURRENTLY_READING))
-                            .count()),
-                    new PieChart.Data("To Read", userBookList
-                            .stream()
-                            .filter(userBook ->
-                                    userBook.getStatus().equals(Status.TO_READ))
-                            .count()),
-                    new PieChart.Data("Read",userBookList
-                            .stream()
-                            .filter(userBook ->
-                                    userBook.getStatus().equals(Status.READ))
-                            .count())
-            );
+
+            Map<Status, Integer> statusCount = new HashMap<>();
+            for (Book book : bookList) {
+                switch (book.getStatus()) {
+                    case CURRENTLY_READING -> {
+                        if (statusCount.containsKey(CURRENTLY_READING))
+                            statusCount.put(CURRENTLY_READING, statusCount.get(CURRENTLY_READING) + 1);
+                        else statusCount.put(CURRENTLY_READING, 1);
+                    }
+                    case TO_READ -> {
+                        if (statusCount.containsKey(TO_READ))
+                            statusCount.put(TO_READ, statusCount.get(TO_READ) + 1);
+                        else statusCount.put(TO_READ, 1);
+                    }
+                    case READ -> {
+                        if (statusCount.containsKey(READ))
+                            statusCount.put(READ, statusCount.get(READ) + 1);
+                        else statusCount.put(READ, 1);
+                    }
+                }
+            }
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+            statusCount.forEach((k, v) -> pieChartData.add(new PieChart.Data(k.name(), v)));
             final DoughnutChart chart = new DoughnutChart(pieChartData);
+
             chart.setLegendVisible(false);
             chart.getStylesheets().add(String.valueOf(getClass().getResource("/styles/doughnut-chart.css")));
             charts.getChildren().clear();
             charts.getChildren().add(chart);
 
             booksCardView.getChildren().clear();
-            for (UserBook record : userBookList) {
+            for (Book record : bookList) {
                 try {
                     booksCardView.getChildren().add(getBookCard(record));
-                } catch (IOException ignored) {}
+                } catch (IOException ignored) {
+                }
             }
         }
     }
 
-    public Pane getBookCard(UserBook userBook) throws IOException {
-
+    public Pane getBookCard(Book book) throws IOException {
         Pane root = stageManager.loadView(BookCardController.class);
-        root.setUserData(userBook.getId());
-        String path = "\"" + userBook.getBook().getCoverId() + "\"";
+        root.setUserData(book.getId());
+        String path = "\"" + book.getCoverId() + "\"";
         ((StackPane) root.getChildren().get(0)).getChildren().get(0).setStyle("-fx-background-image: url(" + path + ");");
-        String statue = String.valueOf(userBook.getStatus()).replace('_', ' ').toLowerCase();
+        String statue = String.valueOf(book.getStatus()).replace('_', ' ').toLowerCase();
         ((Label) ((HBox) ((Pane) (((StackPane) root.getChildren().get(0)).getChildren().get(0))).getChildren().get(0)).getChildren().get(0))
                 .setText(StringUtils.capitalize(statue));
-        ((Label) root.getChildren().get(1)).setText(userBook.getBook().getName());
-        ((JFXSpinner) root.getChildren().get(2)).setProgress(Double.parseDouble(String.format("%.2f", (userBook.getCurrentPage()/userBook.getBook().getLength().doubleValue()))));
-        ObservableList<Node> stars =  ((GridPane) root.getChildren().get(3)).getChildren();
-        setRating(userBook.getRating(), stars);
+        ((Label) root.getChildren().get(1)).setText(book.getName());
+        ((JFXSpinner) root.getChildren().get(2)).setProgress(Double.parseDouble(String.format("%.2f", (book.getCurrentPage() / (book.getLength()*1.0)))));
+        ObservableList<Node> stars = ((GridPane) root.getChildren().get(3)).getChildren();
+        setRating(book.getRating(), stars);
 
         return root;
     }
@@ -299,68 +302,31 @@ public class HomeScreenController implements Initializable, FxController, Observ
         switch (rating) {
             case ONE_STAR -> stars.get(0).setStyle("-fx-image: url(" + path + ")");
             case TWO_STARS -> {
-                stars.get(0).setStyle("-fx-image: url(" + path + ")");
-                stars.get(1).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 2; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
             case THREE_STARS -> {
-                stars.get(0).setStyle("-fx-image: url(" + path + ")");
-                stars.get(1).setStyle("-fx-image: url(" + path + ")");
-                stars.get(2).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 3; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
             case FOUR_STARS -> {
-                stars.get(0).setStyle("-fx-image: url(" + path + ")");
-                stars.get(1).setStyle("-fx-image: url(" + path + ")");
-                stars.get(2).setStyle("-fx-image: url(" + path + ")");
-                stars.get(3).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 4; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
             case FIVE_STARS -> {
-                stars.get(0).setStyle("-fx-image: url(" + path + ")");
-                stars.get(1).setStyle("-fx-image: url(" + path + ")");
-                stars.get(2).setStyle("-fx-image: url(" + path + ")");
-                stars.get(3).setStyle("-fx-image: url(" + path + ")");
-                stars.get(4).setStyle("-fx-image: url(" + path + ")");
+                for (int i = 0; i < 5; i++)
+                    stars.get(i).setStyle("-fx-image: url(" + path + ")");
             }
         }
     }
 
-    public void toggleTheme(boolean isDarkTheme) {
-        if (isDarkTheme)
-            root.getStyleClass().add("dark-theme");
-        else
-            root.getStyleClass().remove("dark-theme");
-    }
-
-    @FXML
-    public void minimize(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    public void close(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void move(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-        toolBar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-        toolBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
-    }
-
     @Override
     public void notification(boolean isDarkTheme) {
-        toggleTheme(isDarkTheme);
-        Intent.innerCircle.setFill(Color.valueOf(isDarkTheme ? "#36373A" : "#F8F8F8"));
-        Intent.innerCircle.setStroke(isDarkTheme ? Color.BLACK : Color.WHITE);
+        Intent.toggleTheme(isDarkTheme, root);
+        if (Intent.innerCircle != null) {
+            Intent.innerCircle.setFill(Color.valueOf(isDarkTheme ? "#36373A" : "#F8F8F8"));
+            Intent.innerCircle.setStroke(isDarkTheme ? Color.BLACK : Color.WHITE);
+        }
     }
 
     @FXML
@@ -368,29 +334,29 @@ public class HomeScreenController implements Initializable, FxController, Observ
         int rating = ratingComboBox.getSelectionModel().getSelectedIndex();
         int status = statusComboBox.getSelectionModel().getSelectedIndex();
         bookCards.setVisible(true);
-        List<UserBook> searchResult;
+        List<Book> searchResult;
         if (rating <= 0 && status <= 0) {
-            searchResult = userBookList.stream().toList();
+            searchResult = bookList.stream().toList();
         } else if (rating <= 0) {
-            searchResult = userBookList.stream()
-                    .filter(userBook -> userBook.getStatus().ordinal()+1 == status).toList();
+            searchResult = bookList.stream()
+                    .filter(book -> book.getStatus().ordinal() + 1 == status).toList();
         } else if (status <= 0) {
-            searchResult = userBookList.stream()
-                    .filter(userBook -> userBook.getRating().ordinal()+1 == rating).toList();
+            searchResult = bookList.stream()
+                    .filter(book -> book.getRating().ordinal() + 1 == rating).toList();
         } else {
-            searchResult = userBookList.stream()
-                    .filter(userBook -> userBook.getStatus().ordinal()+1 == status &&
-                                        userBook.getRating().ordinal()+1 == rating).toList();
+            searchResult = bookList.stream()
+                    .filter(book -> book.getStatus().ordinal() + 1 == status &&
+                            book.getRating().ordinal() + 1 == rating).toList();
         }
+        booksCardView.getChildren().clear();
         if (searchResult.size() == 0) {
-            booksCardView.getChildren().clear();
             bookCards.setVisible(false);
         } else {
-            booksCardView.getChildren().clear();
-            for (UserBook record : searchResult) {
+            for (Book record : searchResult) {
                 try {
                     booksCardView.getChildren().add(getBookCard(record));
-                } catch (IOException ignored) {}
+                } catch (IOException ignored) {
+                }
             }
         }
     }
