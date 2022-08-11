@@ -15,6 +15,11 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.io.*;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 @FxmlView("/fxml/SearchBookCard.fxml")
 public class SearchBookCardController implements FxController {
@@ -28,13 +33,24 @@ public class SearchBookCardController implements FxController {
     BookService bookService;
     // SERVICES --- >
 
-    public void addBook(ActionEvent event) {
+    public void addBook(ActionEvent event) throws IOException {
         int index = Integer.parseInt(((JFXButton) event.getSource()).getAccessibleText());
         ResultBook resultBook = Intent.tempSearchResults.get(index);
         Book book = new Book();
         book.setName(resultBook.getName());
         book.setLength(resultBook.getLength());
-        book.setCoverId(resultBook.getCoverURL());
+        URL url = new URL(resultBook.getCoverURL());
+        InputStream in = new BufferedInputStream(url.openStream());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
+        Date date = new Date();
+        String downloadPath = "data/books/"+formatter.format(date)+".png";
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(downloadPath));
+        for ( int i; (i = in.read()) != -1; ) {
+            out.write(i);
+        }
+        in.close();
+        out.close();
+        book.setCoverId(("file:" + downloadPath).replace("\\", "/"));
         book.setAuthors(resultBook.getAuthorNames().toString().replace("[","").replace("]",""));
         book.setUser(Intent.activeUser);
         book.setCurrentPage(0);
