@@ -1,6 +1,7 @@
-package com.readile.readile.services.implementation;
+package com.readile.readile.services.implementation.book;
 
 import com.readile.readile.models.book.Book;
+import com.readile.readile.models.user.User;
 import com.readile.readile.repositories.BookRepository;
 import com.readile.readile.services.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public class BookService implements CrudService<Book> {
     @Autowired
-    private BookRepository bookRepository;
+    BookRepository bookRepository;
 
     @Override
     public Book save(Book entity) {
@@ -46,5 +47,9 @@ public class BookService implements CrudService<Book> {
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
+    }
+
+    public List<Book> findAllByUser(User user) {
+        return bookRepository.findAllByUser(user);
     }
 }
