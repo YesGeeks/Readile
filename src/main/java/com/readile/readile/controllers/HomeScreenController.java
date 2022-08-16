@@ -183,8 +183,8 @@ public class HomeScreenController extends ToolBar implements Initializable, FxCo
 
     private Pane getSearchBookCard(ResultBook resultBook) throws IOException {
         Pane root = stageManager.loadView(SearchBookCardController.class);
-        ((Label) root.getChildren().get(0)).setText(resultBook.getName());
-        ((Label) root.getChildren().get(1)).setText(resultBook.getAuthorNames().toString().replace("[", "").replace("]", ""));
+        ((Label) root.getChildren().get(0)).setText(resultBook.getTitle());
+        ((Label) root.getChildren().get(1)).setText(resultBook.getAuthor_name().toString().replace("[", "").replace("]", ""));
         ((Pane) root.getChildren().get(2)).getChildren().get(0).setAccessibleText(String.valueOf(counter++));
         return root;
     }

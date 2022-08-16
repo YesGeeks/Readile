@@ -37,9 +37,9 @@ public class SearchBookCardController implements FxController {
         int index = Integer.parseInt(((JFXButton) event.getSource()).getAccessibleText());
         ResultBook resultBook = Intent.tempSearchResults.get(index);
         Book book = new Book();
-        book.setName(resultBook.getName());
-        book.setLength(resultBook.getLength());
-        URL url = new URL(resultBook.getCoverURL());
+        book.setName(resultBook.getTitle());
+        book.setLength(resultBook.getNumber_of_pages_median());
+        URL url = new URL(resultBook.getCover_i());
         InputStream in = new BufferedInputStream(url.openStream());
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
         Date date = new Date();
@@ -51,7 +51,7 @@ public class SearchBookCardController implements FxController {
         in.close();
         out.close();
         book.setCoverId(("file:" + downloadPath).replace("\\", "/"));
-        book.setAuthors(resultBook.getAuthorNames().toString().replace("[","").replace("]",""));
+        book.setAuthors(resultBook.getAuthor_name().toString().replace("[","").replace("]",""));
         book.setUser(Intent.activeUser);
         book.setCurrentPage(0);
         book.setRating(Rating.ONE_STAR);

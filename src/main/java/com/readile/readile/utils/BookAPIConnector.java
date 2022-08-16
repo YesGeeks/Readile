@@ -1,13 +1,11 @@
 package com.readile.readile.utils;
 
 import lombok.NoArgsConstructor;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 public class BookAPIConnector {
@@ -23,38 +21,26 @@ public class BookAPIConnector {
             .baseUrl(SEARCH_BASE_URL).build();
 
     public static List<ResultBook> getSearchResults(String title) {
-        String jsonResult = webClient.get()
+        SearchResults searchResults = webClient.get()
                 .uri("?title={title}&limit={limit}", title, 20)
                 .retrieve()
-                .bodyToMono(String.class)
+                .bodyToMono(SearchResults.class)
                 .block();
 
-        return parseBooksJSON(jsonResult);
+        searchResults.getDocs()
+                .stream()
+                .forEach(resultBook -> {
+                    String coverId = StringUtils.hasText(resultBook.getCover_i()) ?
+                            String.format("%s%s%s", COVER_BASE_URL, resultBook.getCover_i(), "-L.jpg") :
+                            String.valueOf(BookAPIConnector.class.getResource("/images/no_cover.png"));
+                    resultBook.setCover_i(coverId);
+                });
+
+        return searchResults.getDocs()
+                .stream()
+                .filter(resultBook -> !resultBook.getTitle().equals("No title") &&
+                        resultBook.getNumber_of_pages_median() != null && resultBook.getAuthor_name() != null)
+                .collect(Collectors.toList());
     }
 
-    private static List<ResultBook> parseBooksJSON(String json) {
-        List<ResultBook> books = new ArrayList<>();
-        JSONArray booksJsonArray = new JSONObject(json).getJSONArray("docs");
-
-        for (int i = 0; i < booksJsonArray.length(); i++) {
-            JSONObject bookJsonObject = booksJsonArray.getJSONObject(i);
-            String title = bookJsonObject.optString("title", "No title");
-            int length = bookJsonObject.optInt("number_of_pages_median", -1);
-            int coverId = bookJsonObject.optInt("cover_i", -1);
-            String coverURL = (coverId > 0) ?
-                    String.format("%s%d%s", COVER_BASE_URL, coverId, "-L.jpg") :
-                    String.valueOf(BookAPIConnector.class.getResource("/images/colorful-logo.png"));
-            List<String> authorNames = new ArrayList<>();
-            JSONArray authorNamesJsonArray = bookJsonObject.optJSONArray("author_name");
-
-            if (authorNamesJsonArray != null)
-                for (int j = 0; j < authorNamesJsonArray.length(); j++)
-                    authorNames.add(authorNamesJsonArray.getString(j));
-
-            if (!title.equals("No title") && length > 0 && coverId > 0) {
-                books.add(new ResultBook(title, coverURL, length, authorNames));
-            }
-        }
-        return books;
-    }
 }
