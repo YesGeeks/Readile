@@ -49,7 +49,7 @@ Utilized the MVC design pattern
 ## Git Workflow
 * Adopted the popular git feature branch based workflow.
 * Each feature is developed in its own branch and a corresponding pull request is opened when it is finished.
-<img src="https://user-images.githubusercontent.com/46399191/219703406-ecd1792f-286c-4404-af3d-166ac672b9b1.png" width="400" alt="main - develop"/>
+<img src="https://user-images.githubusercontent.com/46399191/219787213-242dd00f-8df5-469b-85e4-a8918ab412af.png" width="400" alt="main - develop"/>
 
 ## CRUD Operations
 * At this stage, we faced a serious issue in integrating the spring boot framework with javafx.
