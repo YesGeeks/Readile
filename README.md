@@ -68,6 +68,12 @@ Utilized the MVC design pattern
 - [`MySQL DBMS`](https://www.mysql.com/), [`JDBC`](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html), [`Hibernate JPA`](https://hibernate.org/orm/), [`Spring Data JPA`](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
 - [`Lombok`](https://projectlombok.org/), [`Google API's`](https://developers.google.com/apis-explorer), [`OAuth2`](https://developers.google.com/identity/protocols/oauth2), [`Open Library API`](https://openlibrary.org/developers/api), [`Unsplash API`](https://unsplash.com/developers)
 
+## Screenshots
+![Screenshot2](https://user-images.githubusercontent.com/46399191/219766772-eacca78e-727a-4d68-bd82-f67527b564cc.png)
+![Screenshot1](https://user-images.githubusercontent.com/46399191/219766790-ec486508-5857-421a-8692-5bc8ea5ad71a.png)
+![Screenshot3](https://user-images.githubusercontent.com/46399191/219766777-a3e5307a-e9c7-48a8-a340-fbf29be0eb55.png)
+![Screenshot4](https://user-images.githubusercontent.com/46399191/219766782-a373fb8f-1028-4a2f-8b32-b334746a006a.png)
+
 ## Guides
 The following guides illustrate how to use some features concretely:
 * [Accessing Relational Data using JDBC with Spring](https://spring.io/guides/gs/relational-data-access/)
