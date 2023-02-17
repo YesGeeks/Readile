@@ -10,35 +10,73 @@
 <img src="https://user-images.githubusercontent.com/46399191/165711330-14a2b271-e3ef-4e01-91fc-b18d75a62a6e.png" width="150" alt="Readile">
 
 # Readile 
-> The way to track your readings
+A simple yet powerful desktop application that tracks users’ book reading activity and allows them to create reading goals.
 
-## Getting Started
+<div align="center">
+<img style="float: right;"  src="https://user-images.githubusercontent.com/46399191/219680603-9c49d57f-4504-4d3b-aa0f-6073de9a7fe8.png" width="400" alt="Readile"/>
+<p><b>Readile</b> bridges the gap between  user readings and their reading habits, allowing them to track their readings effortlessly</p>
+</div>
 
-### Reference Documentation
+## User Requirements
+<div>
+<img align="left" src="https://user-images.githubusercontent.com/46399191/219682130-624d6888-6206-4f08-9f8b-f2e021bcc309.png" width="220" alt="Readile"/>
+<ul>
+<br>
+<li>As a user, I should be able to search for a particular book</li>
+<li>As a user, I should be able to track a particular book</li>
+<li>As a user, I should be able to categorize my books</li>
+<li>As a user, I should be able to delete a book</li>
+<li>As a user, I should be able to rate a book</li>
+<li>...</li>
+</ul>
+<br>
+</div>
 
-For further reference, please consider the following sections:
+## Prototype & UI
+* The prototype is designed using [Figma](https://www.figma.com/).
+* Each scene was designed separately using [Scene Builder](https://gluonhq.com/products/scene-builder/).
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.7/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.7/maven-plugin/reference/html/#build-image)
-* [JDBC API](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#boot-features-sql)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#boot-features-jpa-and-spring-data)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#using-boot-devtools)
-* [RSocket](https://rsocket.io/)
-* [WebSocket](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#boot-features-websockets)
+![image](https://user-images.githubusercontent.com/46399191/219687323-2cbd0e0c-5cd8-4d44-9dcc-170585c72c3c.png)
 
-### Guides
+## Database ER Diagram ([SQL Schema](https://github.com/YesGeeks/Readile/blob/develop/src/main/resources/database/schema.sql))
+![readile](https://user-images.githubusercontent.com/46399191/219695227-909ea57e-7901-430c-ac8e-679782132af1.png)
 
+## System Design & Architecture
+Utilized the MVC design pattern
+
+![image](https://user-images.githubusercontent.com/46399191/219697667-616bea75-5d09-487a-8c16-fb83a15e5833.png)
+
+## Git Workflow
+* Adopted the popular git feature branch based workflow.
+* Each feature is developed in its own branch and a corresponding pull request is opened when it is finished.
+<img src="https://user-images.githubusercontent.com/46399191/219703406-ecd1792f-286c-4404-af3d-166ac672b9b1.png" width="400" alt="main - develop"/>
+
+## CRUD Operations
+* At this stage, we faced a serious issue in integrating the spring boot framework with javafx.
+* The problem was solved by using the [JavaFX Waver](https://github.com/rgielen/javafx-weaver) library.
+* The Repository design pattern from Spring Data JPA is used to implement basic CRUD operations.
+
+<img src="https://user-images.githubusercontent.com/46399191/219749396-58929641-d674-4b15-a922-3aae6c8a69b5.png" width="400" alt="Interface"/>
+
+## Used Libraries & Technologies
+<div align="center">
+<img src="https://user-images.githubusercontent.com/46399191/219760552-5ffe6d05-80d4-498d-8ffc-fed1e78fffbc.png" width="400" alt="Technologies"/>
+</div>
+
+- [`JavaFX`](https://openjfx.io/), [`JavaFX Waver`](https://github.com/rgielen/javafx-weaver), [`JFoenix`](https://github.com/sshahine/JFoenix), [`MaterialFX`](https://github.com/palexdev/MaterialFX), [`ControlsFX`](https://github.com/controlsfx/controlsfx), [`JavaSystemThemeDetector`](https://github.com/Dansoftowner/jSystemThemeDetector)
+- [`Spring Boot`](https://spring.io/projects/spring-boot), [`Spring Security`](https://spring.io/projects/spring-security)
+- [`MySQL DBMS`](https://www.mysql.com/), [`JDBC`](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html), [`Hibernate JPA`](https://hibernate.org/orm/), [`Spring Data JPA`](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+- [`Lombok`](https://projectlombok.org/), [`Google API's`](https://developers.google.com/apis-explorer), [`OAuth2`](https://developers.google.com/identity/protocols/oauth2), [`Open Library API`](https://openlibrary.org/developers/api), [`Unsplash API`](https://unsplash.com/developers)
+
+## Guides
 The following guides illustrate how to use some features concretely:
-
 * [Accessing Relational Data using JDBC with Spring](https://spring.io/guides/gs/relational-data-access/)
 * [Managing Transactions](https://spring.io/guides/gs/managing-transactions/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 * [Using WebSocket to build an interactive web application](https://spring.io/guides/gs/messaging-stomp-websocket/)
 
-### Contact Details
-
+## Contact Details
 Feel free to reach out to us at: readileapp@gmail.com
 
-<i>© 2022 Readile</i>
+<i>© 2023 Readile</i>
